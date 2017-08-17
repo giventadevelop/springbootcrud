@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 //import com.codahale.metrics.annotation.Timed;
 import com.websystique.springboot.dto.DogDTO;
 import com.websystique.springboot.dto.GroupByDogBreedDTO;
+import com.websystique.springboot.model.User;
 import com.websystique.springboot.service.DogService;
 import com.websystique.springboot.util.HeaderUtil;
 import com.websystique.springboot.util.PaginationUtil;
@@ -108,7 +109,8 @@ public class DogResource {
         Page<DogUserDogDTO> pageUserDog = dogService.getDogUserDog(pageable, loggedInUserName);*/
       //  HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/dogs");
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/dogs");
-       return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+      // return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+        return new ResponseEntity<List<DogDTO>>(page.getContent(), HttpStatus.OK);
         //return new ResponseEntity<>(pageUserDog.getContent(), headers, HttpStatus.OK);
     }
 

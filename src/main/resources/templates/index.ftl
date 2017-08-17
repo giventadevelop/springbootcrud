@@ -156,7 +156,8 @@
     <script src="js/app/app.js"></script>
     <script src="js/app/UserService.js"></script>
     <script src="js/app/UserController.js"></script>
-    <script src="js/app/angrid.js"></script>
+    <script src="js/app/AnGridService.js"></script>
+    <script src="js/app/AnGridController.js"></script>
     
 
 </body>

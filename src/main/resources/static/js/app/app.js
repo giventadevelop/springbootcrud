@@ -2,7 +2,8 @@ var app = angular.module('crudApp',['ui.router','ngStorage','ui.bootstrap','ngAr
 
 app.constant('urls', {
     BASE: 'http://localhost:8080/SpringBootCRUDApp',
-    USER_SERVICE_API : 'http://localhost:8080/SpringBootCRUDApp/api/user/'
+    USER_SERVICE_API : 'http://localhost:8080/SpringBootCRUDApp/api/user/',
+    GET_DOGS_URI : 'api/dogs/'
 });
 
 app.config(['$stateProvider', '$urlRouterProvider',
@@ -27,15 +28,16 @@ app.config(['$stateProvider', '$urlRouterProvider',
             	name: 'about',
                 url: '/',
                 templateUrl: 'partials/about',
-                controller:'GridCtrl',
-                controllerAs:'GridCtrl',
-               
-            }).state('angtiles', {
-            	name: 'angtiles',
-                url: '/',
-                templateUrl: 'partials/angmattiles',
-                controller:'GridCtrl',
-                controllerAs:'GridCtrl',
+                controller:'AnGridController',
+                controllerAs:'angGridCtrl',
+                resolve: {
+                    dogs: function ($q, AnGridService) {
+                        console.log('Load all dogs');
+                        var deferred = $q.defer();
+                       AnGridService.loadAllDogs().then(deferred.resolve, deferred.resolve);
+                        return deferred.promise;
+                    }
+                }
                
             });
         $urlRouterProvider.otherwise('/');

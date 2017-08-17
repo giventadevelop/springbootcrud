@@ -6,10 +6,10 @@
 		</div>
 		<div class="panel-body">
 
-			About Page
+			About Page  Test  12
 
-			<div ng-controller="GridCtrl">
-				<div ui-grid="{ data: myData }" class="myGrid"></div>
+			<div ng-controller="AnGridController">
+				<div ui-grid="{ data: dogs}" class="myGrid"></div>
 				 <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" ng-change="pageChanged()" class="pagination-sm" boundary-links="true" force-ellipses="true"></ul>
 			</div>
 
