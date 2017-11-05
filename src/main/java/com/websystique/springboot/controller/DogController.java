@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.PagedResources;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.websystique.springboot.dto.DogDTO;
 import com.websystique.springboot.dto.GroupByDogBreedDTO;
 import com.websystique.springboot.model.User;
+import com.websystique.springboot.resource.assembler.DogResourceAssembler;
 import com.websystique.springboot.service.DogService;
 import com.websystique.springboot.util.HeaderUtil;
 import com.websystique.springboot.util.PaginationUtil;
@@ -43,14 +46,16 @@ import io.swagger.annotations.ApiParam;*/
  */
 @RestController
 @RequestMapping("/api")
-public class DogResource {
+public class DogController {
 
-    private final Logger log = LoggerFactory.getLogger(DogResource.class);
+    private final Logger log = LoggerFactory.getLogger(DogController.class);
 
     private static final String ENTITY_NAME = "dog";
     
     @Autowired
     DogService dogService;
+    @Autowired
+    DogResourceAssembler dogResourceAssembler;
     
     /**
      * POST  /dogs : Create a new dog.
@@ -100,17 +105,19 @@ public class DogResource {
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of dogs in body
      */
-    @GetMapping("/dogs")
+    @SuppressWarnings("unchecked")
+	@GetMapping("/dogs")
     //@Timed
-    public ResponseEntity<List<DogDTO>> getAllDogs( Pageable pageable) {
+    public PagedResources<DogDTO> getAllDogs( Pageable pageable,PagedResourcesAssembler assembler) {
     	log.debug("REST request to get a page of Dogs");
        Page<DogDTO> page = dogService.findAll(pageable);
        /* String loggedInUserName=SecurityContextHolder.getContext().getAuthentication().getName();
         Page<DogUserDogDTO> pageUserDog = dogService.getDogUserDog(pageable, loggedInUserName);*/
+       HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/dogs");
       //  HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/dogs");
-        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/dogs");
       // return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
-        return new ResponseEntity<List<DogDTO>>(page.getContent(), HttpStatus.OK);
+       return assembler.toResource(page, dogResourceAssembler);
+        //return new ResponseEntity<List<DogDTO>>(page.getContent(), HttpStatus.OK);
         //return new ResponseEntity<>(pageUserDog.getContent(), headers, HttpStatus.OK);
     }
 

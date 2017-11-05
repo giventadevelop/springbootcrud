@@ -18,7 +18,7 @@ angular.module('crudApp').factory('AnGridService',
                     .then(
                         function (response) {
                             console.log('Fetched successfully all users');
-                            $localStorage.dogs = response.data;
+                            $localStorage.dogs = response.data._embedded.dogDTOList;
                             deferred.resolve(response);
                         },
                         function (errResponse) {

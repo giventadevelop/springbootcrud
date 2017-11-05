@@ -7,6 +7,10 @@ angular.module('crudApp').controller('AnGridController',
         self.dog = {};
         self.dogs=[];
         $scope.dogs=AnGridService.getAllDogs();
+        
+        $scope.totalItems = 64;
+     	$scope.currentPage = 4;
+
         self.getAllDogs = getAllDogs;
        
         self.successMessage = '';
