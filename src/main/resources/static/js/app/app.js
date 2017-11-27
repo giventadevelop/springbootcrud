@@ -1,9 +1,9 @@
-var app = angular.module('crudApp',['ui.router','ngStorage','ui.bootstrap','ngAria','ngAnimate','ngMaterial','ui.grid']);
+var app = angular.module('crudApp',['ui.router','ngStorage','ui.bootstrap','ngAria','ngAnimate','ngMaterial','ui.grid', 'ui.grid.edit']);
 
 app.constant('urls', {
     BASE: 'http://localhost:8080/SpringBootCRUDApp',
     USER_SERVICE_API : 'http://localhost:8080/SpringBootCRUDApp/api/user/',
-    GET_DOGS_URI : 'api/dogs/'
+    DOGS_URI : 'api/dogs/'
 });
 
 app.config(['$stateProvider', '$urlRouterProvider',

@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('crudApp').factory('AnGridService',
-    ['$localStorage', '$http', '$q', 'urls',
-        function ($localStorage, $http, $q, urls) {
+angular.module('crudApp').factory('RowEditor',
+    ['$rootScope', '$modal',
+        function ($rootScope, $modal) {
 
             var grdfactory = {
                 loadAllDogs: loadAllDogs,
@@ -14,7 +14,7 @@ angular.module('crudApp').factory('AnGridService',
             function loadAllDogs() {
                 console.log('Fetching all users');
                 var deferred = $q.defer();
-                $http.get(urls.DOGS_URI)
+                $http.get(urls.GET_DOGS_URI)
                     .then(
                         function (response) {
                             console.log('Fetched successfully all users');
@@ -33,22 +33,27 @@ angular.module('crudApp').factory('AnGridService',
                 return $localStorage.dogs;
             }
             
-            function saveOrUpdateDog(dog) {
-                console.log('Save Or Update Dog');
-                var deferred = $q.defer();
-                $http.post(urls.DOGS_URI, user)
-                    .then(
-                        function (response) {
-                           // loadAllUsers();
-                            deferred.resolve(response.data);
-                        },
-                        function (errResponse) {
-                           console.error('Error while Save Or Update Dog : '+errResponse.data.errorMessage);
-                           deferred.reject(errResponse);
-                        }
-                    );
-                return deferred.promise;
-            }
+            function RowEditor($rootScope, $modal) {
+            	  var service = {};
+            	  service.editRow = editRow;
+            	  
+            	  function editRow(grid, row) {
+            	    $modal.open({
+            	      templateUrl: 'js/app/edit-modal.html',
+            	      controller: ['$modalInstance', 'DogSchema', 'grid', 'row', RowEditCtrl],
+            	      controllerAs: 'vm',
+            	      resolve: {
+            	        grid: function () { return grid; },
+            	        row: function () { return row; }
+            	      }
+            	    });
+            	  }
+            	  
+            	  return service;
+            	}
+            
+            
+            
 
         }
     ]);

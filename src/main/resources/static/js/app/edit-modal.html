@@ -1,0 +1,72 @@
+<div class="modal-header">
+<div class="cancel pull-right" ng-click="cancelModal()">
+    <span class="close">X</span>
+  </div>
+    <h3>Create A New Account!</h3>
+</div>
+
+
+ id {{id}}
+ Dog Name editRow.dogName
+
+<form name="userForm" ng-submit="saveUpdateDog()" novalidate>
+    <div class="modal-body">
+        <!-- NAME -->
+        <div class="form-group">
+            <label>Name</label>
+            <input type="text" name="editRow.id" class="form-control" ng-model="editRow.id" required>
+           <!--  <p ng-show="form.userForm.name.$invalid && !form.userForm.name.$pristine" class="help-block">You name is required.</p> -->
+        </div>
+        
+        <div class="form-group">
+            <label>Dog Name</label>
+            <input type="text" name="editRow.dogName" class="form-control" ng-model="editRow.dogName" required>
+            <p ng-show="form.userForm.name.$invalid && !form.userForm.name.$pristine" class="help-block">You name is required.</p>
+        </div>
+
+        
+        <div class="form-group">
+            <label>Votes</label>
+            <input type="text" name="editRow.votes" class="form-control" ng-model="editRow.votes" required>
+            <p ng-show="form.userForm.username.$error.minlength" class="help-block">Username is too short.</p>
+            <p ng-show="form.userForm.username.$error.maxlength" class="help-block">Username is too long.</p>
+        </div>
+
+        <div class="form-group">
+            <label>Dog Picture Content Type</label>
+            <input type="text" name="editRow.dogPictureContentType" class="form-control" ng-model="editRow.dogPictureContentType" required>
+            <p ng-show="form.userForm.email.$invalid && !form.userForm.email.$pristine" class="help-block">Enter a valid email.</p>
+        </div>
+        
+        <div class="form-group">
+            <label>Dog Breed Id</label>
+            <input type="text" name="editRow.dogbreedId" class="form-control" ng-model="editRow.dogbreedId" required>
+            <p ng-show="form.userForm.email.$invalid && !form.userForm.email.$pristine" class="help-block">Enter a valid email.</p>
+        </div>
+        
+         <div class="form-group">
+            <label>Dog Breed Id</label>
+            <input type="hidden" name="editRow.dogPicture" class="form-control" ng-model="editRow.dogPicture" required>
+            <p ng-show="form.userForm.email.$invalid && !form.userForm.email.$pristine" class="help-block">Enter a valid email.</p>
+        </div>
+      <!--   
+         <div class="form-group">
+            <label>Dog Breed Id</label>
+            <input type="hidden" name="editRow.dogPicture" class="form-control" ng-model="editRow.dogPicture" required>
+            <p ng-show="form.userForm.email.$invalid && !form.userForm.email.$pristine" class="help-block">Enter a valid email.</p>
+        </div> -->
+        
+          <div class="form-group">
+            <label>Dog Picture</label>
+            <img  src="data:image/jpeg;base64,{{editRow.dogPicture}}" />
+        </div>
+         
+
+    </div>
+    <div class="modal-footer">
+       <!--  <button type="submit" class="btn btn-primary" ng-disabled="form.userForm.$invalid">OK</button> -->
+       <button type="submit" class="btn btn-primary" >OK</button>
+        <button class="btn btn-warning"  data-dismiss="modal" ng-click="cancelModal()">Cancel</button>
+        <!-- <button class="btn btn-warning"  data-dismiss="modal">Cancel</button> -->
+    </div>
+</form>
