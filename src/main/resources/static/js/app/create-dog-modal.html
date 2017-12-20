@@ -1,0 +1,74 @@
+<div class="modal-header">
+<div class="cancel pull-right" ng-click="cancelModal()">
+    <span class="close">X</span>
+  </div>
+    <h3>Create A New Dog Details!</h3>
+</div>
+
+
+<form name="dogCreateForm" ng-submit="createNewDog()" enctype="multipart/form-data" novalidate>
+    <div class="modal-body">
+        
+        <!-- NAME -->
+        <div class="form-group">
+        
+            <input type="hidden" name="dogDetails.id" class="form-control" ng-model="dogDetails.id"  ng-init="dogDetails.id ='' " value="">
+            
+        </div>
+        
+        <div class="form-group">
+            <label>Dog Name</label>
+            <input type="text" name="dogDetails.dogName" class="form-control" ng-model="dogDetails.dogName" required>
+            <p ng-show="form.dogCreateForm.dogDetails.dogName.$invalid && !form.dogCreateForm.dogDetails.dogName.$pristine" class="help-block">You name is required.</p>
+        </div>
+
+        <div class="form-group">
+            <input type="hidden" name="dogDetails.votes" class="form-control" ng-model="dogDetails.votes" ng-init="dogDetails.votes ='0' " value="0">
+        </div>
+        
+         <div class="form-group">
+            <label>Dog Picture</label>
+             <input type="file" name="dogDetails.dogPicture"  id="dogDetails.dogPicture" fileinput="file" filepreview="filepreview" ng-model="dogDetails.dogPicture" onchange="angular.element(this).scope().setUploadPicture(event)"/>
+         </div>
+     
+    <div class="col-md-6">
+       <img ng-src="{{filepreview}}" class="img-responsive" ng-show="filepreview"/>
+    </div>
+     
+        <div class="form-group">
+            <input type="hidden" name="dogDetails.dogPictureContentType" class="form-control" ng-model="dogDetails.dogPictureContentType" ng-init="dogDetails.dogPictureContentType ='jpeg' " value="jpeg">
+        </div>
+        
+        <div class="form-group">
+             <input type="hidden"  name="dogDetails.dogbreedId" class="form-control" ng-model="dogDetails.dogbreedId" ng-init="dogDetails.dogbreedId ='3' " value="3">
+        </div>
+        
+        
+    </div>
+    <div class="modal-footer">
+       <!--  <button type="submit" class="btn btn-primary" ng-disabled="form.dogCreateForm.$invalid">OK</button> -->
+       <button type="submit" class="btn btn-primary" >OK</button>
+        <button type="button" class="btn btn-warning"  data-dismiss="modal" ng-click="cancelModal()">Cancel</button>
+    </div>
+</form>
+ 
+ <div id="list"></div>
+
+
+<script>
+  /* function handleFileSelect(evt) {
+    var files = evt.target.files; // FileList object
+
+    // files is a FileList of File objects. List some properties.
+    var output = [];
+    for (var i = 0, f; f = files[i]; i++) {
+      output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+                  f.size, ' bytes, last modified: ',
+                  f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+                  '</li>');
+    }
+    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+  }
+
+  document.getElementById('dogDetails.dogPicture').addEventListener('change', handleFileSelect, false); */
+</script>

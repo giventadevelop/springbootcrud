@@ -27,6 +27,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 //import com.codahale.metrics.annotation.Timed;
@@ -101,7 +103,6 @@ public class DogController {
 
     /**
      * GET  /dogs : get all the dogs.
-     *
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of dogs in body
      */
@@ -164,16 +165,29 @@ public class DogController {
 
     /**
      * DELETE  /dogs/:id : delete the "id" dog.
-     *
      * @param id the id of the dogDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/dogs/{id}")
+   // @RequestMapping(value="/dogs/{id}",method=RequestMethod.DELETE)
     //@Timed
-    public ResponseEntity<Void> deleteDog(@PathVariable Long id) {
+   // (@RequestBody DogDTO dogDTO) throws URISyntaxException {
+   // public ResponseEntity<DogDTO> deleteDog(@RequestBody DogDTO dogDTO) throws URISyntaxException {
+  //  public ResponseEntity<DogDTO> deleteDog() throws URISyntaxException {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteDog(@PathVariable Long id) throws URISyntaxException {
+    //public ResponseEntity<Void> deleteDog(@PathVariable Long id) {
+    	/*Long id=dogDTO.getId();
         log.debug("REST request to delete Dog : {}", id);
         dogService.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+       // return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.ok()
+                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, dogDTO.getId().toString()))
+                .body(dogDTO);*/
+    	 log.debug("Delete DOg called." );
+    	  log.debug("REST request to delete Dog : {}", id);
+    	  dogService.delete(id);
+    	
     }
     
     // --  Dogs GROUP BY breed ---

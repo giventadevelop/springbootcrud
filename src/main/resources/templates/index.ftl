@@ -58,10 +58,10 @@
                         <a ui-sref="home">Home</a>
                     </li>
                     <li>
-                        <a ui-sref="about">About</a>
+                        <a ui-sref=uigrid>UI Grid</a>
                     </li>
                     <li>
-                        <a ui-sref="angtiles">Contact</a>
+                        <a ui-sref="angtiles">Ang Tiles</a>
                     </li>
                 </ul>
             </div>
