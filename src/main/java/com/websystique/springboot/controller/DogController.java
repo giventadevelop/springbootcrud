@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.PagedResources;
 import org.springframework.http.HttpHeaders;
@@ -27,6 +28,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 //import com.codahale.metrics.annotation.Timed;
@@ -66,7 +69,7 @@ public class DogController {
      */
     @PostMapping("/dogs")
     //@Timed
-    public ResponseEntity<DogDTO> createDog(@RequestBody DogDTO dogDTO) throws URISyntaxException {
+    public ResponseEntity<DogDTO> createDog( @PageableDefault(page = 0, size = 10) Pageable pageRequest,@RequestBody DogDTO dogDTO) throws URISyntaxException {
         log.debug("REST request to save Dog : {}", dogDTO);
         if (dogDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new dog cannot already have an ID")).body(null);
@@ -91,7 +94,7 @@ public class DogController {
     public ResponseEntity<DogDTO> updateDog(@RequestBody DogDTO dogDTO) throws URISyntaxException {
         log.debug("REST request to update Dog : {}", dogDTO);
         if (dogDTO.getId() == null) {
-            return createDog(dogDTO);
+            return createDog(null, dogDTO);
         }
         DogDTO result = dogService.save(dogDTO);
         return ResponseEntity.ok()
@@ -101,14 +104,13 @@ public class DogController {
 
     /**
      * GET  /dogs : get all the dogs.
-     *
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of dogs in body
      */
     @SuppressWarnings("unchecked")
 	@GetMapping("/dogs")
     //@Timed
-    public PagedResources<DogDTO> getAllDogs( Pageable pageable,PagedResourcesAssembler assembler) {
+    public PagedResources<DogDTO> getAllDogs(  @PageableDefault(page = 0, size = 10) Pageable pageable,PagedResourcesAssembler assembler) {
     	log.debug("REST request to get a page of Dogs");
        Page<DogDTO> page = dogService.findAll(pageable);
        /* String loggedInUserName=SecurityContextHolder.getContext().getAuthentication().getName();
@@ -129,11 +131,14 @@ public class DogController {
      */
     @GetMapping("/dogs/{id}")
     //@Timed
-    public ResponseEntity<DogDTO> getDog(@PathVariable Long id) {
+    public ResponseEntity<DogDTO> getDogById(@PathVariable Long id) {
         log.debug("REST request to get Dog : {}", id);
         DogDTO dogDTO = dogService.findOne(id);
-      //  return ResponseUtil.wrapOrNotFound(Optional.ofNullable(dogDTO));
-        return null;
+       
+        return ResponseEntity.ok()
+                .headers(HeaderUtil.createAlert(ENTITY_NAME, dogDTO.getId().toString()))
+                .body(dogDTO);
+       // return null;
     }
     
     
@@ -164,16 +169,29 @@ public class DogController {
 
     /**
      * DELETE  /dogs/:id : delete the "id" dog.
-     *
      * @param id the id of the dogDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/dogs/{id}")
+   // @RequestMapping(value="/dogs/{id}",method=RequestMethod.DELETE)
     //@Timed
-    public ResponseEntity<Void> deleteDog(@PathVariable Long id) {
+   // (@RequestBody DogDTO dogDTO) throws URISyntaxException {
+   // public ResponseEntity<DogDTO> deleteDog(@RequestBody DogDTO dogDTO) throws URISyntaxException {
+  //  public ResponseEntity<DogDTO> deleteDog() throws URISyntaxException {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteDog(@PathVariable Long id) throws URISyntaxException {
+    //public ResponseEntity<Void> deleteDog(@PathVariable Long id) {
+    	/*Long id=dogDTO.getId();
         log.debug("REST request to delete Dog : {}", id);
         dogService.delete(id);
-        return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+       // return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
+        return ResponseEntity.ok()
+                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, dogDTO.getId().toString()))
+                .body(dogDTO);*/
+    	 log.debug("Delete Dog called." );
+    	  log.debug("REST request to delete Dog : {}", id);
+    	  dogService.delete(id);
+    	 
     }
     
     // --  Dogs GROUP BY breed ---
@@ -185,7 +203,7 @@ public class DogController {
      */
     @GetMapping("/dogs/breed/groupby")
     //@Timed
-    public ResponseEntity<List<GroupByDogBreedDTO>> getAllDogsBreedsGroupBy( Pageable pageable) {
+    public ResponseEntity<List<GroupByDogBreedDTO>> getAllDogsBreedsGroupBy(  @PageableDefault(page = 0, size = 10) Pageable pageable) {
         log.debug("REST request to get a page of dog breeds GROUP BY");
         Page<GroupByDogBreedDTO> page = dogService.getAllDogsBreedsGroupBy(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/dogs/breed/groupby");

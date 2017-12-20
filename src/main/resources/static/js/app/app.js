@@ -24,17 +24,31 @@ app.config(['$stateProvider', '$urlRouterProvider',
                         return deferred.promise;
                     }
                 }
-            }).state('about', {
-            	name: 'about',
+            }).state('angtiles', {
+            	name: 'angtiles',
                 url: '/',
-                templateUrl: 'partials/about',
+                templateUrl: 'partials/angmattiles',
                 controller:'AnGridController',
                 controllerAs:'angGridCtrl',
                 resolve: {
                     dogs: function ($q, AnGridService) {
                         console.log('Load all dogs');
                         var deferred = $q.defer();
-                       AnGridService.loadAllDogs().then(deferred.resolve, deferred.resolve);
+                       AnGridService.loadAllDogs(0,10).then(deferred.resolve, deferred.resolve);
+                        return deferred.promise;
+                    }
+                }
+            }).state('uigrid', {
+            	name: 'uigrid',
+                url: '/',
+                templateUrl: 'partials/uigrid',
+                controller:'AnGridController',
+                controllerAs:'angGridCtrl',
+                resolve: {
+                    dogs: function ($q, AnGridService) {
+                        console.log('Load all dogs');
+                        var deferred = $q.defer();
+                       AnGridService.loadAllDogs(0,10).then(deferred.resolve, deferred.resolve);
                         return deferred.promise;
                     }
                 }

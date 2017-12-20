@@ -2,6 +2,7 @@ package com.websystique.springboot.util;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
+import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
 
 /**
@@ -11,14 +12,16 @@ import org.springframework.web.util.UriComponentsBuilder;
  * Pagination uses the same principles as the <a href="https://developer.github.com/v3/#pagination">Github API</a>,
  * and follow <a href="http://tools.ietf.org/html/rfc5988">RFC 5988 (Link header)</a>.
  */
-public final class PaginationUtil {
+@Component
+public  class PaginationUtil {
 
-    private PaginationUtil() {
+    public PaginationUtil() {
     }
 
     public static HttpHeaders generatePaginationHttpHeaders(Page page, String baseUrl) {
 
         HttpHeaders headers = new HttpHeaders();
+        if(page!=null){
         headers.add("X-Total-Count", "" + Long.toString(page.getTotalElements()));
         String link = "";
         if ((page.getNumber() + 1) < page.getTotalPages()) {
@@ -36,6 +39,7 @@ public final class PaginationUtil {
         link += "<" + generateUri(baseUrl, lastPage, page.getSize()) + ">; rel=\"last\",";
         link += "<" + generateUri(baseUrl, 0, page.getSize()) + ">; rel=\"first\"";
         headers.add(HttpHeaders.LINK, link);
+        }
         return headers;
     }
 
