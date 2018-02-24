@@ -188,12 +188,10 @@ public class DogController {
         return ResponseEntity.ok()
                 .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, dogDTO.getId().toString()))
                 .body(dogDTO);*/
-
     	 log.debug("Delete Dog called." );
     	  log.debug("REST request to delete Dog : {}", id);
     	  dogService.delete(id);
     	 
-
     }
     
     // --  Dogs GROUP BY breed ---
