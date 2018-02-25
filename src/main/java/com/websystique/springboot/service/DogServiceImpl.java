@@ -31,7 +31,6 @@ public class DogServiceImpl implements DogService {
 	DogMapper dogMapper;
 	@Autowired
 	DogRepository dogRepository;
-	
 
 	/**
 	 * Save a dog.
@@ -61,8 +60,11 @@ public class DogServiceImpl implements DogService {
 	public Page<DogDTO> findAll(Pageable pageable) {
 		log.debug("Request to get all Dogs");
 		Page<Dog> result = dogRepository.findAll(pageable);
+		if (result != null) {
+			return result.map(dog -> dogMapper.dogToDogDTO(dog));
+		}
+		return null;
 
-		return result.map(dog -> dogMapper.dogToDogDTO(dog));
 	}
 
 	/**
@@ -113,26 +115,26 @@ public class DogServiceImpl implements DogService {
 	@Override
 	public Page<DogUserDogDTO> getDogUserDog(Pageable pageable, String loggedInUserName) {
 		log.debug(" Get all Dogs with votes included at user_dog table.");
-		//List<DogUserDogDTO> dogUserDogResult = dogRepository.getDogUserDog();
+		// List<DogUserDogDTO> dogUserDogResult = dogRepository.getDogUserDog();
 		List<DogUserDogDTO> dogUserDogResult = null;
-		dogUserDogResult.forEach(dogUserDogDTO ->{
-		
-		dogUserDogDTO.setLoggedInUserName(loggedInUserName);
-		String encodeBase64 = Base64.encodeBase64String(dogUserDogDTO.getDogPicture());
-		//byte[] encodeBase64 = Base64.encode(dogUserDogDTO.getDogPicture());
-	   // String base64Encoded = new String(encodeBase64, "UTF-8");
-		dogUserDogDTO.setBase64EncodedImg(encodeBase64);
-			
+		dogUserDogResult.forEach(dogUserDogDTO -> {
+
+			dogUserDogDTO.setLoggedInUserName(loggedInUserName);
+			String encodeBase64 = Base64.encodeBase64String(dogUserDogDTO.getDogPicture());
+			// byte[] encodeBase64 =
+			// Base64.encode(dogUserDogDTO.getDogPicture());
+			// String base64Encoded = new String(encodeBase64, "UTF-8");
+			dogUserDogDTO.setBase64EncodedImg(encodeBase64);
+
 		});
-		
-		 
-		
-	    //mav.addObject("userImage", base64Encoded );
-		
-		 //List<Object[]> dogUserDogResult= dogRepository.getDogUserDog(loggedInUserName); 
+
+		// mav.addObject("userImage", base64Encoded );
+
+		// List<Object[]> dogUserDogResult=
+		// dogRepository.getDogUserDog(loggedInUserName);
 		final int currentTotal = pageable.getOffset() + pageable.getPageSize();
 		return new PageImpl<DogUserDogDTO>(dogUserDogResult, pageable, currentTotal);
-		//return new PageImpl(dogUserDogResult, pageable, currentTotal);
+		// return new PageImpl(dogUserDogResult, pageable, currentTotal);
 
 	}
 }
