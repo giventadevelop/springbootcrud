@@ -15,7 +15,7 @@ import com.websystique.springboot.model.Dog;
 @Component("dogMapper")
 @Mapper(componentModel = "spring", uses = {DogBreedMapper.class, })
 public interface DogMapper {
-
+ 
     @Mapping(source = "dogbreed.id", target = "dogbreedId")
     DogDTO dogToDogDTO(Dog dog);
 

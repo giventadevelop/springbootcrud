@@ -6,18 +6,19 @@ package com.websystique.springboot.controller;
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyLong;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -52,7 +53,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.websystique.springboot.dto.DogDTO;
 import com.websystique.springboot.resource.assembler.DogResourceAssembler;
 import com.websystique.springboot.service.DogService;
-import com.websystique.springboot.test.util.TestUtil;
+import com.websystique.springboot.test.util.TestUtil; 
 import com.websystique.springboot.util.PaginationUtil;
 
 

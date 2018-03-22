@@ -104,7 +104,7 @@ public class DogServiceTest {
 	}
 
 	@Test
-	public void testSave() throws Exception {
+	public void testSaveDog() throws Exception {
 
 		Dog dog = dogMapper.dogDTOToDog(dogDTO);
 		when(dogRepositoryMock.save(dog)).thenReturn(dog);

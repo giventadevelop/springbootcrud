@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,18 +28,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 //import com.codahale.metrics.annotation.Timed;
 import com.websystique.springboot.dto.DogDTO;
 import com.websystique.springboot.dto.GroupByDogBreedDTO;
-import com.websystique.springboot.model.User;
 import com.websystique.springboot.resource.assembler.DogResourceAssembler;
 import com.websystique.springboot.service.DogService;
 import com.websystique.springboot.util.HeaderUtil;
 import com.websystique.springboot.util.PaginationUtil;
+
+import io.swagger.annotations.Api;
 
 /*import io.github.jhipster.web.util.ResponseUtil;
 import io.swagger.annotations.ApiParam;*/
@@ -49,9 +49,11 @@ import io.swagger.annotations.ApiParam;*/
  */
 @RestController
 @RequestMapping("/api")
+@Api(value="Sample Dog App", description="Operations to showcase the rest API features")
 public class DogController {
 
-    private final Logger log = LoggerFactory.getLogger(DogController.class);
+	private static final Logger logger = LogManager.getLogger(DogController.class);
+   // private final Logger log = LoggerFactory.getLogger(DogController.class);
 
     private static final String ENTITY_NAME = "dog";
     
@@ -70,7 +72,7 @@ public class DogController {
     @PostMapping("/dogs")
     //@Timed
     public ResponseEntity<DogDTO> createDog( @PageableDefault(page = 0, size = 10) Pageable pageRequest,@RequestBody DogDTO dogDTO) throws URISyntaxException {
-        log.debug("REST request to save Dog : {}", dogDTO);
+        logger.debug("REST request to save Dog : {}", dogDTO);
         if (dogDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new dog cannot already have an ID")).body(null);
         }
@@ -92,7 +94,7 @@ public class DogController {
     @PutMapping("/dogs")
     //@Timed
     public ResponseEntity<DogDTO> updateDog(@RequestBody DogDTO dogDTO) throws URISyntaxException {
-        log.debug("REST request to update Dog : {}", dogDTO);
+        logger.debug("REST request to update Dog : {}", dogDTO);
         if (dogDTO.getId() == null) {
             return createDog(null, dogDTO);
         }
@@ -111,7 +113,7 @@ public class DogController {
 	@GetMapping("/dogs")
     //@Timed
     public PagedResources<DogDTO> getAllDogs(  @PageableDefault(page = 0, size = 10) Pageable pageable,PagedResourcesAssembler assembler) {
-    	log.debug("REST request to get a page of Dogs");
+    	logger.debug("REST request to get a page of Dogs");
        Page<DogDTO> page = dogService.findAll(pageable);
        /* String loggedInUserName=SecurityContextHolder.getContext().getAuthentication().getName();
         Page<DogUserDogDTO> pageUserDog = dogService.getDogUserDog(pageable, loggedInUserName);*/
@@ -132,7 +134,7 @@ public class DogController {
     @GetMapping("/dogs/{id}")
     //@Timed
     public ResponseEntity<DogDTO> getDogById(@PathVariable Long id) {
-        log.debug("REST request to get Dog : {}", id);
+        logger.debug("REST request to get Dog : {}", id);
         DogDTO dogDTO = dogService.findOne(id);
        
         return ResponseEntity.ok()
@@ -151,7 +153,7 @@ public class DogController {
     @GetMapping("/dogs/image/{id}")
     //@Timed
     public void getDogImage(@PathVariable Long id,final HttpServletResponse response) {
-    	 log.debug("REST request to get Dog Image: {}", id);
+    	 logger.debug("REST request to get Dog Image: {}", id);
     	DogDTO dogDTO = dogService.findOne(id);
     	ServletOutputStream outStream;
 		try {
@@ -188,8 +190,8 @@ public class DogController {
         return ResponseEntity.ok()
                 .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, dogDTO.getId().toString()))
                 .body(dogDTO);*/
-    	 log.debug("Delete Dog called." );
-    	  log.debug("REST request to delete Dog : {}", id);
+    	 logger.debug("Delete Dog called." );
+    	  logger.debug("REST request to delete Dog : {}", id);
     	  dogService.delete(id);
     	 
     }
@@ -204,7 +206,7 @@ public class DogController {
     @GetMapping("/dogs/breed/groupby")
     //@Timed
     public ResponseEntity<List<GroupByDogBreedDTO>> getAllDogsBreedsGroupBy(  @PageableDefault(page = 0, size = 10) Pageable pageable) {
-        log.debug("REST request to get a page of dog breeds GROUP BY");
+        logger.debug("REST request to get a page of dog breeds GROUP BY");
         Page<GroupByDogBreedDTO> page = dogService.getAllDogsBreedsGroupBy(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/dogs/breed/groupby");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);

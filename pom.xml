@@ -23,13 +23,28 @@
 		<junit.version>4.12</junit.version>
 		<mockito.version>1.10.8</mockito.version>
 		<powermock.version>1.5.6</powermock.version>
+		<cucumber.java.version>1.2.5</cucumber.java.version>
 	</properties>
 
+
 	<dependencies>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
 		<!-- Add typical dependencies for a web application -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+
 		</dependency>
 		<!-- Add freemarker template support -->
 		<dependency>
@@ -76,11 +91,13 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>${h2.version}</version>
+			<scope>test</scope>
 		</dependency>
 		<!-- Add MySQL database support [for running with PRODUCTION profile] -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -108,6 +125,18 @@
 			<optional>true</optional>
 		</dependency>
 
+		<!-- Log4j 2 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+
+		<!-- Needed for Async Logging with Log4j 2 -->
+		<dependency>
+			<groupId>com.lmax</groupId>
+			<artifactId>disruptor</artifactId>
+			<version>3.3.6</version>
+		</dependency>
 
 		<!-- junit tests -->
 
@@ -143,7 +172,57 @@
 			<version>1.6.4</version>
 			<scope>test</scope>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-core</artifactId>
+			<version>${cucumber.java.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber.java.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-junit</artifactId>
+			<version>${cucumber.java.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-spring</artifactId>
+			<version>${cucumber.java.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- swagger2 -->
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.6.1</version>
+			<!-- <scope>compile</scope> -->
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.6.1</version>
+			<!-- <scope>compile</scope> -->
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.tomakehurst</groupId>
+			<artifactId>wiremock</artifactId>
+			<version>1.58</version>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- <dependency> <groupId>de.smartics.util</groupId> <artifactId>smartics-test-utils</artifactId> 
 			<version>0.2.2</version> <scope>test</scope> </dependency> -->
 
@@ -182,6 +261,23 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-docck-plugin</artifactId>
+				<version>1.1</version>
+				<executions>
+					<execution>
+						<configuration>
+							<output>C:\code_backup\maven_docck\docck-results.txt</output>
+						</configuration>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>

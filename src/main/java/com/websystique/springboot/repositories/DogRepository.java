@@ -14,7 +14,7 @@ import com.websystique.springboot.model.DogBreed;
 /**
  * Spring Data JPA repository for the Dog entity.
  */
-@Repository
+//@Repository
 @SuppressWarnings("unused")
 public interface DogRepository extends JpaRepository<Dog,Long> {
 	
