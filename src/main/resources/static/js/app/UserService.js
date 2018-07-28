@@ -60,7 +60,7 @@ angular.module('crudApp').factory('UserService',
                 $http.post(urls.USER_SERVICE_API, user)
                     .then(
                         function (response) {
-                            loadAllUsers();
+                          //  loadAllUsers();
                             deferred.resolve(response.data);
                         },
                         function (errResponse) {

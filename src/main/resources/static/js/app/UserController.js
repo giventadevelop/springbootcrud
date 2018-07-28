@@ -2,6 +2,33 @@
 
 angular.module('crudApp').controller('UserController',
     ['UserService', '$scope',  function( UserService, $scope) {
+    	
+    	$scope.formModel = {};
+    	$scope.submitting = false;
+    	$scope.submitted = false;
+    	$scope.has_error = false;
+    	
+    	$scope.onSubmit = function () {
+    		$scope.submitting = true;
+    		console.log("Hey i'm submitted!");
+    		console.log($scope.formModel);
+    		
+    		 createUser($scope.formModel);
+
+    		/*$http.post('https://minmax-server.herokuapp.com/register/', $scope.formModel).
+    			success(function (data) {
+    				console.log(":)");
+    				$scope.submitting = false;
+    				$scope.submitted = true;
+    				$scope.has_error = false;
+    			}).error(function(data) {
+    				console.log(":(");
+    				$scope.submitting = false;
+    				$scope.submitted = false;
+    				$scope.has_error = true;
+    			});*/
+
+    	};
 
         var self = this;
         self.user = {};
@@ -43,7 +70,7 @@ angular.module('crudApp').controller('UserController',
                         self.errorMessage='';
                         self.done = true;
                         self.user={};
-                        $scope.myForm.$setPristine();
+                    //    $scope.myForm.$setPristine();
                     },
                     function (errResponse) {
                         console.error('Error while creating User');
@@ -63,7 +90,7 @@ angular.module('crudApp').controller('UserController',
                         self.successMessage='User updated successfully';
                         self.errorMessage='';
                         self.done = true;
-                        $scope.myForm.$setPristine();
+                      //  $scope.myForm.$setPristine();
                     },
                     function(errResponse){
                         console.error('Error while updating User');

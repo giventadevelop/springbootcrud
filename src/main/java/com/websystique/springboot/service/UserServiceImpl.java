@@ -1,52 +1,65 @@
 package com.websystique.springboot.service;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
-import com.websystique.springboot.model.User;
-import com.websystique.springboot.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.websystique.springboot.model.User;
+import com.websystique.springboot.repositories.UserRepository;
+import com.websystique.springboot.security.service.EncryptionService;
 
- 
-@Service("userService")
-@Transactional
-public class UserServiceImpl implements UserService{
+@Service
+//@Profile("springdatajpa")
+public class UserServiceImpl implements UserService {
 
-	@Autowired
-	private UserRepository userRepository;
+    private UserRepository userRepository;
 
-	public User findById(Long id) {
-		return userRepository.findOne(id);
-	}
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
-	public User findByName(String name) {
-		return userRepository.findByName(name);
-	}
+    private EncryptionService encryptionService;
 
-	public void saveUser(User user) {
-		userRepository.save(user);
-	}
+    @Autowired
+    public void setEncryptionService(EncryptionService encryptionService) {
+        this.encryptionService = encryptionService;
+    }
 
-	public void updateUser(User user){
-		saveUser(user);
-	}
 
-	public void deleteUserById(Long id){
-		userRepository.delete(id);
-	}
+    @Override
+    public List<?> listAll() {
+        List<User> users = new ArrayList<>();
+        userRepository.findAll().forEach(users::add); //fun with Java 8
+        return users;
+    }
 
-	public void deleteAllUsers(){
-		userRepository.deleteAll();
-	}
+    @Override
+    public User getById(Integer id) {
+        return userRepository.findOne(id);
+    }
 
-	public List<User> findAllUsers(){
-		return userRepository.findAll();
-	}
+    @Override
+    public User saveOrUpdate(User domainObject) {
+        if(domainObject.getPassword() != null){
+            //domainObject.setEncryptedPassword(encryptionService.encryptString(domainObject.getPassword()));
+        	 domainObject.setPassword(encryptionService.encryptString(domainObject.getPassword()));
+        }
+        return userRepository.save(domainObject);
+    }
+    @Override
+      @Transactional
+       public void delete(Integer id) {
+        userRepository.delete(id);
+    }
 
-	public boolean isUserExist(User user) {
-		return findByName(user.getName()) != null;
-	}
-
+    @Override
+    public User findByUserName(String userName) {
+        return userRepository.findByUserName(userName);
+    }
 }
