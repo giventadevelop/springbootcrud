@@ -1,25 +1,15 @@
 package com.websystique.springboot.service;
 
- 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import com.websystique.springboot.dto.UserDTO;
 import com.websystique.springboot.model.User;
 
-import java.util.List;
+public interface UserService extends CRUDService<User> {
 
-public interface UserService {
-	
-	User findById(Long id);
+    User findByUserName(String userName); 
+    
+    Page<UserDTO> findAll(Pageable pageable);
 
-	User findByName(String name);
-
-	void saveUser(User user);
-
-	void updateUser(User user);
-
-	void deleteUserById(Long id);
-
-	void deleteAllUsers();
-
-	List<User> findAllUsers();
-
-	boolean isUserExist(User user);
 }

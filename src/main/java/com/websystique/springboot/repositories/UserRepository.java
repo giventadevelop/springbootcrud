@@ -1,12 +1,12 @@
 package com.websystique.springboot.repositories;
 
-import com.websystique.springboot.model.User;
+
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.CrudRepository;
 
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+import com.websystique.springboot.model.Dog;
+import com.websystique.springboot.model.User;
 
-    User findByName(String name);
-
+public interface UserRepository extends JpaRepository<User,Integer>{
+    User findByUserName(String userName);
 }

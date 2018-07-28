@@ -1,90 +1,116 @@
 package com.websystique.springboot.model;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
-import javax.persistence.*;
 import java.io.Serializable;
+import javax.persistence.*;
+import java.util.List;
 
+
+/**
+ * The persistent class for the user database table.
+ * 
+ */
 @Entity
-@Table(name="APP_USER")
-public class User implements Serializable{
+@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
-	@NotEmpty
-	@Column(name="NAME", nullable=false)
-	private String name;
+	private int active;
 
-	@Column(name="AGE", nullable=false)
-	private Integer age;
+	private String email;
 
-	@Column(name="SALARY", nullable=false)
-	private double salary;
+	@Column(name="first_name")
+	private String firstName;
 
-	public Long getId() {
-		return id;
+	@Column(name="last_name")
+	private String lastName;
+
+	private String password;
+
+	@Column(name="user_name")
+	private String userName;
+
+	//bi-directional many-to-many association to Role
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(
+		name="user_role"
+		, joinColumns={
+			@JoinColumn(name="user_id")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="role_id")
+			}
+		)
+	private List<Role> roles;
+
+	public User() {
 	}
 
-	public void setId(Long id) {
+	public int getId() {
+		return this.id;
+	}
+
+	public void setId(int id) {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public int getActive() {
+		return this.active;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setActive(int active) {
+		this.active = active;
 	}
 
-	public Integer getAge() {
-		return age;
+	public String getEmail() {
+		return this.email;
 	}
 
-	public void setAge(Integer age) {
-		this.age = age;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public double getSalary() {
-		return salary;
+	public String getFirstName() {
+		return this.firstName;
 	}
 
-	public void setSalary(double salary) {
-		this.salary = salary;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-
-		User user = (User) o;
-
-		if (Double.compare(user.salary, salary) != 0) return false;
-		if (id != null ? !id.equals(user.id) : user.id != null) return false;
-		if (name != null ? !name.equals(user.name) : user.name != null) return false;
-		return age != null ? age.equals(user.age) : user.age == null;
+	public String getLastName() {
+		return this.lastName;
 	}
 
-	@Override
-	public int hashCode() {
-		int result;
-		long temp;
-		result = id != null ? id.hashCode() : 0;
-		result = 31 * result + (name != null ? name.hashCode() : 0);
-		result = 31 * result + (age != null ? age.hashCode() : 0);
-		temp = Double.doubleToLongBits(salary);
-		result = 31 * result + (int) (temp ^ (temp >>> 32));
-		return result;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", age=" + age
-				+ ", salary=" + salary + "]";
+	public String getPassword() {
+		return this.password;
 	}
 
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
+	public String getUserName() {
+		return this.userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public List<Role> getRoles() {
+		return this.roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+ 
 }

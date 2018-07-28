@@ -14,6 +14,29 @@ angular.module('crudApp').factory('UserService',
             };
 
             return factory;
+            
+            
+            var page=search.page||0;
+            var size=search.size||10;
+
+            function loadAllUsers(page,size) {
+                console.log('Fetching all users');
+                var deferred = $q.defer();
+                $http.get(urls.USER_SERVICE_API+'?page='+page+'&size='+size)
+                    .then(
+                        function (response) {
+                            console.log('Fetched successfully all users');
+                            $localStorage.users = response.data._embedded.userDTOList;
+                           // $localStorage.users = response.data._embedded.dogDTOList;
+                            deferred.resolve(response);
+                        },
+                        function (errResponse) {
+                            console.error('Error while loading users');
+                            deferred.reject(errResponse);
+                        }
+                    );
+                return deferred.promise;
+            }
 
             function loadAllUsers() {
                 console.log('Fetching all users');
@@ -22,7 +45,7 @@ angular.module('crudApp').factory('UserService',
                     .then(
                         function (response) {
                             console.log('Fetched successfully all users');
-                            $localStorage.users = response.data;
+                            $localStorage.users = response.data._embedded.userDTOList;
                             deferred.resolve(response);
                         },
                         function (errResponse) {
@@ -60,7 +83,7 @@ angular.module('crudApp').factory('UserService',
                 $http.post(urls.USER_SERVICE_API, user)
                     .then(
                         function (response) {
-                            loadAllUsers();
+                          //  loadAllUsers();
                             deferred.resolve(response.data);
                         },
                         function (errResponse) {

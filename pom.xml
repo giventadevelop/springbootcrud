@@ -46,7 +46,7 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 
 		</dependency>
-		<!-- Add freemarker template support -->
+		 <!-- Add freemarker template support -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-freemarker</artifactId>
@@ -222,6 +222,49 @@
 			<version>1.58</version>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- tiles -->
+		 
+         <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.jasypt</groupId>
+			<artifactId>jasypt</artifactId>
+			<version>1.9.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jasypt</groupId>
+			<artifactId>jasypt-springsecurity3</artifactId>
+			<version>1.9.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+
+		<!-- <dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-core</artifactId>
+			<version>3.0.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-jsp</artifactId>
+			<version>3.0.7</version>
+		</dependency> -->
+		
+		
+		 <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+        </dependency>
+            
 
 		<!-- <dependency> <groupId>de.smartics.util</groupId> <artifactId>smartics-test-utils</artifactId> 
 			<version>0.2.2</version> <scope>test</scope> </dependency> -->
@@ -267,14 +310,14 @@
 				<artifactId>maven-docck-plugin</artifactId>
 				<version>1.1</version>
 				<executions>
-					<execution>
+					<!-- <execution>
 						<configuration>
 							<output>C:\code_backup\maven_docck\docck-results.txt</output>
 						</configuration>
 						<goals>
 							<goal>check</goal>
 						</goals>
-					</execution>
+					</execution> -->
 				</executions>
 			</plugin>
 
