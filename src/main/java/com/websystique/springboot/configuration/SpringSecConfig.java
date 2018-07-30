@@ -79,6 +79,7 @@ public class SpringSecConfig extends WebSecurityConfigurerAdapter {
                 "/", "/home","/pictureCheckCode","/include/**","/bootstrap/fonts/glyphicons-halflings-regular.ttf",
                 "/css/**","/font-awesome/**","/font-awesome/fonts/**","/icons/**","/images/**","/js/**","/layer/**",
                 "/font-awesome/fonts/fontawesome-webfont.woff2","/jquery/jquery.min.js","/font-awesome/css/font-awesome.min.css","/api/user/","/api/user","/bootstrap/js/bootstrap.min.js"
+
                 ,"/js/angular/angular.js","/js/freelancer.js"
         };
     	

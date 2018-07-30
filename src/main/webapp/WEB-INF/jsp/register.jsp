@@ -293,7 +293,6 @@
 	<script src="js/angular-ladda/dist/angular-ladda.min.js"></script>
 	<script src="js/ladda/dist/spin.min.js"></script>
 
-	
      <script src="js/app/app.js"></script>
 	 <script src="js/app/UserService.js"></script>
 	 <script src="js/app/UserController.js"></script>

@@ -19,7 +19,7 @@ app.run(function (defaultErrorMessageResolver) {
 app.config(['$stateProvider', '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
 
-        $stateProvider
+         $stateProvider
             .state('home', {
             	name: 'home',
                 url: '/',
@@ -71,7 +71,7 @@ app.config(['$stateProvider', '$urlRouterProvider',
                 controller:'AngUsersGridController',
                 controllerAs:'angUsersGridCtrl',
                 resolve: {
-                    dogs: function ($q, UserService) {
+                    users: function ($q, UserService) {
                         console.log('Loading all users in ui_router');
                         var deferred = $q.defer();
                         UserService.loadAllUsers(0,10).then(deferred.resolve, deferred.resolve);

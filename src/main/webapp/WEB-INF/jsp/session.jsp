@@ -304,8 +304,7 @@ function logout_user() {
 	<script src="js/localforage.min.js"></script>
 	<script src="js/ngStorage.min.js"></script>
 	<script src="js/angular-ui-grid/ui-grid.min.js"></script>
-	<script
-		src="js/angular-auto-validate/dist/jcs-auto-validate.min.js"></script>
+	<script	src="js/angular-auto-validate/dist/jcs-auto-validate.min.js"></script>
 	<script src="js/ladda/dist/spin.min.js"></script>
 	<script src="js/ladda/dist/ladda.min.js"></script>
 	<script src="js/angular-ladda/dist/angular-ladda.min.js"></script>
