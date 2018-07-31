@@ -13,7 +13,7 @@ import com.websystique.springboot.model.User;
 /**
  * Mapper for the entity DogBreed and its DTO DogBreedDTO.
  */
-@Component
+@Component("userMapper")
 @Mapper(componentModel = "spring", uses = {})
 public interface UserMapper {
 
