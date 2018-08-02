@@ -10,7 +10,8 @@ angular.module('crudApp').factory('UserService',
                 getUser: getUser,
                 createUser: createUser,
                 updateUser: updateUser,
-                removeUser: removeUser
+                removeUser: removeUser,
+                searchUsers:searchUsers
             };
 
             return factory;
@@ -45,7 +46,8 @@ angular.module('crudApp').factory('UserService',
                     .then(
                         function (response) {
                             console.log('Fetched successfully all users');
-                            $localStorage.users = response.data._embedded.userDTOList;
+                           // $localStorage.users = response.data._embedded.userDTOList;
+                            $localStorage.users = response.data;
                             deferred.resolve(response);
                         },
                         function (errResponse) {
@@ -127,6 +129,31 @@ angular.module('crudApp').factory('UserService',
                     );
                 return deferred.promise;
             }
+            
+            // Search Users
+            
+            function searchUsers(searchByField,searchText,page,size) {
+                console.log('Fetching all users');
+                var deferred = $q.defer();
+                $http.get(urls.USER_SERVICE_API+'?page='+page+'&size='+size)
+                    .then(
+                        function (response) {
+                            console.log('Fetched successfully all users');
+                          //  $localStorage.users = response.data._embedded.userDTOList;
+                            $localStorage.users = response.data;
+                           // $localStorage.users = response.data._embedded.dogDTOList;
+                            deferred.resolve(response);
+                        },
+                        function (errResponse) {
+                            console.error('Error while loading users');
+                            deferred.reject(errResponse);
+                        }
+                    );
+                return deferred.promise;
+            }
+            
+            
+            
 
         }
     ]);

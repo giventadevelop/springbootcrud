@@ -22,11 +22,11 @@
 				<!-- <div class="myGrid" ui-grid="{ data: vm.gridOptions.data}" ui-grid-edit></div> -->
 				<!-- <div class="myGrid" ui-grid="{vm.gridOptions.data}" ui-grid-edit></div> -->
 			<!-- 	<div class="myGrid" ui-grid="vm.gridOptions.data" ui-grid-edit></div> -->
-				 <ul uib-pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize"  ng-change="pageChanged()" class="pagination-sm" 
-				 boundary-links="true" boundary-link-numbers="true" items-per-page="4" force-ellipses="true" num-pages="numPages"></ul>
+				 <ul uib-pagination total-items="totalElements" ng-model="currentPage" max-size="totalPages"  ng-change="pageChanged()" class="pagination-sm" 
+				 boundary-links="true" boundary-link-numbers="true" items-per-page="10" force-ellipses="false" num-pages="totalPages"></ul>
 				 
 				 
-				  <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre>
+				 <!--  <pre>Page: {{bigCurrentPage}} / {{numPages}}</pre> -->
 				 
 				 
 				 <button ng-click="openCreateDogModal()">Create New Dog</button>
