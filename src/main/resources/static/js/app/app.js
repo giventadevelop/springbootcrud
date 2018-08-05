@@ -4,6 +4,7 @@ var app = angular.module('crudApp',['ui.router','ngStorage','ui.bootstrap','ngAr
 app.constant('urls', {
     BASE: 'http://localhost:8080/SpringBootCRUDApp',
     USER_SERVICE_API : 'api/user/',
+    USER_SEARCH_SERVICE_API : 'api/user/search/',
     DOGS_URI : 'api/dogs/'
 });
 

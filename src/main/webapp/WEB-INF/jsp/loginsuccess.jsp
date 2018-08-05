@@ -83,6 +83,18 @@
 </script>
 
 
+<style>
+.col-container {
+    display: table;
+    width: 100%;
+}
+.col {
+    display: table-cell;
+    padding: 16px;
+}
+</style>
+
+
 </head>
 
 <body id="page-top" class="index">

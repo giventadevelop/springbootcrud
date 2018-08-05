@@ -84,7 +84,7 @@ angular.module('crudApp').controller('AnGridController',
 		};
 
 		function callPagedData() {
-			var pageNum = $scope.currentPage - 1
+			var pageNum = $scope.currentPage - 1;
 			var promise = AnGridService.loadAllDogs(pageNum, 10);
 			;
 			promise.then(

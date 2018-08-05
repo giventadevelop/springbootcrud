@@ -12,5 +12,9 @@ public interface UserService extends CRUDService<User> {
     User findByUserName(String userName); 
     
     Page<UserDTO> findAll(Pageable pageable);
+    
+    Page<UserDTO> findByFirstName(String firstName,Pageable pageable);
+    
+    Page<UserDTO> findByLastName(String lastName ,Pageable pageable);
 
 }

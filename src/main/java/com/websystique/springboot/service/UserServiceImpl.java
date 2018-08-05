@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
     
     
     /**
-	 * Get all the dogs.
+	 * Get all the users.
 	 * 
 	 * @param pageable
 	 *            the pagination information
@@ -92,7 +92,9 @@ public class UserServiceImpl implements UserService {
 
 		// List<Object[]> dogUserDogResult=
 		// dogRepository.getDogUserDog(loggedInUserName);
-		final int currentTotal = pageable.getOffset() + pageable.getPageSize();
+		 long currentTotal = pageable.getOffset() + pageable.getPageSize();
+		currentTotal=result.getTotalElements();
+		
 		return new PageImpl<UserDTO>(userDTOList, pageable, currentTotal);
 		
 		/*if (result != null) {
@@ -101,6 +103,83 @@ public class UserServiceImpl implements UserService {
 		return null;*/
 
 	}
+	
+	
+	@Override
+	public Page<UserDTO> findByFirstName(String firstName, Pageable pageable) {
+		
+		//Page<User> result = userRepository.findByFirstNameLikeIgnoreCase(firstName,pageable);
+		//List<User> result = userRepository.findByFirstNameLike(firstName,pageable);
+		//List<User> result = userRepository.findByFirstNameStartingWith(firstName, pageable);
+		Page<User> result = userRepository.findByFirstNameStartingWith(firstName, pageable);
+		ArrayList<UserDTO> userDTOList=new ArrayList<UserDTO>();
+		
+		for (User user : result) {
+			UserDTO userDTO =new UserDTO();
+			userDTO.setFirstName(user.getFirstName());
+			userDTO.setLastName(user.getLastName());
+			userDTO.setUserName(user.getUserName());
+			userDTO.setRoles(null);
+			userDTOList.add(userDTO);
+			
+		}
+		
+		/*result.forEach(dogUserDogDTO -> {
+
+			dogUserDogDTO.setLoggedInUserName(loggedInUserName);
+			String encodeBase64 = Base64.encodeBase64String(dogUserDogDTO.getDogPicture());
+			// byte[] encodeBase64 =
+			// Base64.encode(dogUserDogDTO.getDogPicture());
+			// String base64Encoded = new String(encodeBase64, "UTF-8");
+			dogUserDogDTO.setBase64EncodedImg(encodeBase64);
+
+		});*/
+
+		// mav.addObject("userImage", base64Encoded );
+
+		// List<Object[]> dogUserDogResult=
+		// dogRepository.getDogUserDog(loggedInUserName);
+		//final int currentTotal = pageable.getOffset() + pageable.getPageSize();
+		long currentTotal=result.getTotalElements();
+				return new PageImpl<UserDTO>(userDTOList, pageable, currentTotal);
+	}
+
+
+	@Override
+	public Page<UserDTO> findByLastName(String lastName, Pageable pageable) {
+		Page<User> result = userRepository.findByLastName(lastName,pageable);
+		ArrayList<UserDTO> userDTOList=new ArrayList<UserDTO>();
+		
+		for (User user : result) {
+			UserDTO userDTO =new UserDTO();
+			userDTO.setFirstName(user.getFirstName());
+			userDTO.setLastName(user.getLastName());
+			userDTO.setUserName(user.getUserName());
+			userDTO.setRoles(null);
+			userDTOList.add(userDTO);
+			
+		}
+		
+		/*result.forEach(dogUserDogDTO -> {
+
+			dogUserDogDTO.setLoggedInUserName(loggedInUserName);
+			String encodeBase64 = Base64.encodeBase64String(dogUserDogDTO.getDogPicture());
+			// byte[] encodeBase64 =
+			// Base64.encode(dogUserDogDTO.getDogPicture());
+			// String base64Encoded = new String(encodeBase64, "UTF-8");
+			dogUserDogDTO.setBase64EncodedImg(encodeBase64);
+
+		});*/
+
+		// mav.addObject("userImage", base64Encoded );
+
+		// List<Object[]> dogUserDogResult=
+		// dogRepository.getDogUserDog(loggedInUserName);
+		final int currentTotal = pageable.getOffset() + pageable.getPageSize();
+		return new PageImpl<UserDTO>(userDTOList, pageable, currentTotal);
+	}
+	
+	
 
     @Override
     public User getById(Integer id) {
@@ -125,4 +204,7 @@ public class UserServiceImpl implements UserService {
     public User findByUserName(String userName) {
         return userRepository.findByUserName(userName);
     }
+
+
+	
 }

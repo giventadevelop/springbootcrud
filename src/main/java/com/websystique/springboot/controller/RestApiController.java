@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -29,7 +30,8 @@ import com.websystique.springboot.service.UserService;
 import com.websystique.springboot.util.CustomErrorType;
 import com.websystique.springboot.util.PaginationUtil;
 
-@RestController
+
+@RestController 
 @RequestMapping("/api")
 public class RestApiController { 
 
@@ -46,16 +48,59 @@ public class RestApiController {
 	
 	
 	/**
-     * GET  /dogs : get all the dogs.
+     * GET  /users : get all the users.
      * @param pageable the pagination information
-     * @return the ResponseEntity with status 200 (OK) and the list of dogs in body
+     * @return the ResponseEntity with status 200 (OK) and the list of users in body
      */
     @SuppressWarnings("unchecked")
 	@GetMapping("/user")
     //@Timed
-    public PagedResources<UserDTO> getAllDogs(  @PageableDefault(page = 0, size = 10) Pageable pageable,PagedResourcesAssembler assembler) {
+    public PagedResources<UserDTO> getAllUsers(  @PageableDefault(page = 0, size = 10) Pageable pageable,PagedResourcesAssembler assembler) {
     	logger.debug("REST request to get a page of users");
        Page<UserDTO> page = userService.findAll(pageable);
+       /* String loggedInUserName=SecurityContextHolder.getContext().getAuthentication().getName();
+        Page<DogUserDogDTO> pageUserDog = dogService.getDogUserDog(pageable, loggedInUserName);*/
+     //  HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/dogs");
+      //  HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/dogs");
+      // return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+       return assembler.toResource(page, userResourceAssembler);
+        //return new ResponseEntity<List<DogDTO>>(page.getContent(), HttpStatus.OK);
+        //return new ResponseEntity<>(pageUserDog.getContent(), headers, HttpStatus.OK);
+    }
+    
+    
+    
+
+	/**
+     * GET  /users : get all the users.
+     * @param pageable the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of users in body
+     */
+    @SuppressWarnings("unchecked")
+	@GetMapping("/user/search/")
+   
+    //@Timed
+    public PagedResources<UserDTO> searchUsers(  @PageableDefault(page = 0, size = 10) Pageable pageable,@RequestParam("searchByField") String searchByField,@RequestParam("searchText") String searchText  , PagedResourcesAssembler assembler) {
+    	logger.debug("REST request to get a page of users");
+    	String firstName;
+    	String lastName;
+    	Page<UserDTO> page =null;
+    	
+    	switch(searchByField)
+        {
+            case "firstName":
+            	firstName=searchText;
+            	 page = userService.findByFirstName(firstName, pageable);
+                break;
+            case "lastName":
+            	lastName=searchText;
+            	 page = userService.findByFirstName(lastName, pageable);
+                break;
+            default:
+            	firstName=searchText;
+            	 page = userService.findByFirstName(firstName, pageable);
+        }
+       
        /* String loggedInUserName=SecurityContextHolder.getContext().getAuthentication().getName();
         Page<DogUserDogDTO> pageUserDog = dogService.getDogUserDog(pageable, loggedInUserName);*/
      //  HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/dogs");

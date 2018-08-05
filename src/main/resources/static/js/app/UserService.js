@@ -27,7 +27,7 @@ angular.module('crudApp').factory('UserService',
                     .then(
                         function (response) {
                             console.log('Fetched successfully all users');
-                            $localStorage.users = response.data._embedded.userDTOList;
+                            $localStorage.users = response.data;
                            // $localStorage.users = response.data._embedded.dogDTOList;
                             deferred.resolve(response);
                         },
@@ -39,7 +39,7 @@ angular.module('crudApp').factory('UserService',
                 return deferred.promise;
             }
 
-            function loadAllUsers() {
+            /*function loadAllUsers() {
                 console.log('Fetching all users');
                 var deferred = $q.defer();
                 $http.get(urls.USER_SERVICE_API)
@@ -56,7 +56,7 @@ angular.module('crudApp').factory('UserService',
                         }
                     );
                 return deferred.promise;
-            }
+            }*/
 
             function getAllUsers(){
                 return $localStorage.users;
@@ -131,17 +131,16 @@ angular.module('crudApp').factory('UserService',
             }
             
             // Search Users
-            
             function searchUsers(searchByField,searchText,page,size) {
-                console.log('Fetching all users');
+            	page=page||0;
+                size=size||10;
+                console.log('Fetching all users  search results');
                 var deferred = $q.defer();
-                $http.get(urls.USER_SERVICE_API+'?page='+page+'&size='+size)
+                $http.get(urls.USER_SEARCH_SERVICE_API+'?page='+page+'&size='+size+'&searchByField='+searchByField+'&searchText='+searchText)
                     .then(
                         function (response) {
-                            console.log('Fetched successfully all users');
-                          //  $localStorage.users = response.data._embedded.userDTOList;
+                            console.log('Fetched searched results users successfully');
                             $localStorage.users = response.data;
-                           // $localStorage.users = response.data._embedded.dogDTOList;
                             deferred.resolve(response);
                         },
                         function (errResponse) {
@@ -152,8 +151,5 @@ angular.module('crudApp').factory('UserService',
                 return deferred.promise;
             }
             
-            
-            
-
         }
     ]);

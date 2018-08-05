@@ -4,6 +4,7 @@ angular.module('crudApp').controller('AngUsersGridController',
 	[ 'UserService', '$scope', '$q', '$rootScope', '$timeout', '$uibModal', function(UserService, $scope, $q, $rootScope, $timeout, $uibModal) {
 
 		var vm = this;
+		var pageSize=10;
 
 		$scope.openModal = function(row) {
 			$scope.editRow = row;
@@ -40,6 +41,7 @@ angular.module('crudApp').controller('AngUsersGridController',
 
 		//Search Users 
 		$scope.searchModel = {};
+		$scope.searchUserErrors=false;
 
 		$scope.searchUsers = function() {
 			console.log($scope.searchModel);
@@ -47,7 +49,7 @@ angular.module('crudApp').controller('AngUsersGridController',
 			$timeout(function() {
 				var searchByField = $scope.searchModel.searchByField;
 				var searchText = $scope.searchModel.searchText;
-				callsearchUsersService(searchByField, searchText);
+				callSearchUsersService(searchByField, searchText);
 				$rootScope.loader_spinner_activated = false;
 			}, 2000);
 
@@ -55,12 +57,12 @@ angular.module('crudApp').controller('AngUsersGridController',
 
 		};
 
-		function callsearchUsersService(searchByField, searchText) {
+		function callSearchUsersService(searchByField, searchText) {
 			var pageNum = $scope.bigCurrentPage - 1
 			var promise = UserService.searchUsers(searchByField, searchText);
 			promise.then(
 				function(data) {
-					console.log('Promise search Users Data', data);
+					console.log('Promise search users data', data);
 					$scope.data = data;
 					$rootScope.$broadcast('newData', data);
 				},
@@ -119,14 +121,22 @@ angular.module('crudApp').controller('AngUsersGridController',
 				$rootScope.loader_spinner_activated = false;
 			}, 2000);
 
-			console.log('Page changed to: ' + $scope.bigCurrentPage);
+			console.log('Page changed to: ' + $scope.currentPage);
 
 		};
 
 		function callPagedData() {
-			var pageNum = $scope.bigCurrentPage - 1
-			var promise = UserService.loadAllDogs(pageNum, 10);
-			;
+			var promise;
+			var pageNum = $scope.currentPage - 1;
+			var searchByField = $scope.searchModel.searchByField;
+			var searchText = $scope.searchModel.searchText;
+			if($scope.searchModel.searchText){
+				promise = UserService.searchUsers(searchByField,searchText,pageNum, pageSize);
+			}else{
+				promise = UserService.loadAllUsers(pageNum, pageSize);
+			}
+			
+			
 			promise.then(
 				function(data) {
 					console.log('Promise Dog Data', data);
@@ -169,6 +179,38 @@ angular.module('crudApp').controller('AngUsersGridController',
 		self.onlyNumbers = /^\d+([,.]\d+)?$/;
 		
 */
+		
+		$scope.onSubmit = function () {
+			$scope.submitting = true;
+			//console.log($scope.formModel);
+			
+			var searchByField = $scope.searchModel.searchByField;
+			var searchText = $scope.searchModel.searchText;
+			
+			if(!searchByField || !searchText) {
+				$scope.searchUserErrors=true;
+				$scope.searchErrorAlertMsg='Please enter both fields to search';
+				return;
+			}
+
+			$scope.searchUsers();
+			//createUser($scope.formModel);
+			
+			/*$http.post('https://minmax-server.herokuapp.com/register/', $scope.formModel).
+				success(function (data) {
+					console.log(":)");
+					$scope.submitting = false;
+					$scope.submitted = true;
+					$scope.has_error = false;
+				}).error(function(data) {
+					console.log(":(");
+					$scope.submitting = false;
+					$scope.submitted = false;
+					$scope.has_error = true;
+				});*/
+
+		};
+		
 
 		$scope.createNewDog = function() {
 			console.log('Creating New Dog ');
