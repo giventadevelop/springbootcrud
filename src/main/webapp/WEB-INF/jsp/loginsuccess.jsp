@@ -85,12 +85,13 @@
 
 <style>
 .col-container {
-    display: table;
-    width: 100%;
+	display: table;
+	width: 100%;
 }
+
 .col {
-    display: table-cell;
-    padding: 16px;
+	display: table-cell;
+	padding: 16px;
 }
 </style>
 
@@ -119,15 +120,22 @@
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
-				id="bs-example-navbar-collapse-1">
+				id="bs-example-navbar-collapse-1" ng-controller="StateController">
 				<ul class="nav navbar-nav navbar-right">
 
 					<li><a href="/">Home</a></li>
 					<li><a href="login">Login</a></li>
 					<li><a href="register">Register</a></li>
-					<li><a ui-sref=uigrid>UI Grid</a></li>
-					<li><a ui-sref=users_grid>Users Grid</a></li>
-					<li><a ui-sref="angtiles">Ang Tiles</a></li>
+					<!-- <li><a ui-sref="uigrid">UI Grid</a></li> -->
+					<li><a href="" ng-click="reloadRoute('uigrid')">UI Grid</a></li>
+					<!-- <li><a ui-sref="users_grid" ng-click="reloadRoute">Users Grid</a></li> -->
+					<li><a href="" ng-click="reloadRoute('users_grid')">Users Grid</a></li>
+					<li><a href="" ui-sref="angtiles">Ang Tiles</a></li>
+
+					<form id="logout-form" action="/logout"	method="post">
+						<li><a href="" onclick="logout_user()">Logout </a></li>
+					</form>
+					
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
@@ -142,7 +150,7 @@
 		<h4>Logged in successfully- Search here for users</h4>
 
 		<ui-view> </ui-view>
-		
+
 	</div>
 	<!-- Source for the bootstrap login form tthe
   urls
@@ -154,89 +162,7 @@
 		<ui-view> </ui-view>
 	</div> -->
 
-
-
-	<div class="container">
-		<div id="loginbox" style="margin-top: 50px;"
-			class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-			<div class="panel panel-info">
-				<div class="panel-heading">
-					<div class="panel-title">Sign In</div>
-					<div
-						style="float: right; font-size: 80%; position: relative; top: -10px">
-						<a href="#">Forgot password?</a>
-					</div>
-				</div>
-
-				<div style="padding-top: 30px" class="panel-body">
-
-					<c:if test="${param.error != null}">
-						<div id="login-alert" class="alert alert-danger col-sm-12">
-							Your login attempt was not successful, try again.<br /> Caused :
-							${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
-
-						</div>
-					</c:if>
-					<form id="login-form" class="form-horizontal" role="form"
-						action="/login" method='POST'>
-
-						<div style="margin-bottom: 25px" class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-user"></i></span> <input id="login-username"
-								type="text" class="form-control" name="username" value=""
-								placeholder="username or email">
-						</div>
-
-						<div style="margin-bottom: 25px" class="input-group">
-							<span class="input-group-addon"><i
-								class="glyphicon glyphicon-lock"></i></span> <input id="login-password"
-								type="password" class="form-control" name="password"
-								placeholder="password">
-						</div>
-
-
-						<div class="input-group">
-							<div class="checkbox">
-								<label> <input id="login-remember" type="checkbox"
-									name="remember" value="1"> Remember me
-								</label>
-							</div>
-						</div>
-
-
-						<div style="margin-top: 10px" class="form-group">
-							<!-- Button -->
-
-							<div class="col-sm-12 controls">
-								<a id="btn-login" href="#" class="btn btn-success" type="submit"
-									onclick="submit_form()">Login </a>
-								<!--  <a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a> -->
-								<a id="btn-fblogin" href="#" class="btn btn-primary"
-									name="reset" type="reset" onclick="login_form_reset()">Reset</a>
-
-							</div>
-						</div>
-
-
-						<div class="form-group">
-							<div class="col-md-12 control">
-								<div
-									style="border-top: 1px solid #888; padding-top: 15px; font-size: 85%">
-									Don't have an account! <a href="#"
-										onClick="$('#loginbox').hide(); $('#signupbox').show()">
-										Sign Up Here </a>
-								</div>
-							</div>
-						</div>
-					</form>
-
-				</div>
-			</div>
-		</div>
-
-		<a id="protected_page" href="/protectedpage" class="btn btn-primary">protectedpage</a>
-
-	</div>
+	
 
 	<!-- Footer -->
 	<footer class="text-center">
@@ -323,9 +249,11 @@
 	<script src="js/app/app.js"></script>
 	<script src="js/app/UserService.js"></script>
 	<script src="js/app/UserController.js"></script>
-	 <script src="js/app/AnGridService.js"></script>
+	<script src="js/app/AnGridService.js"></script>
 	<script src="js/app/AnGridController.js"></script>
-	<script src="js/app/AngUsersGridController.js"></script> 
+	<script src="js/app/AngUsersGridController.js"></script>
+	<script src="js/app/StateController.js"></script>
+
 
 
 

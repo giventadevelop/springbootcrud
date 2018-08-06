@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('crudApp').controller('AngUsersGridController',
-	[ 'UserService', '$scope', '$q', '$rootScope', '$timeout', '$uibModal', function(UserService, $scope, $q, $rootScope, $timeout, $uibModal) {
+	[ 'UserService', '$scope', '$q', '$rootScope', '$timeout', '$uibModal','$state', function(UserService, $scope, $q, $rootScope, $timeout, $uibModal,$state) {
 
 		var vm = this;
 		var pageSize=10;
@@ -38,6 +38,17 @@ angular.module('crudApp').controller('AngUsersGridController',
 			});
 		}
 
+		/*$state.transitionTo($state.current, $stateParams, {
+		    reload: true,
+		    inherit: false,
+		    notify: true
+		});*/
+		
+		
+		$scope.reloadRoute = function() {
+		   // $state.reload();
+			$state.go('users_grid')
+		};
 
 		//Search Users 
 		$scope.searchModel = {};

@@ -17,8 +17,11 @@ app.run(function (defaultErrorMessageResolver) {
 }
 );
 
-app.config(['$stateProvider', '$urlRouterProvider',
-    function($stateProvider, $urlRouterProvider) {
+app.run(['$rootScope', '$state', function($rootScope, $state) { $rootScope.$state = $state; }]);
+
+
+app.config(['$stateProvider', '$urlRouterProvider','$httpProvider','$provide',
+    function($stateProvider, $urlRouterProvider,$httpProvider, $provide) {
 
          $stateProvider
             .state('home', {
@@ -82,5 +85,46 @@ app.config(['$stateProvider', '$urlRouterProvider',
                
             });
         $urlRouterProvider.otherwise('/');
+        $httpProvider.interceptors.push("sessionInjector");
+        
+        
+       /* $provide.decorator('$state', function($delegate, $stateParams) {
+            $delegate.forceReload = function() {
+                return $delegate.go($delegate.current, $stateParams, {
+                    reload: true,
+                    inherit: false,
+                    notify: true
+                });
+            };
+            return $delegate;
+        });*/
+        
+        
     }]);
+
+/*$scope.reloadRoute = function() {
+	   // $state.reload();
+		$state.go('users_grid')
+	};*/
+
+
+app.factory("sessionInjector", ['$log', function($log){
+    return {
+        request: function(config) {return config;},
+        response: function(response) {
+            if (typeof response.data === "string" && response.data.indexOf("login") > -1) {
+            	/*implementation of session expired for SPA pages from url
+            	 /*code to catch the session time out for angjs ajax cals for ui_view partial views  which otherwise gets by passed
+	 * this along with the code in StateController.js does the work
+     https://stackoverflow.com/questions/22318070/spring-security-and-angular-javascript-redirect-to-login-page*/
+
+            	alert("Your session  has expired.");
+            	//$window.location.href = '/session';
+            	window.location.href= '/session';
+                //location.reload();
+            }
+            return response;
+        }
+    };
+}]);
 
