@@ -11,7 +11,9 @@ angular.module('crudApp').factory('UserService',
                 createUser: createUser,
                 updateUser: updateUser,
                 removeUser: removeUser,
-                searchUsers:searchUsers
+                searchUsers:searchUsers,
+                getUserNameAvailabilityStatus: getUserNameAvailabilityStatus,
+                userNameSearch: userNameSearch
             };
 
             return factory;
@@ -38,6 +40,31 @@ angular.module('crudApp').factory('UserService',
                     );
                 return deferred.promise;
             }
+            
+            
+            function userNameSearch(userName) {
+                console.log('In user Name Search service');
+                var deferred = $q.defer();
+                $http.get(urls.USER_SERVICE_API + userName)
+                    .then(
+                        function (response) {
+                        	$localStorage.userNameAvailabilityStatus = response.data;
+                            deferred.resolve(response.data);
+                        },
+                        function (errResponse) {
+                           console.error('Error while creating User : '+errResponse.data.errorMessage);
+                           $localStorage.userNameAvailabilityStatus = errResponse.data;
+                           deferred.reject(errResponse);
+                        }
+                    );
+                return deferred.promise;
+            }
+            
+            function getUserNameAvailabilityStatus(){
+                return $localStorage.userNameAvailabilityStatus;
+            }
+            
+            
 
             /*function loadAllUsers() {
                 console.log('Fetching all users');

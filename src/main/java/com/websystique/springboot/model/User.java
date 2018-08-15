@@ -1,7 +1,10 @@
 package com.websystique.springboot.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -45,6 +48,104 @@ public class User implements Serializable {
 			}
 		)
 	private List<Role> roles;
+	
+	private String city;
+
+	private String country;
+	
+	
+
+	@Column(name="address_line_two")
+	private String addressLineTwo;
+
+	@Column(name="address_street")
+	private String addressStreet;
+
+	@Column(name="family_name")
+	private String familyName;
+
+	@Column(name="state_or_province")
+	private String stateOrProvince;
+	
+	@Column(name="year_passed")
+	private String yearPassed;
+	
+	@Column(name="created_date")
+	private Timestamp createdDate;
+	
+		@Column(name="phone_number")
+	private String phoneNumber;
+	
+	@Column(name="zip_or_pin_code")
+	private String zipOrPinCode;
+	
+	public String getZipOrPinCode() {
+		return this.zipOrPinCode;
+	}
+
+	public void setZipOrPinCode(String zipOrPinCode) {
+		this.zipOrPinCode = zipOrPinCode;
+	}
+	
+	public String getCountry() {
+		return this.country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	public String getPhoneNumber() {
+		return this.phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	
+	
+	public String getAddressLineTwo() {
+		return this.addressLineTwo;
+	}
+
+	public void setAddressLineTwo(String addressLineTwo) {
+		this.addressLineTwo = addressLineTwo;
+	}
+
+	public String getAddressStreet() {
+		return this.addressStreet;
+	}
+
+	public void setAddressStreet(String addressStreet) {
+		this.addressStreet = addressStreet;
+	}
+	
+	public String getFamilyName() {
+		return this.familyName;
+	}
+
+	public void setFamilyName(String familyName) {
+		this.familyName = familyName;
+	}
+	
+	
+	public String getStateOrProvince() {
+		return this.stateOrProvince;
+	}
+
+	public void setStateOrProvince(String stateOrProvince) {
+		this.stateOrProvince = stateOrProvince;
+	}
+	
+	public String getCity() {
+		return this.city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	
+
 
 	public User() {
 	}
@@ -111,6 +212,22 @@ public class User implements Serializable {
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+	
+	public String getYearPassed() {
+		return this.yearPassed;
+	}
+
+	public void setYearPassed(String yearPassed) {
+		this.yearPassed = yearPassed;
+	}
+	
+	public Timestamp getCreatedDate() {
+		return this.createdDate;
+	}
+
+	public void setCreatedDate(Timestamp createdDate) {
+		this.createdDate = createdDate;
 	}
  
 }

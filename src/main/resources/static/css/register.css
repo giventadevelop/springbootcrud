@@ -4,3 +4,19 @@ body {
 .main-content {
   padding: 40px 15px;
 }
+
+/* username- Response */
+.usernamesearch_response{
+ padding: 6px;
+ display: block;
+}
+.username_hide{
+ display: none;
+}
+.username_exists{
+ color: green;
+}
+
+.username_not_exists{
+ color: red;
+}

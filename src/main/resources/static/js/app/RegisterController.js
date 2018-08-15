@@ -49,6 +49,36 @@ angular.module('minmax').controller('MinMaxCtrl',
 	};
 	
 	
+	// Set class
+	 $scope.addUserNameAvailabilityStatusClass = function(addUserNameAvailabilityStatus){
+	  if(addUserNameAvailabilityStatus == 'Available'){
+	   return 'usernamesearch_response username_exists';
+	  }else if(unamestatus == 'Not available'){
+	   return 'usernamesearch_response username_not_exists';
+	  }else{
+	   return 'username_hide';
+	  }
+	  
+	 }
+	
+	 
+	 function userNameSearch(userName) {
+	        console.log('Searching userName availability');
+	        RegisterUserService.userNameSearch(userName)
+	            .then(
+	                function (response) {
+	                    console.log('userName searched successfully');
+	                    $scope.addUserNameAvailabilityStatus=RegisterUserService.getUserNameAvailabilityStatus();
+	                },
+	                function (errResponse) {
+	                    console.error('error while doing userName search');
+	                   
+	                }
+	            );
+	    }
+	
+	 
+	 
 	function createUser(user) {
         console.log('About to create user');
         RegisterUserService.createUser(user)

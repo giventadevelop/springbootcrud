@@ -76,19 +76,22 @@ public class SpringSecConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
     	//set access to all pages including session time out page where session time out is set in the application.properties page
     	String[] resources = new String[]{
-                "/", "/home","/pictureCheckCode","/include/**","/bootstrap/fonts/glyphicons-halflings-regular.ttf",
-                "/css/**","/font-awesome/**","/font-awesome/fonts/**","/icons/**","/images/**","/js/**","/layer/**",
-                "/font-awesome/fonts/fontawesome-webfont.woff2","/jquery/jquery.min.js","/font-awesome/css/font-awesome.min.css","/api/user/","/api/user","/bootstrap/js/bootstrap.min.js"
+                "/", "/home","/register_success","/pictureCheckCode","/include/**","/bootstrap/fonts/glyphicons-halflings-regular.ttf",
+                "/bootstrap/fonts/glyphicons-halflings-regular.woff","/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.3",
+                "/css/**","/font-awesome/**","/font-awesome/fonts/**","/icons/**","/images/**","/js/**","/layer/**","/js/angular-ladda/dist/angular-ladda.min.js",
+                "/font-awesome/fonts/fontawesome-webfont.woff2","/jquery/jquery.min.js","/font-awesome/css/font-awesome.min.css","/api/user/","/api/user","/api/user/search/","/api/user/search","/bootstrap/js/bootstrap.min.js"
 
                 ,"/js/angular/angular.js","/js/freelancer.js"
         };
     	
     	
            httpSecurity
-                .authorizeRequests().antMatchers("/","index","/homepage","/register","/js/angular-material/angular-material.css","/bootstrap/css/bootstrap.min.css","/bootstrap/css/bootstrap.min.css.map"
-                		,"/font-awesome/css/font-awesome.min.css","/jquery/jquery.min.js","/api/user/","/api/user",
+                .authorizeRequests().antMatchers("/","index","/homepage","/register","/register_success","/js/angular-material/angular-material.css","/bootstrap/css/bootstrap.min.css",
+                		"/bootstrap/css/bootstrap.min.css.map","/bootstrap/fonts/glyphicons-halflings-regular.ttf","/bootstrap/fonts/glyphicons-halflings-regular.woff"
+                		,"/font-awesome/css/font-awesome.min.css","/jquery/jquery.min.js","/api/user/","/api/user","/api/user/search/","/api/user/search","/js/angular-ladda/dist/angular-ladda.min.js",
                 		//"/font-awesome/fonts/fontawesome-webfont.woff2;","/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.3;","/index","/login","login","/products","/product/show/*","/session","/logout","/console/*","/h2-console/**","login?error").permitAll()
-                		"/partials/list","/font-awesome/fonts/fontawesome-webfont.ttf","/font-awesome/fonts/fontawesome-webfont.woff2","/font-awesome/fonts/fontawesome-webfont.woff","/index","/login","login","/products","/product/show/*","/session",
+                		"/partials/list","/font-awesome/fonts/fontawesome-webfont.ttf","/font-awesome/fonts/fontawesome-webfont.woff2",
+                		"/font-awesome/fonts/fontawesome-webfont.woff","/index","/login","login","/products","/product/show/*","/session","/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.3",
                 		"/js/angular/angular.js","/js/freelancer.js","/bootstrap/js/bootstrap.min.js","/logout","/console/*","/h2-console/**","login?error").permitAll()    		
                 .anyRequest().authenticated()
                 .and()

@@ -2,7 +2,7 @@
 server:
   port: 8080
   session:
-    timeout: 1
+    timeout: 600
   ##contextPath: /SpringBootCRUDApp
 
 

@@ -10,7 +10,8 @@ angular.module('minmax').factory('RegisterUserService',
                 getUser: getUser,
                 createUser: createUser,
                 updateUser: updateUser,
-                removeUser: removeUser
+                removeUser: removeUser,
+                getUserNameAvailabilityStatus: getUserNameAvailabilityStatus
             };
 
             return factory;
@@ -35,6 +36,10 @@ angular.module('minmax').factory('RegisterUserService',
 
             function getAllUsers(){
                 return $localStorage.users;
+            }
+            
+            function getUserNameAvailabilityStatus(){
+                return $localStorage.UserNameAvailabilityStatus;
             }
 
             function getUser(id) {
@@ -70,6 +75,27 @@ angular.module('minmax').factory('RegisterUserService',
                     );
                 return deferred.promise;
             }
+            
+            
+            
+            function userNameSearch(userName) {
+                console.log('Creating User');
+                var deferred = $q.defer();
+                $http.get(urls.USER_SERVICE_API + userName)
+                    .then(
+                        function (response) {
+                        	$localStorage.UserNameAvailabilityStatus = response.data;
+                            deferred.resolve(response.data);
+                        },
+                        function (errResponse) {
+                           console.error('Error while creating User : '+errResponse.data.errorMessage);
+                           deferred.reject(errResponse);
+                        }
+                    );
+                return deferred.promise;
+            }
+            
+            
 
             function updateUser(user, id) {
                 console.log('Updating User with id '+id);

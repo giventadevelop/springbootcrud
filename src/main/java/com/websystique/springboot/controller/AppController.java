@@ -101,6 +101,16 @@ public class AppController {
 	}
     
     
+    @RequestMapping("register_success")
+   	String registerSuccess( HttpSession session,ModelMap modal) {
+   		modal.addAttribute("title","CRUD Example");
+   		//HttpSession session= httpServletRequest.getSession(false);
+   		modal.addAttribute("user", session.getAttribute("user"));
+   		//modal.setAttribute("user", session.getAttribute("user"));
+   		return "register_success";
+   	}
+    
+    
     @RequestMapping("/protectedpage")
     String protectedpage(HttpServletRequest request,HttpServletResponse response){
     	
