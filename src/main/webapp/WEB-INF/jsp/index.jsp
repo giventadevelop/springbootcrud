@@ -24,6 +24,8 @@
     <!-- Theme CSS -->
     <link href="css/freelancer.min.css" rel="stylesheet">
     
+     <!-- sweetalert CSS -->
+    <link href="js/sweetalert/lib/sweet-alert.css" rel="stylesheet">
     
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -39,7 +41,7 @@
 
 </head>
 
-<body id="page-top" class="index">
+<body id="page-top" class="index"  ng-app="crudApp">
 <div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
 
     <!-- Navigation -->
@@ -88,6 +90,17 @@
     
     <div class="container">   Index Page  </div>
     
+    
+    <div ng-controller="HomeController as demo"> 
+            <p>
+                <h2>Simple Alert</h2>
+                <button ng-click="demo.alert()">click</button>
+            </p>
+            <p>
+                <h2>Simple Confirm</h2>
+                <button ng-click="demo.confirm()">click</button>
+            </p>
+        </div>
     
    <!--  <div style="padding-left: 30px;padding-right: 30px">
     Index Page
@@ -161,16 +174,27 @@
    	<script src="js/angular/angular.js"></script>
    	<script src="js/angular-aria/angular-aria.js"></script>
     <script src="js/angular-animate/angular-animate.js"></script>
-   <!--  <script src="js/angular-messages/angular-messages.js"></script>
-    <script src="js/angular-sanitize/angular-sanitize.js"></script> -->
+    <script src="js/angular-messages/angular-messages.js"></script>
+    <script src="js/angular-sanitize/angular-sanitize.js"></script>
     <script src="js/angular-bootstrap/ui-bootstrap-tpls.js" ></script>
-   <!--  <script src="js/angular-material/angular-material.js"></script>
+    <script src="js/angular-material/angular-material.js"></script>
     <script src="js/angular-ui-router/release/angular-ui-router.js" ></script>
-    <script src="js/localforage.min.js" ></script> -->
+    <script src="js/localforage.min.js" ></script>
     <script src="js/ngStorage.min.js"></script>
-    <!-- <script src="js/angular-ui-grid/ui-grid.min.js"></script>
     
-    <script src="js/app/app.js"></script>
+     <script src="js/angular-sweetalert/SweetAlert.min.js"></script>
+     <script src="js/sweetalert/lib/sweet-alert.min.js"></script>
+     <script src="js/app/app.js"></script>
+     <script src="js/app/HomeController.js"></script>
+    <script src="js/angular-ui-grid/ui-grid.min.js"></script>
+    
+    <script src="js/angular-auto-validate/dist/jcs-auto-validate.min.js"></script>
+	<script src="js/ladda/dist/ladda.min.js"></script>
+	<script src="js/angular-ladda/dist/angular-ladda.min.js"></script>
+	<script src="js/ladda/dist/spin.min.js"></script>
+    
+    
+     <!--
     <script src="js/app/UserService.js"></script>
     <script src="js/app/UserController.js"></script>
     <script src="js/app/AnGridService.js"></script>

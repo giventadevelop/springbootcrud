@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('crudApp').controller('UserController',
-	[ 'UserService', '$scope', function(UserService, $scope) {
+	[ 'UserService', '$scope','$timeout','SweetAlert', function(UserService, $scope,$timeout, SweetAlert) {
 
 		$scope.formModel = {};
 		$scope.submitting = false;
@@ -79,6 +79,14 @@ angular.module('crudApp').controller('UserController',
 				return;
 			}
 			
+			SweetAlert.swal({ 
+	    		 title: "Checking user name availabilty .. !",
+	    		 text: "Please wait.. ",
+	    		 showCancelButton: false,
+	    		 showConfirmButton: false,
+	    		 imageUrl: "images/balls_spinner.gif" }); 
+	       
+			
 			var userName = $scope.formModel.userName;
 			console.log('Searching userName availability');
 			UserService.userNameSearch(userName)
@@ -89,12 +97,29 @@ angular.module('crudApp').controller('UserController',
 						$scope.addUserNameAvailabilityStatus = UserService.getUserNameAvailabilityStatus();
 						var addUserNameAvailabilityStatus=$scope.addUserNameAvailabilityStatus;
 						$scope.addUserNameAvailabilityStatusClass(addUserNameAvailabilityStatus);
+						 $timeout(function() {
+					        	// SweetAlert.swal("close");
+					        	//swal.showLoading();
+					        	swal.close();
+					        	//images/yeoman.png
+					        	//text: " ",
+					    		 //imageUrl: "images/yeoman.png" }); 
+							}, 2000);
 					},
 					function(errResponse) {
 						$scope.addUserNameAvailabilityStatus = UserService.getUserNameAvailabilityStatus();
 						var addUserNameAvailabilityStatus=$scope.addUserNameAvailabilityStatus;
 						$scope.addUserNameAvailabilityStatusClass(addUserNameAvailabilityStatus);
 						console.error('error while doing userName search');
+						
+						$timeout(function() {
+				        	// SweetAlert.swal("close");
+				        	//swal.showLoading();
+				        	swal.close();
+				        	//images/yeoman.png
+				        	//text: " ",
+				    		 //imageUrl: "images/yeoman.png" }); 
+						}, 2000);
 
 					}
 			);
@@ -133,6 +158,18 @@ angular.module('crudApp').controller('UserController',
 
 		function createUser(user) {
 			console.log('About to create user');
+			
+			SweetAlert.swal({ 
+	    		 title: "Please wait while user details is saved !",
+	    		 text: "Registering user.. ",
+	    		 showCancelButton: false,
+	    		 showConfirmButton: false,
+	    		 imageUrl: "images/balls_spinner.gif" }); 
+	       
+			$timeout(function() {
+				console.log('load spinner being dispalyed before create/registering user');
+			}, 3000);
+			
 			UserService.createUser(user)
 				.then(
 					function(response) {
@@ -143,11 +180,13 @@ angular.module('crudApp').controller('UserController',
 						self.done = true;
 						self.user = {};
 					//    $scope.myForm.$setPristine();
+						swal.close();
 					},
 					function(errResponse) {
 						console.error('Error while creating User');
 						self.errorMessage = 'Error while creating User: ' + errResponse.data.errorMessage;
 						self.successMessage = '';
+						swal.close();
 					}
 			);
 		}

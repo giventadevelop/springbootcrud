@@ -1,20 +1,23 @@
 ---
 server:
   port: 8080
+## session time out needs to be second the below is equal to 30 minutes 
   session:
-    timeout: 600
-  ##contextPath: /SpringBootCRUDApp
+    timeout: 1800
+##contextPath: /SpringBootCRUDApp
 
 
-welcome.message: Hello Mkyong
+welcome.message: Hello !! Welcome To SpringBootCRUDApp
 ---
 spring:
-  profiles: dev,local, default
+  profiles: local, default
   mvc:
     view:
       prefix: /WEB-INF/jsp/
       suffix: .jsp
-
+logging:
+  config: classpath:local/log4j2.xml
+  
 datasource:
   sampleapp:
     url: jdbc:mysql://localhost:3306/dogapp
@@ -30,17 +33,21 @@ datasource:
       dialect: org.hibernate.dialect.MySQLDialect
 ---
 spring:
-  profiles: prod
+  profiles: dev
+ 
+logging:
+  config: classpath:dev/log4j2.xml 
+  
 datasource:
   sampleapp:
-    url: jdbc:mysql://localhost:3306/websystique
-    username: myuser
-    password: mypassword
+    url: jdbc:mysql://localhost:3306/dogapp
+    username: root
+    password: root
     driverClassName: com.mysql.jdbc.Driver
     defaultSchema:
     maxPoolSize: 10
     hibernate:
-      hbm2ddl.method: update
+      hbm2ddl.method: validate
       show_sql: true
       format_sql: true
       dialect: org.hibernate.dialect.MySQLDialect

@@ -1,5 +1,5 @@
 var app = angular.module('crudApp',['ui.router','ngStorage','ui.bootstrap','ngAria','ngAnimate','ngMaterial'
-	,'ui.grid', 'ui.grid.edit','jcs-autoValidate','angular-ladda']);
+	,'ui.grid', 'ui.grid.edit','jcs-autoValidate','angular-ladda','oitozero.ngSweetAlert']);
 
 app.constant('urls', {
     BASE: 'http://localhost:8080/SpringBootCRUDApp',

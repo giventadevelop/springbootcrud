@@ -21,6 +21,9 @@
 <!-- Theme CSS -->
 <link href="css/freelancer.min.css" rel="stylesheet">
 
+<!-- sweetalert CSS -->
+    <link href="js/sweetalert/lib/sweet-alert.css" rel="stylesheet">
+
 <link rel="stylesheet" href="js/angular-material/angular-material.css" />
 <link rel="styleSheet" href="js/angular-ui-grid/ui-grid.min.css" />
 
@@ -245,6 +248,9 @@
 	<script src="js/ladda/dist/ladda.min.js"></script>
 	<script src="js/angular-ladda/dist/angular-ladda.min.js"></script>
 	<script src="js/ladda/dist/spin.min.js"></script>
+
+     <script src="js/angular-sweetalert/SweetAlert.min.js"></script>
+     <script src="js/sweetalert/lib/sweet-alert.min.js"></script>
 
 	<script src="js/app/app.js"></script>
 	<script src="js/app/UserService.js"></script>

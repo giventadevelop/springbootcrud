@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('crudApp').controller('AngUsersGridController',
-	[ 'UserService', '$scope', '$q', '$rootScope', '$timeout', '$uibModal','$state', function(UserService, $scope, $q, $rootScope, $timeout, $uibModal,$state) {
+	[ 'UserService', '$scope', '$q', '$rootScope', '$timeout', '$uibModal','$state','SweetAlert', function(UserService, $scope, $q, $rootScope, $timeout, $uibModal,$state,SweetAlert ) {
 
 		var vm = this;
 		var pageSize=10;
@@ -57,12 +57,19 @@ angular.module('crudApp').controller('AngUsersGridController',
 		$scope.searchUsers = function() {
 			console.log($scope.searchModel);
 			$rootScope.loader_spinner_activated = true;
+			SweetAlert.swal({ 
+	    		 title: "Checking user name availabilty .. !",
+	    		 text: " ",
+	    		 showCancelButton: false,
+	    		 showConfirmButton: false,
+	    		 imageUrl: "images/balls_spinner.gif" }); 
+			
 			$timeout(function() {
 				var searchByField = $scope.searchModel.searchByField;
 				var searchText = $scope.searchModel.searchText;
 				callSearchUsersService(searchByField, searchText);
 				$rootScope.loader_spinner_activated = false;
-			}, 2000);
+			}, 4000);
 
 			console.log('Page changed to: ' + $scope.bigCurrentPage);
 
@@ -126,11 +133,12 @@ angular.module('crudApp').controller('AngUsersGridController',
 
 
 		$scope.pageChanged = function() {
-			$rootScope.loader_spinner_activated = true;
+		$rootScope.loader_spinner_activated = true;
+			
 			$timeout(function() {
 				callPagedData();
 				$rootScope.loader_spinner_activated = false;
-			}, 2000);
+			}, 3000);
 
 			console.log('Page changed to: ' + $scope.currentPage);
 
@@ -175,7 +183,8 @@ angular.module('crudApp').controller('AngUsersGridController',
 			$scope.maxSize = 10;
 			$scope.totalPages = $scope.users_details.page.totalPages;
 			$scope.totalElements = $scope.users_details.page.totalElements;
-
+			
+			swal.close();
 
 		});
 
