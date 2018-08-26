@@ -6,6 +6,8 @@ angular.module('crudApp').controller('AngUsersGridController',
 		var vm = this;
 		var pageSize=10;
 
+		callLoadAllUsersOnPageLoad();
+		
 		$scope.openModal = function(row) {
 			$scope.editRow = row;
 			$scope.modalInstance = $uibModal.open({
@@ -22,7 +24,7 @@ angular.module('crudApp').controller('AngUsersGridController',
 			});
 		}
 
-		$scope.openCreateDogModal = function() {
+		$scope.openCreateNewUserModal = function() {
 			$scope.editRow = {};
 			$scope.modalInstance = $uibModal.open({
 				ariaLabelledBy : 'modal-title',
@@ -58,8 +60,8 @@ angular.module('crudApp').controller('AngUsersGridController',
 			console.log($scope.searchModel);
 			$rootScope.loader_spinner_activated = true;
 			SweetAlert.swal({ 
-	    		 title: "Checking user name availabilty .. !",
-	    		 text: " ",
+	    		 title:  "Searching users ...",
+	    		 text: "Please wait while users are searched",
 	    		 showCancelButton: false,
 	    		 showConfirmButton: false,
 	    		 imageUrl: "images/balls_spinner.gif" }); 
@@ -74,6 +76,24 @@ angular.module('crudApp').controller('AngUsersGridController',
 			console.log('Page changed to: ' + $scope.bigCurrentPage);
 
 		};
+		
+		
+		function callLoadAllUsersOnPageLoad() {
+			var pageNum = $scope.currentPage - 1;
+			var promise = UserService.loadAllUsers(0,10);
+			promise.then(
+				function(data) {
+					console.log('Promise Users Data', data);
+					$scope.data = data;
+					$rootScope.$broadcast('Users newData', data);
+				},
+				function(reason) {
+					console.log('Error: ' + reason);
+				}
+			);
+
+			$rootScope.loader_spinner_activated = true;
+		}
 
 		function callSearchUsersService(searchByField, searchText) {
 			var pageNum = $scope.bigCurrentPage - 1
@@ -145,8 +165,9 @@ angular.module('crudApp').controller('AngUsersGridController',
 		};
 
 		function callPagedData() {
-			var promise;
+			
 			var pageNum = $scope.currentPage - 1;
+			var promise= UserService.loadAllUsers(pageNum, pageSize);
 			var searchByField = $scope.searchModel.searchByField;
 			var searchText = $scope.searchModel.searchText;
 			if($scope.searchModel.searchText){
@@ -158,7 +179,7 @@ angular.module('crudApp').controller('AngUsersGridController',
 			
 			promise.then(
 				function(data) {
-					console.log('Promise Dog Data', data);
+					console.log('Promise Users Data', data);
 					$scope.data = data;
 					$rootScope.$broadcast('newData', data);
 				},
@@ -189,17 +210,6 @@ angular.module('crudApp').controller('AngUsersGridController',
 		});
 
 
-		/*self.getAllDogs = getAllDogs;
-       
-		self.successMessage = '';
-		self.errorMessage = '';
-		self.done = false;
-
-		self.onlyIntegers = /^\d+$/;
-		self.onlyNumbers = /^\d+([,.]\d+)?$/;
-		
-*/
-		
 		$scope.onSubmit = function () {
 			$scope.submitting = true;
 			//console.log($scope.formModel);

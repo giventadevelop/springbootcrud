@@ -63,8 +63,9 @@ app.config(['$stateProvider', '$urlRouterProvider','$httpProvider','$provide',
                 controllerAs:'angGridCtrl',
                 resolve: {
                     dogs: function ($q, AnGridService) {
-                        console.log('Load all dogs');
+                      console.log('Load all dogs   for partials/uigrid templateUrl');
                         var deferred = $q.defer();
+                        
                        AnGridService.loadAllDogs(0,10).then(deferred.resolve, deferred.resolve);
                         return deferred.promise;
                     }
@@ -121,10 +122,11 @@ app.factory("sessionInjector", ['$log', function($log){
 	 * this along with the code in StateController.js does the work
      https://stackoverflow.com/questions/22318070/spring-security-and-angular-javascript-redirect-to-login-page*/
 
-            	alert("Your session  has expired.");
+            //	alert("Your session  has expired.");
             	//$window.location.href = '/session';
             	window.location.href= '/session';
                 //location.reload();
+            	console.log('after Your session  has expired alert ');
             }
             return response;
         }

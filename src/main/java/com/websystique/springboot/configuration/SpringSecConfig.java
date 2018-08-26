@@ -79,9 +79,9 @@ public class SpringSecConfig extends WebSecurityConfigurerAdapter {
                 "/", "/home","/register_success","/pictureCheckCode","/include/**","/bootstrap/fonts/glyphicons-halflings-regular.ttf",
                 "/bootstrap/fonts/glyphicons-halflings-regular.woff","/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.3",
                 "/css/**","/font-awesome/**","/font-awesome/fonts/**","/icons/**","/images/**","/js/**","/layer/**","/js/angular-ladda/dist/angular-ladda.min.js",
-                "/font-awesome/fonts/fontawesome-webfont.woff2","/jquery/jquery.min.js","/font-awesome/css/font-awesome.min.css","/api/user/","/api/user","/api/user/search/","/api/user/search","/bootstrap/js/bootstrap.min.js"
-
-                ,"/js/angular/angular.js","/js/freelancer.js"
+                "/font-awesome/fonts/fontawesome-webfont.woff2","/jquery/jquery.min.js","/font-awesome/css/font-awesome.min.css","/api/user/","/api/user",
+                "/api/user/search/","/api/user/search","/bootstrap/js/bootstrap.min.js"
+                ,"/js/angular/angular.js","/js/freelancer.js","/partials/uigrid"
         };
     	
     	
@@ -92,7 +92,7 @@ public class SpringSecConfig extends WebSecurityConfigurerAdapter {
                 		//"/font-awesome/fonts/fontawesome-webfont.woff2;","/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.3;","/index","/login","login","/products","/product/show/*","/session","/logout","/console/*","/h2-console/**","login?error").permitAll()
                 		"/partials/list","/font-awesome/fonts/fontawesome-webfont.ttf","/font-awesome/fonts/fontawesome-webfont.woff2",
                 		"/font-awesome/fonts/fontawesome-webfont.woff","/index","/login","login","/products","/product/show/*","/session","/font-awesome/fonts/fontawesome-webfont.woff2?v=4.6.3",
-                		"/js/angular/angular.js","/js/freelancer.js","/bootstrap/js/bootstrap.min.js","/logout","/console/*","/h2-console/**","login?error").permitAll()    		
+                		"/js/angular/angular.js","/js/freelancer.js","/bootstrap/js/bootstrap.min.js","/logout","/console/*","/h2-console/**","login?error","/partials/uigrid").permitAll()    		
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().successHandler(new CustomAuthenticationSuccessHandler()).loginPage("/login").permitAll()

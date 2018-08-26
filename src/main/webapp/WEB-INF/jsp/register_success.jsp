@@ -52,9 +52,9 @@
 
 <body id="page-top" class="index">
 
-	<div id="skipnav">
+	<!-- <div id="skipnav">
 		<a href="#maincontent">Skip to main content</a>
-	</div>
+	</div> -->
 
 	<!-- Navigation -->
 	<nav id="mainNav"

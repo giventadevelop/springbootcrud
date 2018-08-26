@@ -127,142 +127,44 @@
 				<ul class="nav navbar-nav navbar-right">
 
 					<li><a href="/">Home</a></li>
-					<li><a href="login">Login</a></li>
-					<li><a href="register">Register</a></li>
+					<!-- <li><a href="login">Login</a></li>
+					<li><a href="register_user_form">Register</a></li> -->
 					<!-- <li><a ui-sref="uigrid">UI Grid</a></li> -->
-					<li><a href="" ng-click="reloadRoute('uigrid')">UI Grid</a></li>
+					<li><a href="partials_uigrid">UI Grid</a></li>
+					<li><a href="partials_usersgrid">Users Grid</a></li>
+					<li><a href="partials_angmaterial_tiles">Angular Tiles</a></li>
+					<!-- <li><a href="" ng-click="reloadRoute('uigrid')">UI Grid</a></li> -->
 					<!-- <li><a ui-sref="users_grid" ng-click="reloadRoute">Users Grid</a></li> -->
-					<li><a href="" ng-click="reloadRoute('users_grid')">Users Grid</a></li>
-					<li><a href="" ui-sref="angtiles">Ang Tiles</a></li>
+					<!-- <li><a href="" ng-click="reloadRoute('users_grid')">Users Grid</a></li> -->
+					<!-- <li><a href="" ui-sref="angtiles">Angular Tiles</a></li> -->
 
-					<form id="logout-form" action="/logout"	method="post">
+
+					<!-- <form id="logout-form" action="/logout"	method="post">
 						<li><a href="" onclick="logout_user()">Logout </a></li>
-					</form>
+					</form> -->
 					
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
 		</div>
 		<!-- /.container-fluid -->
+		
+		<!-- <div style="float:right">
+					<a href="#" class="btn btn-info btn-lg">
+          <form id="logout-form" action="/logout"	method="post"> <span class="glyphicon glyphicon-log-out"  onclick="logout_user()">
+          </span> 
+        </form></a> -->
+        
+        
+       <div style="float:right">
+          <form id="logout-form" action="/logout"	method="post"> <button type="button" class="btn btn-default btn-sm" onclick="logout_user()">  <span class="glyphicon glyphicon-log-out"></span> Log out
+        </button> </form>
+       
+					</div>
 	</nav>
+	
+	
+	
 	<header>
 		<div class="container" id="maincontent" tabindex="-1"></div>
 	</header>
-
-	<div style="padding-left: 30px; padding-right: 30px">
-		<h4>Logged in successfully- Search here for users</h4>
-
-		<ui-view> </ui-view>
-
-	</div>
-	<!-- Source for the bootstrap login form tthe
-  urls
-  https://bootsnipp.com/tags/login
-  https://bootsnipp.com/snippets/featured/login-amp-signup-forms-in-panel
-   -->
-
-	<!-- <div style="padding-left: 30px; padding-right: 30px">
-		<ui-view> </ui-view>
-	</div> -->
-
-	
-
-	<!-- Footer -->
-	<footer class="text-center">
-		<div class="footer-above">
-			<div class="container">
-				<div class="row">
-					<div class="footer-col col-md-4">
-						<h3>Location</h3>
-						<p>
-							3481 Melrose Place <br>Beverly Hills, CA 90210
-						</p>
-					</div>
-					<div class="footer-col col-md-4">
-						<h3>Around the Web</h3>
-						<ul class="list-inline">
-							<li><a href="#" class="btn-social btn-outline"><span
-									class="sr-only">Facebook</span><i class="fa fa-fw fa-facebook"></i></a>
-							</li>
-							<li><a href="#" class="btn-social btn-outline"><span
-									class="sr-only">Google Plus</span><i
-									class="fa fa-fw fa-google-plus"></i></a></li>
-							<li><a href="#" class="btn-social btn-outline"><span
-									class="sr-only">Twitter</span><i class="fa fa-fw fa-twitter"></i></a>
-							</li>
-							<li><a href="#" class="btn-social btn-outline"><span
-									class="sr-only">Linked In</span><i class="fa fa-fw fa-linkedin"></i></a>
-							</li>
-							<li><a href="#" class="btn-social btn-outline"><span
-									class="sr-only">Dribble</span><i class="fa fa-fw fa-dribbble"></i></a>
-							</li>
-						</ul>
-					</div>
-					<div class="footer-col col-md-4">
-						<h3>About Freelancer</h3>
-						<p>
-							Freelance is a free to use, open source Bootstrap theme created
-							by <a href="http://startbootstrap.com">Start Bootstrap</a>.
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="footer-below">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">Copyright &copy; Your Website 2017</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-
-
-
-
-
-	<!-- Bootstrap Core JavaScript -->
-	<script src="bootstrap/js/bootstrap.min.js"></script>
-
-
-	<!-- Plugin JavaScript -->
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-
-	<!-- Theme JavaScript -->
-	<script src="js/freelancer.js"></script>
-
-
-	<script src="js/angular/angular.js"></script>
-	<script src="js/angular-aria/angular-aria.js"></script>
-	<script src="js/angular-animate/angular-animate.js"></script>
-	<script src="js/angular-messages/angular-messages.js"></script>
-	<script src="js/angular-sanitize/angular-sanitize.js"></script>
-	<script src="js/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-	<script src="js/angular-material/angular-material.js"></script>
-	<script src="js/angular-ui-router/release/angular-ui-router.js"></script>
-	<script src="js/localforage.min.js"></script>
-	<script src="js/ngStorage.min.js"></script>
-	<script src="js/angular-ui-grid/ui-grid.min.js"></script>
-	<script src="js/angular-auto-validate/dist/jcs-auto-validate.min.js"></script>
-	<script src="js/ladda/dist/ladda.min.js"></script>
-	<script src="js/angular-ladda/dist/angular-ladda.min.js"></script>
-	<script src="js/ladda/dist/spin.min.js"></script>
-
-     <script src="js/angular-sweetalert/SweetAlert.min.js"></script>
-     <script src="js/sweetalert/lib/sweet-alert.min.js"></script>
-
-	<script src="js/app/app.js"></script>
-	<script src="js/app/UserService.js"></script>
-	<script src="js/app/UserController.js"></script>
-	<script src="js/app/AnGridService.js"></script>
-	<script src="js/app/AnGridController.js"></script>
-	<script src="js/app/AngUsersGridController.js"></script>
-	<script src="js/app/StateController.js"></script>
-
-
-
-
-</body>
-
-</html>

@@ -87,28 +87,60 @@ public class AppController {
     }
     
     
-    @RequestMapping("/loginsuccess")
+    @RequestMapping("/login_success")
     String loginsuccess(HttpServletRequest request,HttpServletResponse response){
     	
     	
-        return "loginsuccess";
+        return "login_success";
     }
     
-    @RequestMapping("register")
+    @RequestMapping("register_user_form")
 	String register(ModelMap modal) {
 		modal.addAttribute("title","CRUD Example");
-		return "register";
+		return "register_user_form";
 	}
     
     
-    @RequestMapping("register_success")
+    @RequestMapping("register_user_success")
    	String registerSuccess( HttpSession session,ModelMap modal) {
    		modal.addAttribute("title","CRUD Example");
    		//HttpSession session= httpServletRequest.getSession(false);
    		modal.addAttribute("user", session.getAttribute("user"));
    		//modal.setAttribute("user", session.getAttribute("user"));
-   		return "register_success";
+   		return "register_user_success";
    	}
+    
+    
+    @RequestMapping("partials_uigrid")
+   	String partialsUiGrid( HttpSession session,ModelMap modal) {
+   		modal.addAttribute("title","CRUD Example");
+   		//HttpSession session= httpServletRequest.getSession(false);
+   		modal.addAttribute("user", session.getAttribute("user"));
+   		//modal.setAttribute("user", session.getAttribute("user"));
+   		return "partials_uigrid";
+   	}
+    
+    
+    @RequestMapping("partials_usersgrid")
+   	String partialsUsersGgrid( HttpSession session,ModelMap modal) {
+   		modal.addAttribute("title","CRUD Example");
+   		//HttpSession session= httpServletRequest.getSession(false);
+   		modal.addAttribute("user", session.getAttribute("user"));
+   		//modal.setAttribute("user", session.getAttribute("user"));
+   		return "partials_usersgrid";
+   	}
+    
+    
+    @RequestMapping("partials_angmaterial_tiles")
+   	String partialsAngMaterialTiles( HttpSession session,ModelMap modal) {
+   		modal.addAttribute("title","CRUD Example");
+   		//HttpSession session= httpServletRequest.getSession(false);
+   		modal.addAttribute("user", session.getAttribute("user"));
+   		//modal.setAttribute("user", session.getAttribute("user"));
+   		return "partials_angmaterial_tiles";
+   	}
+    
+    
     
     
     @RequestMapping("/protectedpage")

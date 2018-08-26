@@ -59,7 +59,9 @@ angular.module('crudApp').controller('AnGridController',
 		};
 
 		$rootScope.loader_spinner_activated = false;
-
+        
+		callLoadAllDogsOnPageLoad();
+		
 		$scope.dogs_details = AnGridService.getAllDogs();
 		vm.gridOptions.data = $scope.dogs_details._embedded.dogDTOList;
 		$scope.dogs = $scope.dogs_details._embedded.dogDTOList;
@@ -82,11 +84,28 @@ angular.module('crudApp').controller('AnGridController',
 			console.log('Page changed to: ' + $scope.currentPage);
 
 		};
+		
+		
+		function callLoadAllDogsOnPageLoad() {
+			var pageNum = $scope.currentPage - 1;
+			var promise = AnGridService.loadAllDogs(0,10);
+			promise.then(
+				function(data) {
+					console.log('Promise Dog Data', data);
+					$scope.data = data;
+					$rootScope.$broadcast('newData', data);
+				},
+				function(reason) {
+					console.log('Error: ' + reason);
+				}
+			);
+
+			$rootScope.loader_spinner_activated = true;
+		}
 
 		function callPagedData() {
 			var pageNum = $scope.currentPage - 1;
 			var promise = AnGridService.loadAllDogs(pageNum, 10);
-			;
 			promise.then(
 				function(data) {
 					console.log('Promise Dog Data', data);
@@ -211,6 +230,10 @@ angular.module('crudApp').controller('AnGridController',
 		function getAllDogs() {
 			return AnGridService.getAllDogs();
 		}
+		
+		
+		$rootScope.loader_spinner_activated = false;
+		
 	}
 
 	]).directive("fileinput", [ function() {

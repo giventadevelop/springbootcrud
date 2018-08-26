@@ -264,7 +264,7 @@
 			<artifactId>jstl</artifactId>
 		</dependency>
 
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-core</artifactId>
 			<version>3.0.7</version>
@@ -274,7 +274,7 @@
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-jsp</artifactId>
 			<version>3.0.7</version>
-		</dependency> -->
+		</dependency>
 		
 		
 		 <dependency>

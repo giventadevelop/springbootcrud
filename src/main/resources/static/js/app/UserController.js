@@ -174,7 +174,7 @@ angular.module('crudApp').controller('UserController',
 				.then(
 					function(response) {
 						console.log('User created successfully');
-						window.location.href= '/register_success';
+						window.location.href= '/register_user_success';
 						self.successMessage = 'User created successfully';
 						self.errorMessage = '';
 						self.done = true;

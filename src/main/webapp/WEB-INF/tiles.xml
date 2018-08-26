@@ -13,28 +13,56 @@
 		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
 	</definition>
 	
+	<definition name="secured_layout" template="/WEB-INF/layouts/main_layout.jsp">
+		<put-attribute name="title" value="Demo Page" />
+		<put-attribute name="header" value="/WEB-INF/tiles/header_secured.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp" />
+	</definition>
+	
+	<definition name="grid_layout" template="/WEB-INF/layouts/partials_layout.jsp">
+		<put-attribute name="body" value="" />
+	</definition>
+	
 	<definition name="index" extends="main_layout">
-		<put-attribute name="body" value="/WEB-INF/tiles/main.jsp" />
+		<put-attribute name="body" value="/WEB-INF/tiles/index.jsp" />
 	</definition>
 	
 	<definition name="homepage" extends="main_layout">
-		<put-attribute name="body" value="/WEB-INF/tiles/home.jsp" />
+		<put-attribute name="body" value="/WEB-INF/tiles/index.jsp" />
 	</definition>
 	
 	<definition name="login" extends="main_layout">
 		<put-attribute name="body" value="/WEB-INF/tiles/login.jsp" />
 	</definition>
 	
-	<definition name="loginsuccess" extends="main_layout">
-		<put-attribute name="body" value="/WEB-INF/tiles/loginsuccess.jsp" />
+	<definition name="session" extends="main_layout">
+		<put-attribute name="body" value="/WEB-INF/tiles/session.jsp" />
+	</definition>
+	
+	<definition name="login_success" extends="secured_layout">
+		<put-attribute name="body" value="/WEB-INF/tiles/login_success.jsp" />
+	</definition>
+	
+	<!--<definition name="partials_uigrid" template="/WEB-INF/layouts/partials_layout.jsp">
+		<put-attribute name="body" value="/WEB-INF/tiles/uigrid.jsp" />
+	</definition> 
+	
+	<definition name="partials_uigrid" extends="grid_layout">
+		<put-attribute name="body" value="/WEB-INF/tiles/uigrid.jsp" />
+	</definition>-->
+	
+	
+	<definition name="register_user_form" extends="main_layout">
+		<put-attribute name="body" value="/WEB-INF/tiles/register_user_form.jsp" />
+	</definition>
+	
+	<definition name="register_user_success" extends="main_layout">
+		<put-attribute name="body" value="/WEB-INF/tiles/register_user_success.jsp" />
 	</definition>
 	
 	<definition name="logout" extends="main_layout">
 		<put-attribute name="body" value="/WEB-INF/tiles/logout.jsp" />
-	</definition>
-	
-	<definition name="session" extends="main_layout">
-		<put-attribute name="body" value="/WEB-INF/tiles/session.jsp" />
 	</definition>
 	
 	<definition name="protectedpage" extends="main_layout">

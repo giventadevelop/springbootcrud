@@ -89,7 +89,7 @@ function logout_user() {
 
 <body id="page-top" class="index">
 
-<div id="skipnav"><a href="#maincontent">Skip to main content</a></div>
+<!--<div id="skipnav"><a href="#maincontent">Skip to main content</a></div>-->
 
     <!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
