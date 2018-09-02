@@ -106,8 +106,8 @@ may fix later. -->
 
 
 									<select ng-model="formModel.yearPassed" name="yearPassed"
-										id="yearPassed" required="required" class="selectpicker"
-										data-dropup-auto="true" data-size="2">
+										id="yearPassed" required="required" 
+										data-dropup-auto="true" data-size="2" class="form-control input-md">
 
 										<option value="1965">1965</option>
 										<option value="1966">1966</option>

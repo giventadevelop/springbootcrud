@@ -1,10 +1,14 @@
 package com.websystique.springboot.controller;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,18 +22,23 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.websystique.springboot.dto.DogDTO;
+import com.websystique.springboot.dto.MultiFileUploadForm;
 import com.websystique.springboot.dto.UserDTO;
 import com.websystique.springboot.model.User;
+import com.websystique.springboot.model.UserFile;
 import com.websystique.springboot.resource.assembler.UserResourceAssembler;
 import com.websystique.springboot.service.UserService;
 import com.websystique.springboot.util.CustomErrorType;
@@ -89,6 +98,7 @@ public class RestApiController {
     	logger.debug("REST request to get a page of users");
     	String firstName;
     	String lastName;
+    	String yearPassed;
     	Page<UserDTO> page =null;
     	
     	switch(searchByField)
@@ -100,6 +110,10 @@ public class RestApiController {
             case "lastName":
             	lastName=searchText;
             	 page = userService.findByFirstName(lastName, pageable);
+                break;
+            case "yearPassed":
+            	yearPassed=searchText;
+            	 page = userService.findByYearPassed(yearPassed, pageable);
                 break;
             default:
             	firstName=searchText;
@@ -181,6 +195,65 @@ public class RestApiController {
 	        return new ModelAndView("redirect:/register_success", model);*/
 		  //  return new ModelAndView("register_success", model);
 	}
+	
+	@PostMapping("/user/images/uploadMultiFiles")
+    public ResponseEntity<?> uploadFileMulti(@ModelAttribute MultiFileUploadForm multiFileUploadForm,HttpSession session) throws Exception {
+ 
+        System.out.println("Description:" + multiFileUploadForm.getDescription());
+ 
+        String result = null;
+        int userId=(int) session.getAttribute("userId");
+        try {
+ 
+        	 for (MultipartFile file : multiFileUploadForm.getFiles()) {
+        		 
+                 if (file.isEmpty()) {
+                     continue;
+                 }
+                 
+                 System.out.println("File Name is :" + file.getOriginalFilename());
+                 UserFile userFile= new UserFile();
+
+                 userFile.setUserId(userId);
+                 userFile.setUserPictureContentType(file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.')));
+                 userFile.setUserPicture(file.getBytes());
+                 userService.saveOrUpdateUserFile(userFile);
+                }
+          //  result = this.saveUploadedFiles(multiFileUploadForm.getFiles());
+ 
+        }
+        // Here Catch IOException only.
+        // Other Exceptions catch by RestGlobalExceptionHandler class.
+        catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("Error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+ 
+        return new ResponseEntity<String>("Uploaded : " + "all files", HttpStatus.OK);
+    }
+
+	       /* logger.debug("Multiple file upload!");
+
+	        // Get file name
+	        String uploadedFileName = Arrays.stream(uploadfiles).map(x -> x.getOriginalFilename())
+	                .filter(x -> !StringUtils.isEmpty(x)).collect(Collectors.joining(" , "));
+
+	        if (StringUtils.isEmpty(uploadedFileName)) {
+	            return new ResponseEntity("please select a file!", HttpStatus.OK);
+	        }
+
+	        try {
+
+	          //  saveUploadedFiles(Arrays.asList(uploadfiles));
+
+	        } catch (IOException e) {
+	            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	        }
+
+	        return new ResponseEntity("Successfully uploaded - "
+	                + uploadedFileName, HttpStatus.OK);
+
+	    }*/
 
 	// ------------------- Update a User ------------------------------------------------
 

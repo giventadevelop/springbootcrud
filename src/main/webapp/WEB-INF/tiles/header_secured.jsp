@@ -50,16 +50,24 @@
 
 <script>
 	function submit_form() {
-		//var name = document.getElementById("login-form").value;
-		//var email = document.getElementById("email").value;
+		var username = document.getElementById("username").value;
+		var password = document.getElementById("password").value;
+
+
+		if (!username || !password) {
+			document.getElementById("user_pass_rqd").style.display = 'inline';
+			return;
+		}
+
+		if (username === undefined || username === null) {
+			return;
+		}
+
+		if (password === undefined || password === null) {
+			return;
+		}
+
 		document.getElementById("login-form").submit();
-
-		/* if (validation()) // Calling validation function
-		{
-		document.getElementById("form_id").submit(); //form submission
-		alert(" Name : " + name + " n Email : " + email + " n Form Id : " + document.getElementById("form_id").getAttribute("id") + "nn Form Submitted Successfully......");
-		} */
-
 
 	}
 
@@ -71,17 +79,36 @@
 
 
 	function logout_user() {
-		//var name = document.getElementById("login-form").value;
-		//var email = document.getElementById("email").value;
 		document.getElementById("logout-form").submit();
-
-		/* if (validation()) // Calling validation function
-		{
-		document.getElementById("form_id").submit(); //form submission
-		alert(" Name : " + name + " n Email : " + email + " n Form Id : " + document.getElementById("form_id").getAttribute("id") + "nn Form Submitted Successfully......");
-		} */
-
-
+	}
+	
+	
+	function showMyImage(fileInput,thumbnail) {
+	    var files = fileInput.files;
+	    var fileInputFieldId = fileInput.id;
+	    console.log("fileInputFieldId is "+  fileInputFieldId)
+	    console.log("thumbnail is "+  thumbnail)
+	    for (var i = 0; i < files.length; i++) {           
+	        var file = files[i];
+	        var imageType = /image.*/;     
+	        if (!file.type.match(imageType)) {
+	            continue;
+	        }           
+	        var img=document.getElementById(thumbnail); 
+		  
+		    
+	        img.file = file;    
+	        var reader = new FileReader();
+	        reader.onload = (function(aImg) { 
+	            return function(e) { 
+	                aImg.src = e.target.result; 
+	            }; 
+	        })(img);
+	        reader.readAsDataURL(file);
+	    } 
+	    img.style.visibility = 'visible';
+	    img.style.display = 'block';
+	   
 	}
 </script>
 
@@ -103,10 +130,6 @@
 
 <body id="page-top" class="index">
 
-	<!-- <div id="skipnav">
-		<a href="#maincontent">Skip to main content</a>
-	</div> -->
-
 	<!-- Navigation -->
 	<nav id="mainNav"
 		class="navbar navbar-default navbar-fixed-top navbar-custom">
@@ -118,7 +141,7 @@
 					<span class="sr-only">Toggle navigation</span> Menu <i
 						class="fa fa-bars"></i>
 				</button>
-				<a class="navbar-brand" href="#page-top">Start Bootstrap</a>
+				<a class="navbar-brand" href="#page-top">School Alumni</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
@@ -127,33 +150,16 @@
 				<ul class="nav navbar-nav navbar-right">
 
 					<li><a href="/">Home</a></li>
-					<!-- <li><a href="login">Login</a></li>
-					<li><a href="register_user_form">Register</a></li> -->
-					<!-- <li><a ui-sref="uigrid">UI Grid</a></li> -->
+					<li><a href="user_my_account">My Account</a></li>
 					<li><a href="partials_uigrid">UI Grid</a></li>
 					<li><a href="partials_usersgrid">Users Grid</a></li>
 					<li><a href="partials_angmaterial_tiles">Angular Tiles</a></li>
-					<!-- <li><a href="" ng-click="reloadRoute('uigrid')">UI Grid</a></li> -->
-					<!-- <li><a ui-sref="users_grid" ng-click="reloadRoute">Users Grid</a></li> -->
-					<!-- <li><a href="" ng-click="reloadRoute('users_grid')">Users Grid</a></li> -->
-					<!-- <li><a href="" ui-sref="angtiles">Angular Tiles</a></li> -->
-
-
-					<!-- <form id="logout-form" action="/logout"	method="post">
-						<li><a href="" onclick="logout_user()">Logout </a></li>
-					</form> -->
 					
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
 		</div>
-		<!-- /.container-fluid -->
 		
-		<!-- <div style="float:right">
-					<a href="#" class="btn btn-info btn-lg">
-          <form id="logout-form" action="/logout"	method="post"> <span class="glyphicon glyphicon-log-out"  onclick="logout_user()">
-          </span> 
-        </form></a> -->
         
         
        <div style="float:right">
@@ -162,8 +168,6 @@
        
 					</div>
 	</nav>
-	
-	
 	
 	<header>
 		<div class="container" id="maincontent" tabindex="-1"></div>

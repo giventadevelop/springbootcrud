@@ -1,0 +1,33 @@
+<div class="modal-header">
+<div class="cancel pull-right" ng-click="cancelModal()">
+    <span class="close">X</span>
+  </div>
+    <h3>User Details</h3>
+</div>
+
+
+</div>
+    <h2>User Id : {{editRow.id}} </h2>
+</div>
+      
+	 <table class="table">
+							
+	  <tbody>
+		<tr>
+		   <td> Row # </td>	<td> {{rowRenderIndex+1}} </td>
+		 </tr>
+	
+	     <tr>
+		  <td> First Name </td>	<td> {{editRow.firstName}} </td>
+	    </tr>
+	    
+	    <tr>
+		  <td> Last Name </td>	<td> {{editRow.lastName}} </td>
+	    </tr>
+		
+		<tr>
+		  <td> Year Passed </td>	<td> {{editRow.yearPassed}} </td>
+	    </tr>
+	    
+	    </tbody>
+	  </table>

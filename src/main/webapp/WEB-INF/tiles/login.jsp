@@ -48,7 +48,7 @@
 						</c:choose>
 						
 						
-						
+						 
 					</c:if>
 					
 					<div id="user_pass_rqd" name="user_pass_rqd" class="alert alert-danger col-sm-12"  style="display:none">
@@ -56,20 +56,21 @@
 					</div>
 						
 					<form id="login-form" class="form-horizontal" role="form"
-						action="/login" method='POST'>
+						action="/login" method='POST' data-toggle="validator" >
 
-						<div style="margin-bottom: 25px" class="input-group form-group">
+						<div style="margin-bottom: 25px" class="form-group input-group ">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-user"></i></span> <input id="username"
 								type="text" class="form-control" name="username" value=""
-								placeholder="username or email" required="required">
+								placeholder="username or email" required="required" data-error="Please enter your user name.">
 						</div>
+						<div class="help-block with-errors"></div>
 
 						<div style="margin-bottom: 25px" class="input-group form-group">
 							<span class="input-group-addon"><i
 								class="glyphicon glyphicon-lock"></i></span> <input id="password"
 								type="password" class="form-control" name="password"
-								placeholder="password" required="required">
+								placeholder="password" required>
 						</div>
 
 
@@ -86,8 +87,11 @@
 							<!-- Button -->
 
 							<div class="col-sm-12 controls">
-								<a id="btn-login" href="#" class="btn btn-success" type="submit"
-									onclick="submit_form()">Login </a>
+								<!-- <a id="btn-login" href="#" class="btn btn-success" type="submit"
+									onclick="submit_form()">Login </a> -->
+									
+									<button class="btn btn-success" type="submit"
+									onclick="submit_form()">Login</button>
 								<!--  <a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a> -->
 								<a id="btn-fblogin" href="#" class="btn btn-primary"
 									name="reset" type="reset" onclick="login_form_reset()">Reset</a>

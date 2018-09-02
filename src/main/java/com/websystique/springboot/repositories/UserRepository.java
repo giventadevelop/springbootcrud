@@ -17,7 +17,8 @@ public interface UserRepository extends JpaRepository<User,Integer>{
 	//List<User> findByFirstNameLike(String firstName);
 	//List<User> findByFirstNameStartingWith(String firstName);
 	Page<User> findByFirstNameStartingWith(String firstName, Pageable page);
-	
-	
 	Page<User> findByLastName(String lastName, Pageable page);
+	Page<User> findByYearPassed(String yearPassed, Pageable page);
+	
+		
 }

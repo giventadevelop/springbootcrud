@@ -29,8 +29,9 @@ public class UserDTO implements Serializable {
 	private String lastName;
 
 	private String password;
-
-
+	
+	private String yearPassed;
+	
 	private String userName;
 
 	private List<Role> roles;
@@ -100,6 +101,14 @@ public class UserDTO implements Serializable {
 
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
+	}
+	
+	public String getYearPassed() {
+		return this.yearPassed;
+	}
+
+	public void setYearPassed(String yearPassed) {
+		this.yearPassed = yearPassed;
 	}
  
 }

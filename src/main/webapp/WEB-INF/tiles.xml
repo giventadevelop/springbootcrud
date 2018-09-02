@@ -44,6 +44,10 @@
 		<put-attribute name="body" value="/WEB-INF/tiles/login_success.jsp" />
 	</definition>
 	
+	<definition name="user_my_account" extends="secured_layout">
+		<put-attribute name="body" value="/WEB-INF/tiles/user_my_account.jsp" />
+	</definition>
+	
 	<!--<definition name="partials_uigrid" template="/WEB-INF/layouts/partials_layout.jsp">
 		<put-attribute name="body" value="/WEB-INF/tiles/uigrid.jsp" />
 	</definition> 

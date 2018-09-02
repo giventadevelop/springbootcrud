@@ -89,6 +89,8 @@
 	<script src="js/app/AnGridService.js"></script>
 	<script src="js/app/AnGridController.js"></script>
 	<script src="js/app/AngUsersGridController.js"></script>
+	<script src="js/app/MultiFileUploadController.js"></script>
+	
 	<script src="js/app/StateController.js"></script>
 
 

@@ -5,14 +5,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.websystique.springboot.repositories.UserRepository;
+import com.websystique.springboot.security.service.UserDetailsImpl;
+import com.websystique.springboot.service.UserService;
+
 @Controller
 public class AppController {
+	
+	/*//@Autowired
+		UserRepository userRepository;*/
+		@Autowired
+		UserService userService;
 
 	@RequestMapping("/")
 	String home(ModelMap modal) {
@@ -88,9 +101,12 @@ public class AppController {
     
     
     @RequestMapping("/login_success")
-    String loginsuccess(HttpServletRequest request,HttpServletResponse response){
-    	
-    	
+    String loginsuccess(HttpServletRequest request,HttpServletResponse response,HttpSession session){
+    	UserDetails authUser = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	//SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	com.websystique.springboot.model.User modelUser=userService.findByUserName(authUser.getUsername());
+		session.setAttribute("userId", modelUser.getId());
+	
         return "login_success";
     }
     
@@ -99,6 +115,15 @@ public class AppController {
 		modal.addAttribute("title","CRUD Example");
 		return "register_user_form";
 	}
+    
+    
+    @RequestMapping("user_my_account")
+	String setUserMyAccount(ModelMap modalMap, Model model) {
+    	modalMap.addAttribute("title","CRUD Example");
+		model.addAttribute("numberOfImageSlotsAvailable", 3);
+		return "user_my_account";
+	}
+    
     
     
     @RequestMapping("register_user_success")

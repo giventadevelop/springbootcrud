@@ -20,6 +20,8 @@ import com.websystique.springboot.dto.UserDTO;
 import com.websystique.springboot.mapper.UserMapper;
 
 import com.websystique.springboot.model.User;
+import com.websystique.springboot.model.UserFile;
+import com.websystique.springboot.repositories.UserFilesRepository;
 import com.websystique.springboot.repositories.UserRepository;
 import com.websystique.springboot.security.service.EncryptionService;
 
@@ -28,6 +30,9 @@ import com.websystique.springboot.security.service.EncryptionService;
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
+    
+    @Autowired
+    private UserFilesRepository userFilesRepository ;
     
     @Autowired
     UserMapper userMapper;
@@ -67,15 +72,7 @@ public class UserServiceImpl implements UserService {
 		Page<User> result = userRepository.findAll(pageable);
 		ArrayList<UserDTO> userDTOList=new ArrayList<UserDTO>();
 		
-		for (User user2 : result) {
-			UserDTO userDTO =new UserDTO();
-			userDTO.setFirstName(user2.getFirstName());
-			userDTO.setLastName(user2.getLastName());
-			userDTO.setUserName(user2.getUserName());
-			userDTO.setRoles(null);
-			userDTOList.add(userDTO);
-			
-		}
+		createUserDTO(result, userDTOList);
 		
 		/*result.forEach(dogUserDogDTO -> {
 
@@ -103,6 +100,21 @@ public class UserServiceImpl implements UserService {
 		return null;*/
 
 	}
+
+
+	private void createUserDTO(Page<User> result, ArrayList<UserDTO> userDTOList) {
+		for (User user : result) {
+			UserDTO userDTO =new UserDTO();
+			userDTO.setId(user.getId());
+			userDTO.setFirstName(user.getFirstName());
+			userDTO.setLastName(user.getLastName());
+			userDTO.setUserName(user.getUserName());
+			userDTO.setYearPassed(user.getYearPassed());
+			userDTO.setRoles(null);
+			userDTOList.add(userDTO);
+			
+		}
+	}
 	
 	
 	@Override
@@ -114,15 +126,7 @@ public class UserServiceImpl implements UserService {
 		Page<User> result = userRepository.findByFirstNameStartingWith(firstName, pageable);
 		ArrayList<UserDTO> userDTOList=new ArrayList<UserDTO>();
 		
-		for (User user : result) {
-			UserDTO userDTO =new UserDTO();
-			userDTO.setFirstName(user.getFirstName());
-			userDTO.setLastName(user.getLastName());
-			userDTO.setUserName(user.getUserName());
-			userDTO.setRoles(null);
-			userDTOList.add(userDTO);
-			
-		}
+		createUserDTO(result, userDTOList);
 		
 		/*result.forEach(dogUserDogDTO -> {
 
@@ -150,15 +154,7 @@ public class UserServiceImpl implements UserService {
 		Page<User> result = userRepository.findByLastName(lastName,pageable);
 		ArrayList<UserDTO> userDTOList=new ArrayList<UserDTO>();
 		
-		for (User user : result) {
-			UserDTO userDTO =new UserDTO();
-			userDTO.setFirstName(user.getFirstName());
-			userDTO.setLastName(user.getLastName());
-			userDTO.setUserName(user.getUserName());
-			userDTO.setRoles(null);
-			userDTOList.add(userDTO);
-			
-		}
+		createUserDTO(result, userDTOList);
 		
 		/*result.forEach(dogUserDogDTO -> {
 
@@ -180,7 +176,33 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	
+	
+	@Override
+	public Page<UserDTO> findByYearPassed(String yearPassed ,Pageable pageable){
+		Page<User> result = userRepository.findByYearPassed(yearPassed,pageable);
+		ArrayList<UserDTO> userDTOList=new ArrayList<UserDTO>();
+		
+		createUserDTO(result, userDTOList);
+		
+		/*result.forEach(dogUserDogDTO -> {
 
+			dogUserDogDTO.setLoggedInUserName(loggedInUserName);
+			String encodeBase64 = Base64.encodeBase64String(dogUserDogDTO.getDogPicture());
+			// byte[] encodeBase64 =
+			// Base64.encode(dogUserDogDTO.getDogPicture());
+			// String base64Encoded = new String(encodeBase64, "UTF-8");
+			dogUserDogDTO.setBase64EncodedImg(encodeBase64);
+
+		});*/
+
+		// mav.addObject("userImage", base64Encoded );
+
+		// List<Object[]> dogUserDogResult=
+		// dogRepository.getDogUserDog(loggedInUserName);
+		final int currentTotal = pageable.getOffset() + pageable.getPageSize();
+		return new PageImpl<UserDTO>(userDTOList, pageable, currentTotal);
+	}
+	
     @Override
     public User getById(Integer id) {
         return userRepository.findOne(id);
@@ -203,6 +225,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUserName(String userName) {
         return userRepository.findByUserName(userName);
+    }
+    
+    
+    @Override
+    public UserFile saveOrUpdateUserFile(UserFile userFile) {
+        return userFilesRepository.save(userFile);
     }
 
 

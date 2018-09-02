@@ -1,19 +1,59 @@
 'use strict';
 
 angular.module('crudApp').controller('AngUsersGridController',
-	[ 'UserService', '$scope', '$q', '$rootScope', '$timeout', '$uibModal','$state','SweetAlert', function(UserService, $scope, $q, $rootScope, $timeout, $uibModal,$state,SweetAlert ) {
+	[ 'UserService', '$scope', '$q', '$rootScope', '$timeout', '$uibModal', '$state', 'SweetAlert', function(UserService, $scope, $q, $rootScope, $timeout, $uibModal, $state, SweetAlert) {
 
 		var vm = this;
-		var pageSize=10;
+		var pageSize = 10;
 
-		callLoadAllUsersOnPageLoad();
+		$rootScope.loader_spinner_activated = true;
+		vm.dog = {};
+		$scope.users = {};
+
+		vm.gridOptions = {
+			columnDefs : [
+				
+				
+				{
+					name : 'id',
+					visible: false
+				},
+				{
+					name : 'row #',
+					cellTemplate: '<span>{{rowRenderIndex+1}}</span>',
+				    width: '8%'
+				},
+				{
+					name : 'firstName',
+					width: '10%'
+				},
+				{
+					name : 'lastName',
+					width: '10%'
+				},
+				{
+					name : 'userName',
+					width: '10%'
+				},
+				{
+					name : 'yearPassed',
+					width: '10%'
+				},
+				{
+					name : 'Edit',
+					cellTemplate : '<button id="editBtn" type="button" class="btn btn-small btn-primary" ng-click="grid.appScope.viewUserDetails(row.entity)" >View Details</button> &nbsp; <button id="deleteBtn" type="button" class="btn btn-small btn-danger" ng-click="grid.appScope.remove(row.entity)" >Remove</button>'
+				},
+			]
+		};
+
+
 		
 		$scope.openModal = function(row) {
 			$scope.editRow = row;
 			$scope.modalInstance = $uibModal.open({
 				ariaLabelledBy : 'modal-title',
 				ariaDescribedBy : 'modal-body',
-				templateUrl : 'js/app/edit-modal.html',
+				templateUrl : 'js/app/view_user_details.html',
 				scope : $scope,
 				controller : 'AngUsersGridController',
 				controllerAs : '$ctrl',
@@ -24,59 +64,6 @@ angular.module('crudApp').controller('AngUsersGridController',
 			});
 		}
 
-		$scope.openCreateNewUserModal = function() {
-			$scope.editRow = {};
-			$scope.modalInstance = $uibModal.open({
-				ariaLabelledBy : 'modal-title',
-				ariaDescribedBy : 'modal-body',
-				templateUrl : 'js/app/create-dog-modal.html',
-				scope : $scope,
-				controller : 'AngUsersGridController',
-				controllerAs : '$ctrl',
-				size : 'lg',
-				resolve : {
-
-				}
-			});
-		}
-
-		/*$state.transitionTo($state.current, $stateParams, {
-		    reload: true,
-		    inherit: false,
-		    notify: true
-		});*/
-		
-		
-		$scope.reloadRoute = function() {
-		   // $state.reload();
-			$state.go('users_grid')
-		};
-
-		//Search Users 
-		$scope.searchModel = {};
-		$scope.searchUserErrors=false;
-
-		$scope.searchUsers = function() {
-			console.log($scope.searchModel);
-			$rootScope.loader_spinner_activated = true;
-			SweetAlert.swal({ 
-	    		 title:  "Searching users ...",
-	    		 text: "Please wait while users are searched",
-	    		 showCancelButton: false,
-	    		 showConfirmButton: false,
-	    		 imageUrl: "images/balls_spinner.gif" }); 
-			
-			$timeout(function() {
-				var searchByField = $scope.searchModel.searchByField;
-				var searchText = $scope.searchModel.searchText;
-				callSearchUsersService(searchByField, searchText);
-				$rootScope.loader_spinner_activated = false;
-			}, 4000);
-
-			console.log('Page changed to: ' + $scope.bigCurrentPage);
-
-		};
-		
 		
 		function callLoadAllUsersOnPageLoad() {
 			var pageNum = $scope.currentPage - 1;
@@ -84,23 +71,6 @@ angular.module('crudApp').controller('AngUsersGridController',
 			promise.then(
 				function(data) {
 					console.log('Promise Users Data', data);
-					$scope.data = data;
-					$rootScope.$broadcast('Users newData', data);
-				},
-				function(reason) {
-					console.log('Error: ' + reason);
-				}
-			);
-
-			$rootScope.loader_spinner_activated = true;
-		}
-
-		function callSearchUsersService(searchByField, searchText) {
-			var pageNum = $scope.bigCurrentPage - 1
-			var promise = UserService.searchUsers(searchByField, searchText);
-			promise.then(
-				function(data) {
-					console.log('Promise search users data', data);
 					$scope.data = data;
 					$rootScope.$broadcast('newData', data);
 				},
@@ -111,50 +81,10 @@ angular.module('crudApp').controller('AngUsersGridController',
 
 			$rootScope.loader_spinner_activated = true;
 		}
-
-
-
-		vm.dog = {};
-		$scope.users = {};
-
-		vm.gridOptions = {
-			columnDefs : [
-				{
-					name : 'id'
-				},
-				{
-					name : 'firstName'
-				},
-				{
-					name : 'lastName'
-				},
-				{
-					name : 'userName'
-				},
-				{
-					name : 'Edit',
-					cellTemplate : '<button id="editBtn" type="button" class="btn btn-small btn-primary" ng-click="grid.appScope.edit(row.entity)" >Edit</button> &nbsp; <button id="deleteBtn" type="button" class="btn btn-small btn-danger" ng-click="grid.appScope.remove(row.entity)" >Remove</button>'
-				},
-			]
-		};
-
-		$rootScope.loader_spinner_activated = false;
-
-		$scope.users_details = UserService.getAllUsers();
-		vm.gridOptions.data = $scope.users_details._embedded.userDTOList;
-		$scope.users = $scope.users_details._embedded.userDTOList;
-
-		//$scope.maxSize = 10;
-		$scope.maxSize = 10;
-		$scope.totalPages = $scope.users_details.page.totalPages;
-		$scope.totalElements = $scope.users_details.page.totalElements;
-		$scope.bigTotalItems = $scope.totalElements;
-		$scope.currentPage = 1 ;
-
-
+		
 		$scope.pageChanged = function() {
-		$rootScope.loader_spinner_activated = true;
-			
+			$rootScope.loader_spinner_activated = true;
+
 			$timeout(function() {
 				callPagedData();
 				$rootScope.loader_spinner_activated = false;
@@ -165,18 +95,24 @@ angular.module('crudApp').controller('AngUsersGridController',
 		};
 
 		function callPagedData() {
-			
 			var pageNum = $scope.currentPage - 1;
-			var promise= UserService.loadAllUsers(pageNum, pageSize);
-			var searchByField = $scope.searchModel.searchByField;
-			var searchText = $scope.searchModel.searchText;
-			if($scope.searchModel.searchText){
-				promise = UserService.searchUsers(searchByField,searchText,pageNum, pageSize);
-			}else{
-				promise = UserService.loadAllUsers(pageNum, pageSize);
+			//var promise = UserService.loadAllUsers(pageNum, pageSize);
+			var promise;
+			var isSearch;
+			if($scope.searchModel){
+				isSearch=true;
 			}
 			
 			
+			if (isSearch) {
+				var searchByField = $scope.searchModel.searchByField;
+				var searchText = $scope.searchModel.searchText;
+				promise = UserService.searchUsers(searchByField, searchText, pageNum, pageSize);
+			} else {
+				promise = UserService.loadAllUsers(pageNum, pageSize);
+			}
+
+
 			promise.then(
 				function(data) {
 					console.log('Promise Users Data', data);
@@ -193,7 +129,7 @@ angular.module('crudApp').controller('AngUsersGridController',
 
 		$scope.$on('newData', function(evt, args) {
 			console.log('dataChanged', args);
-			vm.gridOptions.data = UserService.getAllUsers();
+			//vm.gridOptions.data = UserService.getAllUsers();
 			$scope.users = vm.gridOptions.data;
 
 
@@ -204,28 +140,46 @@ angular.module('crudApp').controller('AngUsersGridController',
 			$scope.maxSize = 10;
 			$scope.totalPages = $scope.users_details.page.totalPages;
 			$scope.totalElements = $scope.users_details.page.totalElements;
-			
-			swal.close();
 
+			swal.close();
+			$rootScope.loader_spinner_activated = false;
 		});
 
 
-		$scope.onSubmit = function () {
+		$scope.onSubmit = function() {
 			$scope.submitting = true;
 			//console.log($scope.formModel);
-			
+			var pageNum =0;
+			var promise;
 			var searchByField = $scope.searchModel.searchByField;
 			var searchText = $scope.searchModel.searchText;
-			
-			if(!searchByField || !searchText) {
-				$scope.searchUserErrors=true;
-				$scope.searchErrorAlertMsg='Please enter both fields to search';
+
+			if (!searchByField || !searchText) {
+				$scope.searchUserErrors = true;
+				$scope.searchErrorAlertMsg = 'Please enter both fields to search';
 				return;
+			}else {
+				promise = UserService.searchUsers(searchByField, searchText, pageNum, pageSize);
 			}
 
-			$scope.searchUsers();
+
+			promise.then(
+				function(data) {
+					console.log('Promise Users Data', data);
+					$scope.data = data;
+					$rootScope.$broadcast('newData', data);
+				},
+				function(reason) {
+					console.log('Error: ' + reason);
+				}
+			);
+
+			$rootScope.loader_spinner_activated = true;
+		
+
+			//$scope.searchUsers();
 			//createUser($scope.formModel);
-			
+
 			/*$http.post('https://minmax-server.herokuapp.com/register/', $scope.formModel).
 				success(function (data) {
 					console.log(":)");
@@ -240,7 +194,7 @@ angular.module('crudApp').controller('AngUsersGridController',
 				});*/
 
 		};
-		
+
 
 		$scope.createNewDog = function() {
 			console.log('Creating New Dog ');
@@ -288,9 +242,9 @@ angular.module('crudApp').controller('AngUsersGridController',
 			return btoa(binstr);
 		}
 
-		$scope.edit = function(entity) {
-			console.log("entity.votes");
-			console.log(entity.votes);
+		$scope.viewUserDetails = function(entity) {
+			console.log("entity.id");
+			
 			console.log(JSON.stringify(entity));
 			vm.rwIndex = vm.gridOptions.data.indexOf(entity);
 			console.log('rwIndex ' + vm.rwIndex);
@@ -326,6 +280,24 @@ angular.module('crudApp').controller('AngUsersGridController',
 		function getAllDogs() {
 			return UserService.getAllDogs();
 		}
+
+
+		
+
+		callLoadAllUsersOnPageLoad();
+
+		/*$scope.users_details = UserService.getAllUsers();
+		vm.gridOptions.data = $scope.users_details._embedded.userDTOList;
+		$scope.users = $scope.users_details._embedded.userDTOList;
+*/
+		//$scope.maxSize = 10;
+		/*$scope.maxSize = 10;
+		$scope.totalPages = $scope.users_details.page.totalPages;
+		$scope.totalElements = $scope.users_details.page.totalElements;
+		$scope.bigTotalItems = $scope.totalElements;
+		$scope.currentPage = 1 ;
+		
+		$rootScope.loader_spinner_activated = false;*/
 	}
 
 	]).directive("fileinput", [ function() {

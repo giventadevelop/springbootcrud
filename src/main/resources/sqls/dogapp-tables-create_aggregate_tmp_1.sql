@@ -156,3 +156,14 @@ insert into `user_role`(`user_id`,`role_id`) values (1,1);
 insert into `user_role`(`user_id`,`role_id`) values (2,1);
 insert into `user_role`(`user_id`,`role_id`) values (1,2);
 insert into `user_role`(`user_id`,`role_id`) values (2,2);
+
+
+CREATE TABLE `user_files` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11),
+  `user_picture` longblob,
+  `user_picture_content_type` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_user_id` (`user_id`),
+  CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `user`(`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

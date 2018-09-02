@@ -50,9 +50,6 @@
 
 <script>
 
-	/* window.onload = function() {
-		document.getElementById('user_pass_rqd').style.display = 'none';
-	}; */
 
 	function submit_form() {
 		var username = document.getElementById("username").value;
@@ -74,34 +71,16 @@
 
 		document.getElementById("login-form").submit();
 
-		/* if (validation()) // Calling validation function
-		{
-		document.getElementById("form_id").submit(); //form submission
-		alert(" Name : " + name + " n Email : " + email + " n Form Id : " + document.getElementById("form_id").getAttribute("id") + "nn Form Submitted Successfully......");
-		} */
-
-
 	}
 
 	//form reset
-
 	function login_form_reset() {
 		document.getElementById("login-form").reset();
 	}
 
 
 	function logout_user() {
-		//var name = document.getElementById("login-form").value;
-		//var email = document.getElementById("email").value;
 		document.getElementById("logout-form").submit();
-
-		/* if (validation()) // Calling validation function
-		{
-		document.getElementById("form_id").submit(); //form submission
-		alert(" Name : " + name + " n Email : " + email + " n Form Id : " + document.getElementById("form_id").getAttribute("id") + "nn Form Submitted Successfully......");
-		} */
-
-
 	}
 </script>
 
@@ -123,9 +102,6 @@
 
 <body id="page-top" class="index">
 
-	<!-- <div id="skipnav">
-		<a href="#maincontent">Skip to main content</a>
-	</div> -->
 
 	<!-- Navigation -->
 	<nav id="mainNav"
@@ -149,15 +125,6 @@
 					<li><a href="/">Home</a></li>
 					<li><a href="login">Login</a></li>
 					<li><a href="register_user_form">Register</a></li>
-					<!-- <li><a ui-sref="uigrid">UI Grid</a></li> -->
-					<!-- <li><a href="" ng-click="reloadRoute('uigrid')">UI Grid</a></li>
-					<li><a ui-sref="users_grid" ng-click="reloadRoute">Users Grid</a></li>
-					<li><a href="" ng-click="reloadRoute('users_grid')">Users Grid</a></li>
-					<li><a href="" ui-sref="angtiles">Ang Tiles</a></li>
-
-					<form id="logout-form" action="/logout"	method="post">
-						<li><a href="" onclick="logout_user()">Logout </a></li>
-					</form> -->
 
 				</ul>
 			</div>

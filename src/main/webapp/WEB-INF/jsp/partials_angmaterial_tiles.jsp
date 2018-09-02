@@ -50,16 +50,24 @@
 
 <script>
 	function submit_form() {
-		//var name = document.getElementById("login-form").value;
-		//var email = document.getElementById("email").value;
+		var username = document.getElementById("username").value;
+		var password = document.getElementById("password").value;
+
+
+		if (!username || !password) {
+			document.getElementById("user_pass_rqd").style.display = 'inline';
+			return;
+		}
+
+		if (username === undefined || username === null) {
+			return;
+		}
+
+		if (password === undefined || password === null) {
+			return;
+		}
+
 		document.getElementById("login-form").submit();
-
-		/* if (validation()) // Calling validation function
-		{
-		document.getElementById("form_id").submit(); //form submission
-		alert(" Name : " + name + " n Email : " + email + " n Form Id : " + document.getElementById("form_id").getAttribute("id") + "nn Form Submitted Successfully......");
-		} */
-
 
 	}
 
@@ -71,17 +79,7 @@
 
 
 	function logout_user() {
-		//var name = document.getElementById("login-form").value;
-		//var email = document.getElementById("email").value;
 		document.getElementById("logout-form").submit();
-
-		/* if (validation()) // Calling validation function
-		{
-		document.getElementById("form_id").submit(); //form submission
-		alert(" Name : " + name + " n Email : " + email + " n Form Id : " + document.getElementById("form_id").getAttribute("id") + "nn Form Submitted Successfully......");
-		} */
-
-
 	}
 </script>
 
@@ -103,10 +101,6 @@
 
 <body id="page-top" class="index">
 
-	<!-- <div id="skipnav">
-		<a href="#maincontent">Skip to main content</a>
-	</div> -->
-
 	<!-- Navigation -->
 	<nav id="mainNav"
 		class="navbar navbar-default navbar-fixed-top navbar-custom">
@@ -118,35 +112,37 @@
 					<span class="sr-only">Toggle navigation</span> Menu <i
 						class="fa fa-bars"></i>
 				</button>
-				<a class="navbar-brand" href="#page-top">Start Bootstrap</a>
+				<a class="navbar-brand" href="#page-top">School Alumni</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse "
+			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1" ng-controller="StateController">
-				<ul class="nav navbar-nav navbar-left nav_menu_class" >
+				<ul class="nav navbar-nav navbar-right">
 
 					<li><a href="/">Home</a></li>
-					<!-- <li><a href="login">Login</a></li>
-					<li><a href="register_user_form">Register</a></li> -->
-					<!-- <li><a ui-sref="uigrid">UI Grid</a></li> -->
 					<li><a href="partials_uigrid">UI Grid</a></li>
 					<li><a href="partials_usersgrid">Users Grid</a></li>
 					<li><a href="partials_angmaterial_tiles">Angular Tiles</a></li>
-
-					<form id="logout-form" action="/logout"	method="post">
-						<li><a href="" onclick="logout_user()">Logout </a></li>
-					</form>
 					
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->
 		</div>
-		<!-- /.container-fluid -->
+		
+        
+        
+       <div style="float:right">
+          <form id="logout-form" action="/logout"	method="post"> <button type="button" class="btn btn-default btn-sm" onclick="logout_user()">  <span class="glyphicon glyphicon-log-out"></span> Log out
+        </button> </form>
+       
+					</div>
 	</nav>
+	
 	<header>
 		<div class="container" id="maincontent" tabindex="-1"></div>
 	</header>
+	
      <!-- <div layout="row" layout-sm="column" layout-align="space-around"> -->
      <div ng-show="loader_spinner_activated">
        <md-progress-linear  class="md-warn" md-mode="indeterminate"></md-progress-linear> 
