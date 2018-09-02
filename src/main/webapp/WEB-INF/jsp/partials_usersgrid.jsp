@@ -157,25 +157,34 @@
 	<!--  <div layout-align="space-around">
       <md-progress-circular ng-disabled="!loader_spinner_activated" ></md-progress-circular>
     </div> -->
+    
+    <!-- form validation is based on the validation.js from bootstrap 
+    https://www.solodev.com/blog/web-design/how-to-validate-forms-with-bootstrap.stml
+    Also in action is the angularjs jcs-auto-validate.min.js
+    -->
 	<div class="panel panel-default">
 		<!-- Default panel contents -->
 		<div class="panel-heading">
 
 
-			<form  ng-submit="onSubmit()">
+			<form  ng-submit="onSubmit()"  role="form" data-toggle="validator" novalidate="false" >
 				<!-- <div class="input-group"> -->
-
+<div class="form schedule-assessment">
 					<table class="table">
 						
 						<tbody>
 							<tr>
 								
 								<td> <div class="form-group">
-										<input type="text" class="form-control" style="width: 170px;"
-											ng-model="searchModel.searchText" required="required"
-											ng-minlength="3" />
+										<input type="text"  class="form-control" style="width: 170px;"
+											placeholder="search Text " ng-model="searchModel.searchText" required="required"
+											ng-minlength="3" data-error="Please enter text to search." />
 										
-									</div> </td>
+									</div> 
+									
+									<div class="help-block with-errors"></div>
+									
+									</td>
 								<td> <button class="btn btn-info">Search User</button>  </td>
 								<td> <button  class="btn btn-info"  ng-click="openCreateDogModal()">Create New User</button>  </td>
 								
@@ -196,7 +205,7 @@
 											By</label>
 											</div>
 											 <select id="searchOptions" class="form-control"
-											ng-model="searchModel.searchByField" required="required">
+											ng-model="searchModel.searchByField" required="required"  data-error="Please select one option.">
 											<option value="">Please Choose</option>
 											<option value="firstName">First Name</option>
 											<option value="lasttName">Last Name</option>
@@ -205,14 +214,16 @@
 
 
 
-									</div> </td>
+									</div> 
+									<div class="help-block with-errors"></div>
+								</td>
 								<td colspan="2"> </td>
 								
 							</tr>
 							
 							</tbody>
 					</table>
-					
+					</div> 
 					
 
 							

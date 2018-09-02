@@ -54,8 +54,8 @@
 
 	<!-- Bootstrap Core JavaScript -->
 	<script src="bootstrap/js/bootstrap.min.js"></script>
-
-
+	<script src="bootstrap/js/validator.js"></script>
+    
 	<!-- Plugin JavaScript -->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
@@ -82,6 +82,7 @@
 
      <script src="js/angular-sweetalert/SweetAlert.min.js"></script>
      <script src="js/sweetalert/lib/sweet-alert.min.js"></script>
+    
 
 	<script src="js/app/app.js"></script>
 	<script src="js/app/UserService.js"></script>

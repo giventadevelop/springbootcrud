@@ -20,6 +20,7 @@
 
 <!-- Theme CSS -->
 <link href="css/freelancer.min.css" rel="stylesheet">
+<link href="css/bootstrap-form-validation.css" rel="stylesheet">
 
 <!-- sweetalert CSS -->
     <link href="js/sweetalert/lib/sweet-alert.css" rel="stylesheet">
