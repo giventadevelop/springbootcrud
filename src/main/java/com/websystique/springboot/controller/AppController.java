@@ -33,6 +33,12 @@ public class AppController {
 		return "index";
 	}
 	
+	@RequestMapping("about")
+	String about(ModelMap modal) {
+		modal.addAttribute("title","CRUD Example");
+		return "about";
+	}
+	
 	@RequestMapping("homepage")
 	String homePageTest(ModelMap modal) {
 		modal.addAttribute("title","CRUD Example");
@@ -96,7 +102,7 @@ public class AppController {
         if(session != null) {
             session.invalidate();
         }
-        return "session";
+        return "index";
     }
     
     

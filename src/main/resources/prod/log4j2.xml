@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--  http://logging.apache.org/log4j/2.x/manual/appenders.html#CustomDeleteOnRollover  --> 
+ <!-- This set up keeps n number of files for each day and deletes files that are n number of
+ days old --> 
+ 
+<Configuration status="WARN" monitorInterval="30">
+    <Properties>
+        <Property name="LOG_PATTERN">
+            %d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${hostName} --- [%15.15t] %-40.40c{1.} : %m%n%ex
+              </Property>
+              
+              <property name="log.file.name">${log.file.name}</property> 
+               <property name="baseDir">/home/apps/alumni/logs</property> 
+             
+   <!--   <property name="log.file.path">${log.file.path}</property>  
+      <property name="log.file.name">${log.file.name}</property> 
+       <property name="log.file.name.pattern">${log.file.name.pattern}</property>
+      <property name="log.file.size">${log.file.size}</property>  
+      <property name="log.level">${log.level}</property>  --> 
+  
+      
+    </Properties>
+
+    <Appenders>
+        <Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+
+        <!-- Rolling File Appender -->
+       
+                      
+                   <!--     <RollingFile name="RollingFileAppender" fileName="c:\\logs/logs_test\\log4j2-demo.log"
+                     filePattern="c:\\logs/logs_test\\log4j2-demo-%d{yyyy-MM-dd}-%i.log"> -->
+        
+        <RollingFile name="RollingFileAppender" fileName="/home/apps/alumni/logs/alumnisite.log"  filePattern="/home/apps/alumni/logs/alumnisite-%d{yyyy-MM-dd}-%i.log"> 
+                     
+     <!--filePattern="${log.file.name.pattern}-demo-%d{yyyy-MM-dd}-%i.log"> -->                 
+            <PatternLayout>
+                <Pattern>${LOG_PATTERN}</Pattern>
+            </PatternLayout>
+            <Policies>
+        <OnStartupTriggeringPolicy />
+        <SizeBasedTriggeringPolicy size="10 KB" />
+       <!--  <SizeBasedTriggeringPolicy size="10 MB" />-->   
+         <!--  <TimeBasedTriggeringPolicy />-->
+        </Policies>
+         <DefaultRolloverStrategy max="5">
+         
+         <Delete basePath="${baseDir}" maxDepth="2" >
+        <!-- <Delete basePath="${baseDir}" maxDepth="2" testMode="true"> --> 
+           <!-- <IfFileName glob="target/log4j2/roll-by-time-and-size/app.*.log.gz" />  --> 
+            <IfLastModified age="2d" />
+        </Delete>
+        
+         </DefaultRolloverStrategy>
+        
+        </RollingFile>
+
+        <!-- SMTP Appender
+        <SMTP name="MailAppender"
+              subject="Log4j2 Demo [PROD]"
+              to="youremail@example.com"
+              from="log4j2-demo-alerts@example.com"
+              smtpHost="yourSMTPHost"
+              smtpPort="587"
+              smtpUsername="yourSMTPUsername"
+              smtpPassword="yourSMTPPassword"
+              bufferSize="1">
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout>
+                <Pattern>${LOG_PATTERN}</Pattern>
+            </PatternLayout>
+        </SMTP>
+         -->
+    </Appenders>
+
+    <Loggers>
+        <AsyncLogger name="com.example.log4j2demo" level="debug"
+                     additivity="false">
+            <AppenderRef ref="ConsoleAppender" />
+            <AppenderRef ref="RollingFileAppender" />
+        </AsyncLogger>
+
+        <Root level="info">
+            <AppenderRef ref="ConsoleAppender" />
+            <AppenderRef ref="RollingFileAppender" />
+        </Root>
+    </Loggers>
+</Configuration>

@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.tiles3.TilesView;
 @Configuration
 public class TilesConfiguration extends WebMvcConfigurerAdapter {
 
-	@Bean
+	/*@Bean
 	public TilesConfigurer tilesConfigurer() {
 		TilesConfigurer tilesConfigurer = new TilesConfigurer();
 
@@ -29,15 +29,18 @@ public class TilesConfiguration extends WebMvcConfigurerAdapter {
 		tilesViewResolver.setViewClass(TilesView.class);
 
 		return tilesViewResolver;
-	}
+	}*/
 	
 	 private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
 	            "classpath:/META-INF/resources/", "classpath:/resources/",
 	            "classpath:/static/", "classpath:/public/" };
 
-	    @Override
+	    /*@Override
 	    public void addResourceHandlers(ResourceHandlerRegistry registry) {
 	        registry.addResourceHandler("/**")
 	            .addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
-	    }
+	    	
+	    	registry.addResourceHandler("/static/**")
+	          .addResourceLocations("/static/");
+	    }*/
 }

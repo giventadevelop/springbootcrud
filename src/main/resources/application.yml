@@ -10,17 +10,23 @@ server:
 welcome.message: Hello !! Welcome To SpringBootCRUDApp
 ---
 spring:
-  profiles: local, default
-  mvc:
-    view:
-      prefix: /WEB-INF/jsp/
-      suffix: .jsp
+ profiles: local, default
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/jsp/
+#      suffix: .jsp
+
+thymeleaf:
+  mode: HTML5
+  cache: false
+  templates_root: src/main/resources/templates/
+    
 logging:
   config: classpath:local/log4j2.xml
   
 datasource:
   sampleapp:
-    url: jdbc:mysql://localhost:3306/dogapp
+    url: jdbc:mysql://localhost:3306/alumni
     username: root
     password: root
     driverClassName: com.mysql.jdbc.Driver
@@ -40,7 +46,7 @@ logging:
   
 datasource:
   sampleapp:
-    url: jdbc:mysql://localhost:3306/dogapp
+    url: jdbc:mysql://localhost:3306/alumni
     username: root
     password: root
     driverClassName: com.mysql.jdbc.Driver
@@ -51,3 +57,37 @@ datasource:
       show_sql: true
       format_sql: true
       dialect: org.hibernate.dialect.MySQLDialect
+      
+---
+spring:
+  profiles: prod
+  
+thymeleaf:
+  mode: HTML5
+  cache: false
+  templates_root: src/main/resources/templates/
+  
+server:
+  port: 80
+#  mvc:
+#    view:
+#      prefix: /WEB-INF/jsp/
+#      suffix: .jsp
+logging:
+  config: classpath:local/log4j2.xml
+  
+datasource:
+  sampleapp:
+    url: jdbc:mysql://shalumni.cryglausdl0d.us-east-2.rds.amazonaws.com:3306/shalumni
+    userName: root
+    password: shalumni
+    driverClassName: com.mysql.jdbc.Driver
+    defaultSchema:
+    maxPoolSize: 10
+    hibernate:
+      hbm2ddl.method: validate
+      show_sql: true
+      format_sql: true
+      dialect: org.hibernate.dialect.MySQLDialect     
+ 
+     

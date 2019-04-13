@@ -34,7 +34,7 @@ import com.zaxxer.hikari.HikariDataSource;
 		entityManagerFactoryRef = "entityManagerFactory",
 		transactionManagerRef = "transactionManager")
 @EnableTransactionManagement
-@Profile("local")
+//@Profile("local")
 public class JpaConfiguration {
 
 	@Autowired

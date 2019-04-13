@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.websystique.springboot.dto.DogBreedDTO;
 import com.websystique.springboot.dto.UserDTO;
-import com.websystique.springboot.model.DogBreed;
+
 import com.websystique.springboot.model.User;
 
 /**
