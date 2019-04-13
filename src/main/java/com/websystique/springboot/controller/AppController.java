@@ -29,14 +29,26 @@ public class AppController {
 
 	@RequestMapping("/")
 	String home(ModelMap modal) {
-		modal.addAttribute("title","CRUD Example");
+		modal.addAttribute("title","Alumni home page");
 		return "index";
 	}
 	
 	@RequestMapping("about")
 	String about(ModelMap modal) {
-		modal.addAttribute("title","CRUD Example");
+		modal.addAttribute("title","Alumni about page");
 		return "about";
+	}
+	
+	@RequestMapping("event")
+	String event(ModelMap modal) {
+		modal.addAttribute("title","Alumni event page");
+		return "event";
+	}
+	
+	@RequestMapping("gallery")
+	String gallery(ModelMap modal) {
+		modal.addAttribute("title","Alumni event page");
+		return "gallery";
 	}
 	
 	@RequestMapping("homepage")
