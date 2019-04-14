@@ -15,9 +15,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.websystique.springboot.SpringBootCRUDApp;
 import com.websystique.springboot.dto.DogDTO;
-import com.websystique.springboot.mapper.DogMapper;
+/*import com.websystique.springboot.mapper.DogMapper;
 import com.websystique.springboot.model.Dog;
-import com.websystique.springboot.model.DogBreed;
+import com.websystique.springboot.model.DogBreed;*/
 
 
 @RunWith(SpringRunner.class)
@@ -32,15 +32,15 @@ import com.websystique.springboot.model.DogBreed;
 		  locations = "classpath:application-test.properties")*/
 public class DogRepositoryTest {
 
-	 @Configuration
+	/* @Configuration
 	 @ComponentScan(basePackages = "com.websystique.springboot")
 	 @EnableJpaRepositories(basePackages = "com.websystique.springboot")
 	    static class ContextConfiguration {
-	      /*  @Bean
+	        @Bean
 	        @Primary //may omit this if this is the only SomeBean defined/visible
 	        public SomeBean someBean () {
 	            return new SomeBean();
-	        }*/
+	        }
 	    }
 	DogBreed dogBreed;
 
@@ -114,5 +114,5 @@ public class DogRepositoryTest {
 		dog.setDogbreed(dogBreed);
 		//dog.setDogbreedId((long) 3);
 		return dog;
-	}
+	}*/
 }

@@ -27,14 +27,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.websystique.springboot.dto.DogDTO;
 import com.websystique.springboot.dto.GroupByDogBreedDTO;
-import com.websystique.springboot.mapper.DogMapper;
+/*import com.websystique.springboot.mapper.DogMapper;
 import com.websystique.springboot.model.Dog;
-import com.websystique.springboot.repositories.DogRepository;
+import com.websystique.springboot.repositories.DogRepository;*/
 
 @Generated(value = "org.junit-tools-1.0.6")
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class DogServiceTest {
+public class DogServiceTest {/*
 
 	@Autowired
 	private DogService dogService;
@@ -119,5 +119,5 @@ public class DogServiceTest {
 		dogDTO.setDogName("Unit Test Dog Name");
 		dogDTO.setDogbreedId((long) 3);
 		return dogDTO;
-	}
+	}*/
 }
