@@ -26,7 +26,7 @@ logging:
   
 datasource:
   sampleapp:
-    url: jdbc:mysql://localhost:3306/alumni
+    url: jdbc:mysql://localhost:3306/shalumni
     username: root
     password: root
     driverClassName: com.mysql.jdbc.Driver
