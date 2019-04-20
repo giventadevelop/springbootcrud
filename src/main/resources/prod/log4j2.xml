@@ -11,7 +11,7 @@
               </Property>
               
               <property name="log.file.name">${log.file.name}</property> 
-               <property name="baseDir">/home/apps/alumni/logs</property> 
+               <property name="baseDir">/home/apps/alumni/logs/</property> 
              
    <!--   <property name="log.file.path">${log.file.path}</property>  
       <property name="log.file.name">${log.file.name}</property> 

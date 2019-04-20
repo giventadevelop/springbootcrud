@@ -33,7 +33,7 @@
                    <!--     <RollingFile name="RollingFileAppender" fileName="c:\\logs/logs_test\\log4j2-demo.log"
                      filePattern="c:\\logs/logs_test\\log4j2-demo-%d{yyyy-MM-dd}-%i.log"> -->
         
-        <RollingFile name="RollingFileAppender" fileName="c:\\logs\\logs_test\\springbootcrud.log"  filePattern="c:\\logs\\logs_test\\\springbootcrud-%d{yyyy-MM-dd}-%i.log"> 
+        <RollingFile name="RollingFileAppender" fileName="c:\\logs\\logs_test\\alumnisite.log"  filePattern="c:\\logs\\logs_test\\\alumnisite-%d{yyyy-MM-dd}-%i.log"> 
                      
      <!--filePattern="${log.file.name.pattern}-demo-%d{yyyy-MM-dd}-%i.log"> -->                 
             <PatternLayout>

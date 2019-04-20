@@ -18,7 +18,7 @@
 <meta name="twitter:url" content="http://twitter.com">
 <meta name="twitter:title" content="Your home page title, max 140 char"> <!-- maximum 140 char -->
 <meta name="twitter:description" content="Your site description, maximum 140 char "> <!-- maximum 140 char -->
-<meta name="twitter:image" content="assets/img/twittercardimg/twittercard-144-144.png">  <!-- when you post this page url in twitter , this image will be shown -->
+<meta name="twitter:image" content="img/twittercardimg/twittercard-144-144.png">  <!-- when you post this page url in twitter , this image will be shown -->
 <!-- twitter card ends here -->
 
 <!-- facebook open graph starts from here, if you don't need then delete open graph related  -->
@@ -28,12 +28,12 @@
 <meta property="og:site_name" content="Your site name here">
 <!--meta property="fb:admins" content="" /-->  <!-- use this if you have  -->
 <meta property="og:type" content="website"> <!-- 'article' for single page  -->
-<meta property="og:image" content="assets/img/opengraph/fbphoto-476-476.png"> <!-- when you post this page url in facebook , this image will be shown -->
+<meta property="og:image" content="img/opengraph/fbphoto-476-476.png"> <!-- when you post this page url in facebook , this image will be shown -->
 <!-- facebook open graph ends here -->
 
 <!-- desktop bookmark -->
 <meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="assets/img/favicon/ms-icon-144x144.png">
+<meta name="msapplication-TileImage" content="img/favicon/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
 
 <!-- icons & favicons -->
@@ -54,13 +54,21 @@
 <link rel="icon" type="image/png" sizes="16x16" th:href="@{img/favicon/favicon-16x16.png}">
 <link rel="manifest" th:href="@{img/favicon/manifest.json}">
 
-    <link rel="shortcut icon" type="image/x-icon" th:href="@{img/favicon.ico}">
+<link rel="shortcut icon" type="image/x-icon" th:href="@{img/favicon.ico}">
 <link rel="icon" type="image/x-icon" th:href="@{img/favicon.ico}">
+
+
 
 <!-- Fallback For IE 9 [ Media Query and html5 Shim] -->
 <!--[if lt IE 9]>
-<script th:src="@{vendor/css3-mediaqueries-js/css3-mediaqueries.js}"></script>
+<script  th:src="@{vendor/css3-mediaqueries-js/css3-mediaqueries.js}"></script>
 <![endif]-->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
 
 <!-- GOOGLE FONT -->
 <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
@@ -88,10 +96,11 @@
 <link rel="stylesheet" th:href="@{vendor/js-offcanvas/css/js-offcanvas.css}" media="all">
 
 <!-- MODERNIZER  -->
-<script th:src="@{vendor/modernizr/modernizr-custom.js}"></script>
+<script  th:src="@{vendor/modernizr/modernizr-custom.js}"></script>
 
 <!-- Main Master Style  CSS  -->
 <link id="cbx-style" data-layout="1" rel="stylesheet" th:href="@{css/style-default.min.css}" media="all">
+
 
 </head>
 <body>
@@ -129,7 +138,7 @@
                 <div class="col-lg-12">
                     <nav class="main-menu navbar navbar-expand-lg navbar-light">
                         <a class="navbar-brand" href="index.html">
-                            <img th:src="@{img/logo.png}" alt="Logo">
+                            <img  th:src="@{img/logo.png}" alt="Logo">
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menucontent" aria-controls="menucontent" aria-expanded="false">
                             <span class="navbar-toggler-icon"></span>
@@ -139,9 +148,9 @@
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
                                 <li class="nav-item"><a class="nav-link" href="about">About</a></li>
-                                <li class="nav-item active"><a class="nav-link" href="event">Event</a></li>
+                                <li class="nav-item"><a class="nav-link" href="event">Event</a></li>
                                 <li class="nav-item"><a class="nav-link" href="gallery">Gallery</a></li>
-                               <!--  <li class="nav-item dropdown">
+                                <!-- <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="blog.html" data-toggle="dropdown" role="button">Blog</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item"><a class="nav-link" href="blog.html">Blog List</a></li>
@@ -167,7 +176,7 @@
                                         <li class="nav-item"><a class="nav-link" href="typography.html">Typography</a></li>
                                     </ul>
                                 </li> -->
-                                <li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
+                                 <li class="nav-item active"><a class="nav-link" href="contact">Contact</a></li>
                             </ul>
                         </div>
                     </nav>
@@ -184,10 +193,10 @@
         <div class="row">
             <div class="col-lg-8 m-auto text-center">
                 <div class="page-title-content">
-                    <h1 class="h2">All Event Archive</h1>
+                    <h1 class="h2">Contact Us</h1>
                     <p>Alumni Needs enables you to harness the power of your alumni network. Whatever may be the
                         need</p>
-                   <!--<p>&#xA9; 2019Alumni Of The Sacreds, All Rights Reserved.</p>-->
+                 <!--    <a href="#page-content-wrap" class="btn btn-brand smooth-scroll">Let&apos;s See</a> -->
                 </div>
             </div>
         </div>
@@ -195,192 +204,278 @@
 </section>
 <!--== Page Title Area End ==-->
 
-<!--== Gallery Page Content Start ==-->
+
+<!--== Committee Page Content Start ==-->
 <section id="page-content-wrap">
-    <div class="event-page-content-wrap section-padding">
-        <div class="container">
-            <!-- <div class="row">
-                <div class="col-lg-12">
-                    <div class="event-filter-area">
-                        <form action="index.html" class="form-inline">
-                            <select name="year" id="year">
-                                <option selected>Year</option>
-                                <option>2018</option>
-                                <option>2017</option>
-                                <option>2016</option>
-                                <option>2015</option>
-                                <option>2014</option>
-                            </select>
-
-                            <select name="place" id="place">
-                                <option selected>Place</option>
-                                <option>Alabama</option>
-                                <option>Alaska</option>
-                                <option>Arizona</option>
-                                <option>Colorado</option>
-                                <option>Delaware</option>
-                            </select>
-
-                            <select name="type" id="type">
-                                <option selected>Type</option>
-                                <option>Meetup</option>
-                                <option>Seminar</option>
-                                <option>Get Together</option>
-                            </select>
-
-                            <button class="btn btn-brand">Filter</button>
-                        </form>
-                    </div>
-                </div>
-            </div>  -->
-            
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="all-event-list">
-                    
-                        <!-- Single Event Start -->
-                         <div class="single-upcoming-event">
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="up-event-thumb">
-                                        <img src="http://placehold.it/700x390" class="img-fluid" alt="Upcoming Event">
-                                        <h4 class="up-event-date">It&#x2019;s Sunday 28 April 2019</h4>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-7">
-                                    <div class="display-table">
-                                        <div class="display-table-cell">
-                                            <div class="up-event-text">
-                                                <div class="event-countdown">
-                                                    <div class="event-countdown-counter" data-date="2019/4/28"></div>
-                                                    <p>Remaining</p>
-                                                </div>
-                                                <h3><a href="single-event.html">School Alumni Inauguration "Alumni Of The Sacreds"!</a></h3>
-                                                <p>Hello everybody, Inauguration of School Alumni  "Alumni Of The Sacreds"! You are all most whole heartedly invited to bless the occasion with your presence with your families and transform the occasion into a scintillating celebration of a lifetime that will instill down through our generations..</p>
-                                                <a href="single-event.html" class="btn btn-brand btn-brand-dark">join with us</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Single Event End -->
-
-                        <!-- Single Event Start -->
-                       <div class="single-upcoming-event">
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="up-event-thumb">
-                                        <img src="http://placehold.it/700x390" class="img-fluid" alt="Upcoming Event">
-                                        <h4 class="up-event-date">It&#x2019;s Sunday 28 April 2019</h4>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-7">
-                                    <div class="display-table">
-                                        <div class="display-table-cell">
-                                            <div class="up-event-text">
-                                                <div class="event-countdown">
-                                                    <div class="event-countdown-counter" data-date="2019/4/28"></div>
-                                                    <p>Remaining</p>
-                                                </div>
-                                                <h3><a href="single-event.html">Tribute to Rev Sr. Johnes Founder of the SHEMHSS!</a></h3>
-                                                <p>Honoring and paying tribute to Rev Sr. Johnes Founder of the SHEMHSS on April 28th as part of the Alumni . All are invited.</p>
-                                                <a href="single-event.html" class="btn btn-brand btn-brand-dark">join with us</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Single Event End -->
-
-                        <!-- Single Event Start -->
-<!--                         <div class="single-upcoming-event">
+    <div class="about-page-content-wrap section-padding">
+       <div class="container">
     <div class="row">
-        <div class="col-lg-5">
-            <div class="up-event-thumb">
-                <img src="http://placehold.it/700x390" class="img-fluid" alt="Upcoming Event">
-                <h4 class="up-event-date">It&#x2019;s 27 February 2019</h4>
+        <div class="col">
+            <div class="card">
+                <div class="card-header bg-primary text-white"><i class="fa fa-envelope"></i> Contact us.
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" required>
+                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" id="message" rows="6" required></textarea>
+                        </div>
+                        <div class="mx-auto">
+                        <button type="submit" class="btn btn-primary btn-lg text-right">Submit</button></div>
+                    </form>
+                </div>
             </div>
         </div>
-
-        <div class="col-lg-7">
-            <div class="display-table">
-                <div class="display-table-cell">
-                    <div class="up-event-text">
-                        <div class="event-countdown">
-                            <div class="event-countdown-counter" data-date="2018/9/10"></div>
-                            <p>Remaining</p>
-                        </div>
-                        <h3><a href="single-event.html">We are going to arrange a get together!</a></h3>
-                        <p>Hello everybody Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim and minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquipv ex ea.</p>
-                        <a href="single-event.html" class="btn btn-brand btn-brand-dark">join with us</a>
-                    </div>
+        <div class="col-12 col-sm-4">
+            <div class="card bg-light mb-3">
+                <div class="card-header bg-success text-white text-uppercase"><i class="fa fa-home"></i> Address</div>
+                <div class="card-body">
+                	<p>Alumni Of The Sacreds</p>
+                    <p>Sacred Heart English Medium H.S.S</p>
+                    <p>Moolamattom - 685 589</p>
+                    <p>Kerala</p>
+                    <p>Email : 29013shemhs@gmail.com</p>
+                    <p>Tel. 04862 252001</p>
                 </div>
+
             </div>
         </div>
     </div>
 </div>
-                        Single Event End
+    </div>
 
-                        Single Event Start
-                        <div class="single-upcoming-event">
-                            <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="up-event-thumb">
-                                        <img src="http://placehold.it/700x390" class="img-fluid" alt="Upcoming Event">
-                                        <h4 class="up-event-date">It&#x2019;s 27 February 2019</h4>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-7">
-                                    <div class="display-table">
-                                        <div class="display-table-cell">
-                                            <div class="up-event-text">
-                                                <div class="event-countdown">
-                                                    <div class="event-countdown-counter" data-date="2018/9/10"></div>
-                                                    <p>Remaining</p>
-                                                </div>
-                                                <h3><a href="single-event.html">We are going to arrange a get together!</a></h3>
-                                                <p>Hello everybody Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim and minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquipv ex ea.</p>
-                                                <a href="single-event.html" class="btn btn-brand btn-brand-dark">join with us</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-                        <!-- Single Event End -->
+    <!--== FunFact Area Start ==-->
+<!-- <section id="funfact-area">
+    <div class="container-fluid">
+        <div class="row text-center">
+            == Single FunFact Start ==
+            <div class="col-lg-3 col-sm-6">
+                <div class="single-funfact-wrap">
+                    <div class="funfact-icon">
+                        <img  th:src="@{img/fun-fact/user.svg}" alt="Funfact">
+                    </div>
+                    <div class="funfact-info">
+                        <h5 class="funfact-count">4025</h5>
+                        <p>Members</p>
                     </div>
                 </div>
             </div>
+            == Single FunFact End ==
 
-            <!-- Pagination Start -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="pagination-wrap text-center">
-                        <nav>
-                            <ul class="pagination">
-                                <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-left"></i></a>
-                                </li>
-                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">...</a></li>
-                                <li class="page-item"><a class="page-link" href="#">50</a></li>
-                                <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i></a></li>
-                            </ul>
-                        </nav>
+            == Single FunFact Start ==
+            <div class="col-lg-3 col-sm-6">
+                <div class="single-funfact-wrap">
+                    <div class="funfact-icon">
+                        <img  th:src="@{img/fun-fact/picture.svg}" alt="Funfact">
+                    </div>
+                    <div class="funfact-info">
+                        <h5 class="funfact-count">8725</h5>
+                        <p>Photos</p>
                     </div>
                 </div>
             </div>
-            <!-- Pagination End -->
+            == Single FunFact End ==
+
+            == Single FunFact Start ==
+            <div class="col-lg-3 col-sm-6">
+                <div class="single-funfact-wrap">
+                    <div class="funfact-icon">
+                        <img  th:src="@{img/fun-fact/event.svg}" alt="Funfact">
+                    </div>
+                    <div class="funfact-info">
+                        <h5><span class="funfact-count">231</span>+</h5>
+                        <p>Events</p>
+                    </div>
+                </div>
+            </div>
+            == Single FunFact End ==
+
+            == Single FunFact Start ==
+            <div class="col-lg-3 col-sm-6">
+                <div class="single-funfact-wrap">
+                    <div class="funfact-icon">
+                        <img  th:src="@{img/fun-fact/medal.svg}" alt="Funfact">
+                    </div>
+                    <div class="funfact-info">
+                        <h5><span class="funfact-count">32</span>+</h5>
+                        <p>Awards</p>
+                    </div>
+                </div>
+            </div>
+            == Single FunFact End ==
         </div>
     </div>
 </section>
-<!--== Gallery Page Content End ==-->
+== FunFact Area End ==
+
+    <div class="our-honorable-commitee section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="about-page-area-title">
+                        <h2>Our Honorable Committe</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="honorable-committee-list">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-committee-member">
+                            <div class="commitee-thumb">
+                                <img src="http://placehold.it/500x700" class="img-fluid" alt="Committee">
+                            </div>
+                            <h3>BRYAN WATSHON<span class="committee-deg">President</span></h3>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-committee-member">
+                            <div class="commitee-thumb">
+                                <img src="http://placehold.it/500x700" class="img-fluid" alt="Committee">
+                            </div>
+                            <h3>CARLOS HELU<span class="committee-deg">Vice President</span></h3>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-committee-member">
+                            <div class="commitee-thumb">
+                                <img src="http://placehold.it/500x700" class="img-fluid" alt="Committee">
+                            </div>
+                            <h3>ANGLE TUNI<span class="committee-deg">Secretary</span></h3>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-committee-member">
+                            <div class="commitee-thumb">
+                                <img src="http://placehold.it/500x700" class="img-fluid" alt="Committee">
+                            </div>
+                            <h3>ALEX KALIFA<span class="committee-deg">Asst Secretary</span></h3>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-committee-member">
+                            <div class="commitee-thumb">
+                                <img src="http://placehold.it/500x700" class="img-fluid" alt="Committee">
+                            </div>
+                            <h3>ALEX Tuntuni<span class="committee-deg">Office Secretary</span></h3>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-committee-member">
+                            <div class="commitee-thumb">
+                                <img src="http://placehold.it/500x700" class="img-fluid" alt="Committee">
+                            </div>
+                            <h3>MAL MUHIT<span class="committee-deg">Finance Member</span></h3>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-committee-member">
+                            <div class="commitee-thumb">
+                                <img src="http://placehold.it/500x700" class="img-fluid" alt="Committee">
+                            </div>
+                            <h3>PRINCE RIMON<span class="committee-deg">Committee Member</span></h3>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                        <div class="single-committee-member">
+                            <div class="commitee-thumb">
+                                <img src="http://placehold.it/500x700" class="img-fluid" alt="Committee">
+                            </div>
+                            <h3>PRINCE KAMLA<span class="committee-deg">Committee Member</span></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="people-to-say section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="about-page-area-title">
+                        <h2>Some Speech About Us</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="people-to-say-wrapper owl-carousel">
+                        Single People Testimonial
+                        <div class="single-testimonial-wrap">
+                            <div class="people-thumb">
+                                <img src="http://placehold.it/500x500" alt="Alumni" class="img-fluid">
+                            </div>
+                            <i class="quote-icon"></i>
+                            <p>Exxcellent Lorem ipsum dolor sit amet, ectetur adipisicing elit, sed do eimod tempor
+                                inciidunt ut
+                                labore et dolorgna aliqua. Ut enim ad minim ostrud. </p>
+                            <h4>Robert Albert <span class="people-deg">Founder at Boxr</span></h4>
+                        </div>
+                        Single People Testimonial
+
+                        Single People Testimonial
+                        <div class="single-testimonial-wrap">
+                            <div class="people-thumb">
+                                <img src="http://placehold.it/500x500" alt="" class="img-fluid">
+                            </div>
+                            <i class="quote-icon"></i>
+                            <p>Exxcellent Lorem ipsum dolor sit amet, ectetur adipisicing elit, sed do eimod tempor
+                                inciidunt ut
+                                labore et dolorgna aliqua. Ut enim ad minim ostrud. </p>
+                            <h4>Akamla Albert <span class="people-deg">Founder at Kamlakana</span></h4>
+                        </div>
+                        Single People Testimonial
+
+                        Single People Testimonial
+                        <div class="single-testimonial-wrap">
+                            <div class="people-thumb">
+                                <img src="http://placehold.it/500x500" alt="" class="img-fluid">
+                            </div>
+                            <i class="quote-icon"></i>
+                            <p>Exxcellent Lorem ipsum dolor sit amet, ectetur adipisicing elit, sed do eimod tempor
+                                inciidunt ut
+                                labore et dolorgna aliqua. Ut enim ad minim ostrud. </p>
+                            <h4>Taklo Nahid <span class="people-deg">Minister at Nara</span></h4>
+                        </div>
+                        Single People Testimonial
+
+                        Single People Testimonial
+                        <div class="single-testimonial-wrap">
+                            <div class="people-thumb">
+                                <img src="http://placehold.it/500x500" alt="" class="img-fluid">
+                            </div>
+                            <i class="quote-icon"></i>
+                            <p>Exxcellent Lorem ipsum dolor sit amet, ectetur adipisicing elit, sed do eimod tempor
+                                inciidunt ut
+                                labore et dolorgna aliqua. Ut enim ad minim ostrud. </p>
+                            <h4>Mal Muhit<span class="people-deg">Founder at Kamlagiri</span></h4>
+                        </div>
+                        Single People Testimonial
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</section>
+<!--== Committee Page Content End ==-->
 
     <!--== Footer Area Start ==-->
 <footer id="footer-area">
@@ -487,7 +582,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="footer-bottom-text">
-                        <p>&#xA9; 2019Alumni Of The Sacreds, All Rights Reserved.</p>
+                       <p>&#xA9; 2019  Alumni Of The Sacreds, All Rights Reserved.</p>
                     </div>
                 </div>
             </div>
@@ -506,54 +601,54 @@
 <!-- SITE SCRIPT  -->
 
 <!-- Jquery JS  -->
-<script th:src="@{vendor/jquery/jquery-3.3.1.min.js}"></script>
+<script  th:src="@{vendor/jquery/jquery-3.3.1.min.js}"></script>
 
 <!-- POPPER JS -->
-<script th:src="@{vendor/bootstrap/js/popper.min.js}"></script>
+<script  th:src="@{vendor/bootstrap/js/popper.min.js}"></script>
 
 <!-- BOOTSTRAP JS -->
-<script th:src="@{vendor/bootstrap/js/bootstrap.min.js}"></script>
-<script th:src="@{vendor/navbar/bootstrap-4-navbar.js}"></script>
+<script  th:src="@{vendor/bootstrap/js/bootstrap.min.js}"></script>
+<script  th:src="@{vendor/navbar/bootstrap-4-navbar.js}"></script>
 
 <!--owl-->
-<script th:src="@{vendor/owl-carousel/owl.carousel.min.js}"></script>
+<script  th:src="@{vendor/owl-carousel/owl.carousel.min.js}"></script>
 
 <!--Waypoint-->
-<script th:src="@{vendor/waypoint/waypoints.min.js}"></script>
+<script  th:src="@{vendor/waypoint/waypoints.min.js}"></script>
 
 <!--CounterUp-->
-<script th:src="@{vendor/counterup/jquery.counterup.min.js}"></script>
+<script  th:src="@{vendor/counterup/jquery.counterup.min.js}"></script>
 
 <!--isotope-->
-<script th:src="@{vendor/isotope/isotope.pkgd.min.js}"></script>
+<script  th:src="@{vendor/isotope/isotope.pkgd.min.js}"></script>
 
 <!--magnific-->
-<script th:src="@{vendor/magnific/jquery.magnific-popup.min.js}"></script>
+<script  th:src="@{vendor/magnific/jquery.magnific-popup.min.js}"></script>
 
 <!--Smooth Scroll-->
-<script th:src="@{vendor/smooth-scroll/jquery.smooth-scroll.min.js}"></script>
+<script  th:src="@{vendor/smooth-scroll/jquery.smooth-scroll.min.js}"></script>
 
 <!--Jquery Easing-->
-<script th:src="@{vendor/jquery-easing/jquery.easing.1.3.min.js}"></script>
+<script  th:src="@{vendor/jquery-easing/jquery.easing.1.3.min.js}"></script>
 
 <!--Nice Select -->
-<script th:src="@{vendor/nice-select/jquery.nice-select.js}"></script>
+<script  th:src="@{vendor/nice-select/jquery.nice-select.js}"></script>
 
 <!--Jquery Valadation -->
-<script th:src="@{vendor/validation/jquery.validate.min.js}"></script>
-<script th:src="@{vendor/validation/additional-methods.min.js}"></script>
+<script  th:src="@{vendor/validation/jquery.validate.min.js}"></script>
+<script  th:src="@{vendor/validation/additional-methods.min.js}"></script>
 
 <!--off-canvas js -->
-<script th:src="@{vendor/js-offcanvas/js/js-offcanvas.pkgd.min.js}"></script>
+<script  th:src="@{vendor/js-offcanvas/js/js-offcanvas.pkgd.min.js}"></script>
 
 <!-- Countdown -->
-<script th:src="@{vendor/jquery.countdown/jquery.countdown.min.js}"></script>
+<script  th:src="@{vendor/jquery.countdown/jquery.countdown.min.js}"></script>
 
 <!-- custom js: main custom theme js file  -->
-<script th:src="@{js/theme.min.js}"></script>
+<script  th:src="@{js/theme.min.js}"></script>
 
 <!-- custom js: custom js file is added for easy custom js code  -->
-<script th:src="@{js/custom.js}"></script>
+<script  th:src="@{js/custom.js}"></script>
 
 <!-- custom js: custom scripts for theme style switcher for demo purpose  -->
 

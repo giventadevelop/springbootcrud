@@ -51,6 +51,13 @@ public class AppController {
 		return "gallery";
 	}
 	
+	
+	@RequestMapping("contact")
+	String contactPage(ModelMap modal) {
+		modal.addAttribute("title","Alumni event page");
+		return "contact";
+	}
+	
 	@RequestMapping("homepage")
 	String homePageTest(ModelMap modal) {
 		modal.addAttribute("title","CRUD Example");
@@ -124,7 +131,7 @@ public class AppController {
     	//SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	com.websystique.springboot.model.User modelUser=userService.findByUserName(authUser.getUsername());
 		session.setAttribute("userId", modelUser.getId());
-	
+	 
         return "login_success";
     }
     
@@ -219,7 +226,8 @@ public class AppController {
         if(session != null) {
             session.invalidate();
         }
-        return "logout";
+        //return "logout";
+        return "index";
     }
 	
 
