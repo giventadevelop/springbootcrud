@@ -968,11 +968,14 @@ blockquote:before {
 }
 
 #slider-area .slide-bg-1 {
-  background-image: url("http://placehold.it/1920x1280");
+  /*background-image: url("http://placehold.it/1920x1280");*/
+	background-image: url(../img/slides/1.jpg);
+  
 }
 
 #slider-area .slide-bg-2 {
-  background-image: url("http://placehold.it/1920x1280");
+  /*background-image: url("http://placehold.it/1920x1280");*/
+	background-image: url(../img/slides/2.jpg);
 }
 
 #slider-area .slide-bg-3 {
@@ -1210,7 +1213,7 @@ blockquote:before {
 }
 
 #about-area .about-area-wrapper:before {
-  background-image: url("http://placehold.it/1440x1018");
+  background-image: url(../img/mission_small.jpg);
   background-size: cover;
   content: "";
   position: absolute;
@@ -1527,35 +1530,35 @@ blockquote:before {
 }
 
 .gallery-gird .gallery-bg-1 {
-  background-image: url("http://placehold.it/800x800");
+  background-image: url(../img/gallery/gellary-img-1.jpg);
 }
 
 .gallery-gird .gallery-bg-2 {
-  background-image: url("http://placehold.it/800x800");
+  background-image: url(../img/gallery/gellary-img-2.jpg);
 }
 
 .gallery-gird .gallery-bg-3 {
-  background-image: url("http://placehold.it/800x800");
+  background-image: url(../img/gallery/gellary-img-3.jpg);
 }
 
 .gallery-gird .gallery-bg-4 {
-  background-image: url("http://placehold.it/800x800");
+  background-image: url(../img/gallery/gellary-img-4.jpg);
 }
 
 .gallery-gird .gallery-bg-5 {
-  background-image: url("http://placehold.it/800x800");
+  background-image: url(../img/gallery/gellary-img-5.jpg);
 }
 
 .gallery-gird .gallery-bg-6 {
-  background-image: url("http://placehold.it/800x800");
+  background-image: url(../img/gallery/gellary-img-6.jpg);
 }
 
 .gallery-gird .gallery-bg-7 {
-  background-image: url("http://placehold.it/800x800");
+  background-image: url(../img/gallery/gellary-img-7.jpg);
 }
 
 .gallery-gird .gallery-bg-8 {
-  background-image: url("http://placehold.it/800x800");
+  background-image: url(../img/gallery/gellary-img-8.jpg);
 }
 
 #scholership-promo {
@@ -1932,7 +1935,7 @@ blockquote:before {
 }
 
 #page-title-area {
-  background-image: url("http://placehold.it/1918x789");
+  background-image: url(../img/about-page/about_title.jpg);
   background-size: cover;
   background-position: center center;
   position: relative;

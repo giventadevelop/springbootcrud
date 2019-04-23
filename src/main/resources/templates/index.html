@@ -127,7 +127,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <nav class="main-menu navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="index.html">
+                        <a class="navbar-brand" href="/">
                             <img th:src="@{img/logo.png}" alt="Logo">
                         </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menucontent" aria-controls="menucontent" aria-expanded="false">
@@ -186,11 +186,33 @@
                 <div class="row">
                     <div class="col-lg-9">
                         <div class="slider-content">
-                            <h2>We Are Proud</h2>
-                            <h3>Students of <span>Oxfornt University</span></h3>
-                            <p>Alumni Needs enables you to harness the power of your alumni network. Whatever may be the need (academic, relocation, career, projects, mentorship, etc. you can ask the community and get responses in three.</p>
+                            <h2>Inauguration of "Alumni Of The Sacreds"</h2>
+                            <h3>Students of <span>Sacred Heart English Medium HSS</span></h3>
+                            <p>Sunday, April 28, at 2.00 PM<br>Sacred Heart English Medium HSS<br>Moolamattom, Kerala 685 589<br></p>
                             <div class="slider-btn">
-                                <a href="about" class="btn btn-brand smooth-scroll">our mission</a>
+                                <a href="#about-area" class="btn btn-brand smooth-scroll">our mission</a>
+                                <a href="about" class="btn btn-brand-rev">our story</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Single Slide Item End -->
+
+     <!-- Single Slide Item End -->
+
+        <!-- Single Slide Item Start -->
+        <div class="single-slide-wrap slide-bg-2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <div class="slider-content">
+                            <h2></h2>
+                            <h3><span></span></h3>
+                            <p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></p>
+                            <div class="slider-btn">
+                                <a href="#about-area" class="btn btn-brand">our mission</a>
                                 <a href="about" class="btn btn-brand-rev">our story</a>
                             </div>
                         </div>
@@ -201,27 +223,7 @@
         <!-- Single Slide Item End -->
 
         <!-- Single Slide Item Start -->
-        <div class="single-slide-wrap slide-bg-2">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-9">
-                        <div class="slider-content">
-                            <h2>We Are Not Proud</h2>
-                            <h3>Students of <span>Oxfornt University</span></h3>
-                            <p>Alumni Needs enables you to harness the power of your alumni network. Whatever may be the need (academic, relocation, career, projects, mentorship, etc. you can ask the community and get responses in three.</p>
-                            <div class="slider-btn">
-                                <a href="#" class="btn btn-brand">our mission</a>
-                                <a href="#" class="btn btn-brand-rev">our story</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Single Slide Item End -->
-
-        <!-- Single Slide Item Start -->
-        <div class="single-slide-wrap slide-bg-3">
+       <!-- <div class="single-slide-wrap slide-bg-3">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-9">
@@ -237,7 +239,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
         <!-- Single Slide Item End -->
     </div>
 
@@ -368,11 +370,13 @@
                 <div class="col-lg-10 ml-auto">
                     <div class="about-content-wrap">
                         <div class="section-title text-center text-lg-left">
-                            <h2>Our Misssion</h2>
+                            <h2>Our Mission</h2>
                         </div>
 
                         <div class="about-thumb">
-                            <img src="http://placehold.it/1440x1018" alt="" class="img-fluid">
+                            <!-- <img src="http://placehold.it/1440x1018" alt="" class="img-fluid"> -->
+                             <img th:src="@{img/mission_small.jpg}" alt="Our Misssion"> 
+                            <!--   <img th:src="@{img/logo.png}" alt="Logo"> -->
                         </div>
 
                         <p>SHEMHSS Moolamattom  alumni community also called "Alumni Of The Sacreds" or " The Sacreds " in short is a great way to stay in touch with SHEMHSS and your classmates. Membership in the Alumni Association consists of any student who attended SHEMHSS for at least one term and graduated or left in good standing. We encourage you to visit all areas of our site by clicking on the links this page, or by clicking the LOGIN button at the top right of this page..</p>
@@ -681,16 +685,16 @@
 
                     <!-- Gallery Item content Start -->
                         <div class="row gallery-gird">
-    <!-- Single Gallery Start -->
+   <!-- Single Gallery Start -->
     <div class="col-lg-3  col-sm-6 recent event">
         <div class="single-gallery-item gallery-bg-1">
             <div class="gallery-hvr-wrap">
                 <div class="gallery-hvr-text">
-                    <h4>University Cumpus</h4>
-                    <p class="gallery-event-date">28 Oct, 2018</p>
+                    <h4>Very First Batch of Sacreds</h4>
+                    <p class="gallery-event-date">28 Apr, 2019</p>
                 </div>
-                <a th:href="@{img/gallery/gellary-img-1.jpg}" class="btn-zoom image-popup">
-                    <img th:src="@{img/zoom-icon.png}" alt="a">
+                <a href="img/gallery/gellary-img-1.jpg" class="btn-zoom image-popup">
+                    <img src="img/zoom-icon.png" alt="a">
                 </a>
             </div>
         </div>
@@ -698,11 +702,27 @@
     <!-- Single Gallery End -->
 
     <!-- Single Gallery Start -->
-    <div class="col-lg-3  col-sm-6 old event pic">
+	<div class="col-lg-3  col-sm-6 recent event">
+        <div class="single-gallery-item gallery-bg-2">
+            <div class="gallery-hvr-wrap">
+                <div class="gallery-hvr-text">
+                    <h4>Sacreds Old Collection</h4>
+                    <p class="gallery-event-date">28 Apr, 2019</p>
+                </div>
+                <a href="img/gallery/gellary-img-2.jpg" class="btn-zoom image-popup">
+                    <img src="img/zoom-icon.png" alt="a">
+                </a>
+            </div>
+        </div>
+    </div>						
+							
+							
+							
+    <!--<div class="col-lg-3  col-sm-6 old event pic">
         <div class="single-gallery-item video gallery-bg-2">
             <a href="https://player.vimeo.com/video/140182080?title=0&amp;portrait=0&amp;byline=0&amp;autoplay=1&amp;loop=1" class="btn btn-video-play video-popup"><i class="fa fa-play"></i></a>
         </div>
-    </div>
+    </div>-->
     <!-- Single Gallery End -->
 
     <!-- Single Gallery Start -->
@@ -710,11 +730,11 @@
         <div class="single-gallery-item gallery-bg-3">
             <div class="gallery-hvr-wrap">
                 <div class="gallery-hvr-text">
-                    <h4>University Cumpus</h4>
-                    <p class="gallery-event-date">28 Oct, 2018</p>
+                    <h4>Old Batch</h4>
+                    <p class="gallery-event-date">28 Apr, 2019</p>
                 </div>
-                <a th:href="@{img/gallery/gellary-img-3.jpg}" class="btn-zoom image-popup">
-                    <img th:src="@{img/zoom-icon.png}" alt="a">
+                <a href="img/gallery/gellary-img-3.jpg" class="btn-zoom image-popup">
+                    <img src="img/zoom-icon.png" alt="a">
                 </a>
             </div>
         </div>
@@ -726,11 +746,11 @@
         <div class="single-gallery-item gallery-bg-4">
             <div class="gallery-hvr-wrap">
                 <div class="gallery-hvr-text">
-                    <h4>University Cumpus</h4>
-                    <p class="gallery-event-date">28 Oct, 2018</p>
+                    <h4>Class VI 1984 Batch</h4>
+                    <p class="gallery-event-date">28 Apr, 2019</p>
                 </div>
-                <a th:href="@{img/gallery/gellary-img-4.jpg}" class="btn-zoom image-popup">
-                    <img th:src="@{img/zoom-icon.png}" alt="a">
+                <a href="img/gallery/gellary-img-4.jpg" class="btn-zoom image-popup">
+                    <img src="img/zoom-icon.png" alt="a">
                 </a>
             </div>
         </div>
@@ -742,11 +762,11 @@
         <div class="single-gallery-item gallery-bg-5">
             <div class="gallery-hvr-wrap">
                 <div class="gallery-hvr-text">
-                    <h4>University Cumpus</h4>
-                    <p class="gallery-event-date">28 Oct, 2018</p>
+                    <h4>Class VII 1985 Batch</h4>
+                    <p class="gallery-event-date">28 Apr, 2019</p>
                 </div>
-                <a th:href="@{img/gallery/gellary-img-5.jpg}" class="btn-zoom image-popup">
-                    <img th:src="@{img/zoom-icon.png}" alt="a">
+                <a href="img/gallery/gellary-img-5.jpg" class="btn-zoom image-popup">
+                    <img src="img/zoom-icon.png" alt="a">
                 </a>
             </div>
         </div>
@@ -758,11 +778,11 @@
         <div class="single-gallery-item gallery-bg-6">
             <div class="gallery-hvr-wrap">
                 <div class="gallery-hvr-text">
-                    <h4>University Cumpus</h4>
-                    <p class="gallery-event-date">28 Oct, 2018</p>
+                    <h4>Sr. Liza</h4>
+                    <p class="gallery-event-date">28 Apr, 2019</p>
                 </div>
-                <a th:href="@{img/gallery/gellary-img-6.jpg}" class="btn-zoom image-popup">
-                    <img th:src="@{img/zoom-icon.png}" alt="a">
+                <a href="img/gallery/gellary-img-6.jpg" class="btn-zoom image-popup">
+                    <img src="img/zoom-icon.png" alt="a">
                 </a>
             </div>
         </div>
@@ -770,11 +790,31 @@
     <!-- Single Gallery End -->
 
     <!-- Single Gallery Start -->
-    <div class="col-lg-3  col-sm-6 pic">
+	<div class="col-lg-3  col-sm-6 old recent">
+        <div class="single-gallery-item gallery-bg-7">
+            <div class="gallery-hvr-wrap">
+                <div class="gallery-hvr-text">
+                    <h4>Sr. Alice Mary</h4>
+                    <p class="gallery-event-date">28 Apr, 2019</p>
+                </div>
+                <a href="img/gallery/gellary-img-7.jpg" class="btn-zoom image-popup">
+                    <img src="img/zoom-icon.png" alt="a">
+                </a>
+            </div>
+        </div>
+    </div>							
+							
+							
+							
+							
+							
+							
+							
+    <!--<div class="col-lg-3  col-sm-6 pic">
         <div class="single-gallery-item video gallery-bg-7">
             <a href="https://player.vimeo.com/video/181545195?title=0&amp;portrait=0&amp;byline=0&amp;autoplay=1&amp;loop=1" class="btn btn-video-play video-popup"><i class="fa fa-play"></i></a>
         </div>
-    </div>
+    </div>-->
     <!-- Single Gallery End -->
 
     <!-- Single Gallery Start -->
@@ -782,11 +822,11 @@
         <div class="single-gallery-item gallery-bg-8">
             <div class="gallery-hvr-wrap">
                 <div class="gallery-hvr-text">
-                    <h4>University Cumpus</h4>
-                    <p class="gallery-event-date">28 Oct, 2018</p>
+                    <h4>1993 SSLC Batch in IVth Standard</h4>
+                    <p class="gallery-event-date">28 Apr, 2019</p>
                 </div>
-                <a th:href="@{img/gallery/gellary-img-8.jpg}" class="btn-zoom image-popup">
-                    <img th:src="@{img/zoom-icon.png}" alt="a">
+                <a href="img/gallery/gellary-img-8.jpg" class="btn-zoom image-popup">
+                    <img src="img/zoom-icon.png" alt="a">
                 </a>
             </div>
         </div>
